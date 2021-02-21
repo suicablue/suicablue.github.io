@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>theme on SuicaBlue&#39;s blog</title>
+    <link>https://suicablue.github.io/tags/theme/</link>
+    <description>Recent content in theme on SuicaBlue&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablue.github.io/tags/theme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Themes Gallery</title>
+      <link>https://suicablue.github.io/2021/02/themes-gallery/</link>
+      <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
+      
+      <guid>https://suicablue.github.io/2021/02/themes-gallery/</guid>
+      <description>&lt;p&gt;Default themes display in CobaltKiss Pleroma.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on SuicaBlue&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2021 16:06:38 +0800</lastBuildDate><atom:link href="https://suicablue.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablue.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Themes Gallery</title>
+      <link>https://suicablue.github.io/2021/02/themes-gallery/</link>
+      <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
+      
+      <guid>https://suicablue.github.io/2021/02/themes-gallery/</guid>
+      <description>&lt;p&gt;Default themes display in CobaltKiss Pleroma.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Helloworld</title>
       <link>https://suicablue.github.io/2021/02/helloworld/</link>
