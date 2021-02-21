@@ -17,22 +17,6 @@
     </item>
     
     <item>
-      <title>在Windows上搭建Hugo博客之Github部署填坑记</title>
-      <link>https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/</link>
-      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/</guid>
-      <description>&lt;p&gt;这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Hugo在Windows 10系统上的下载与安装（简略说明）&lt;/li&gt;
-&lt;li&gt;Hugo主题的下载、安装与配置（简略说明）&lt;/li&gt;
-&lt;li&gt;将Hugo从本地部署到Github个人页面&lt;/li&gt;
-&lt;li&gt;发布、修改、删除博文&lt;/li&gt;
-&lt;li&gt;将Github默认的个人页面URL修改为自定义二级域名&lt;/li&gt;
-&lt;/ol&gt;</description>
-    </item>
-    
-    <item>
       <title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）</title>
       <link>https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/</link>
       <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
