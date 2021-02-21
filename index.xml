@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>Helloworld</title>
-      <link>https://suicablue.github.io/2021/02/helloworld/</link>
-      <pubDate>Sun, 21 Feb 2021 16:06:38 +0800</pubDate>
-      
-      <guid>https://suicablue.github.io/2021/02/helloworld/</guid>
-      <description>&lt;p&gt;Hello World!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）</title>
       <link>https://suicablue.github.io/2020/09/pleroma-installation-on-linux-using-otp-releases/</link>
       <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
