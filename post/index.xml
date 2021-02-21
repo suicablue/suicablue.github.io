@@ -6,14 +6,30 @@
     <description>Recent content in Posts on SuicaBlue&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Themes Gallery</title>
       <link>https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/</link>
-      <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/</guid>
       <description>&lt;p&gt;Default themes display in CobaltKiss Pleroma.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在Windows上搭建Hugo博客之Github部署填坑记</title>
+      <link>https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/</guid>
+      <description>&lt;p&gt;这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Hugo在Windows 10系统上的下载与安装&lt;/li&gt;
+&lt;li&gt;Hugo主题的下载、安装与配置&lt;/li&gt;
+&lt;li&gt;将Hugo从本地部署到Github个人页面&lt;/li&gt;
+&lt;li&gt;发布、修改、删除博文&lt;/li&gt;
+&lt;li&gt;将Github默认的个人页面URL修改为自定义二级域名&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     
     <item>

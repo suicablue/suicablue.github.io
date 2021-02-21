@@ -8,18 +8,46 @@
 <meta name="generator" content="Hugo 0.80.0 with theme Tranquilpeak 0.4.8-BETA">
 <meta name="author" content="Suica Blue">
 <meta name="keywords" content="">
-<meta name="description" content="Default themes display in CobaltKiss Pleroma.">
+<meta name="description" content="这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：
+
+Hugo在Windows 10系统上的下载与安装
+Hugo主题的下载、安装与配置
+将Hugo从本地部署到Github个人页面
+发布、修改、删除博文
+将Github默认的个人页面URL修改为自定义二级域名
+">
 
 
-<meta property="og:description" content="Default themes display in CobaltKiss Pleroma.">
+<meta property="og:description" content="这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：
+
+Hugo在Windows 10系统上的下载与安装
+Hugo主题的下载、安装与配置
+将Hugo从本地部署到Github个人页面
+发布、修改、删除博文
+将Github默认的个人页面URL修改为自定义二级域名
+">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Themes Gallery">
-<meta name="twitter:title" content="Themes Gallery">
-<meta property="og:url" content="https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
-<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+<meta property="og:title" content="在Windows上搭建Hugo博客之Github部署填坑记">
+<meta name="twitter:title" content="在Windows上搭建Hugo博客之Github部署填坑记">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
 <meta property="og:site_name" content="SuicaBlue&#39;s blog">
-<meta property="og:description" content="Default themes display in CobaltKiss Pleroma.">
-<meta name="twitter:description" content="Default themes display in CobaltKiss Pleroma.">
+<meta property="og:description" content="这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：
+
+Hugo在Windows 10系统上的下载与安装
+Hugo主题的下载、安装与配置
+将Hugo从本地部署到Github个人页面
+发布、修改、删除博文
+将Github默认的个人页面URL修改为自定义二级域名
+">
+<meta name="twitter:description" content="这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：
+
+Hugo在Windows 10系统上的下载与安装
+Hugo主题的下载、安装与配置
+将Hugo从本地部署到Github个人页面
+发布、修改、删除博文
+将Github默认的个人页面URL修改为自定义二级域名
+">
 <meta property="og:locale" content="zh-cn">
 
   
@@ -31,14 +59,20 @@
   
   
     
-      <meta property="article:section" content="pleroma">
+      <meta property="article:section" content="菜鸟的瞎折腾笔记">
     
   
   
     
-      <meta property="article:tag" content="pleroma">
+      <meta property="article:tag" content="hugo">
     
-      <meta property="article:tag" content="theme">
+      <meta property="article:tag" content="博客">
+    
+      <meta property="article:tag" content="github">
+    
+      <meta property="article:tag" content="git">
+    
+      <meta property="article:tag" content="cloudflare">
     
   
 
@@ -51,45 +85,13 @@
 
 
 
-  <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613900660/Themes%20Display/vha_cobaltvelvet_aiegnc.png">
-  <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613900660/Themes%20Display/vha_cobaltvelvet_aiegnc.png">
+  <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613908989/blog-thumbnail-images/suica_3_uc2vyd.jpg">
+  <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613908989/blog-thumbnail-images/suica_3_uc2vyd.jpg">
 
 
-  <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613901298/Themes%20Display/walking-by_p3hkph.gif">
-  <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613901298/Themes%20Display/walking-by_p3hkph.gif">
+  <meta property="og:image" content="//">
+  <meta property="twitter:image" content="//">
 
-
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/Sei_Stella_e0vjpz.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/Sei_Stella_e0vjpz.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/cobaltkiss_first_theme_obhcup.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/cobaltkiss_first_theme_obhcup.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/soapbox_cobaltkiss_chezcr.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/soapbox_cobaltkiss_chezcr.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899671/Themes%20Display/take_a_break_xhuqho.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899671/Themes%20Display/take_a_break_xhuqho.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Halloween2020_g302ct.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Halloween2020_g302ct.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/afterschool_cjiuvf.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/afterschool_cjiuvf.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Galaxy_Splash_by_Rieki_hvd62a.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Galaxy_Splash_by_Rieki_hvd62a.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899678/Themes%20Display/Apatite_by_ocnys_mant92.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899678/Themes%20Display/Apatite_by_ocnys_mant92.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/I_m_freezing_lpyuvh.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/I_m_freezing_lpyuvh.png">
-  
-    <meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/neonlight_plrajr.png">
-    <meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/neonlight_plrajr.png">
-  
 
 
 
@@ -97,14 +99,14 @@
   <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
 
 
-    <title>Themes Gallery</title>
+    <title>在Windows上搭建Hugo博客之Github部署填坑记</title>
 
     <link rel="icon" href="images/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+    <link rel="canonical" href="https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -236,13 +238,13 @@
   <div class="post-header-cover
               text-left
               "
-       style="background-image:url('//res.cloudinary.com/suicablue/image/upload/v1613901298/Themes%20Display/walking-by_p3hkph.gif')"
+       style="background-image:url('//')"
        data-behavior="4">
     
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Themes Gallery
+      在Windows上搭建Hugo博客之Github部署填坑记
     </h1>
   
   
@@ -259,7 +261,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://suicablog.cobaltkiss.blue/categories/pleroma">pleroma</a>
+      <a class="category-link" href="https://suicablog.cobaltkiss.blue/categories/%e8%8f%9c%e9%b8%9f%e7%9a%84%e7%9e%8e%e6%8a%98%e8%85%be%e7%ac%94%e8%ae%b0">菜鸟的瞎折腾笔记</a>
     
   
 
@@ -279,112 +281,15 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Default themes display in CobaltKiss Pleroma.</p>
-<p>CobaltKiss自创站以来所有使用过的默认主题。</p>
+              <p>这篇博文记录了CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：</p>
+<ol>
+<li>Hugo在Windows 10系统上的下载与安装</li>
+<li>Hugo主题的下载、安装与配置</li>
+<li>将Hugo从本地部署到Github个人页面</li>
+<li>发布、修改、删除博文</li>
+<li>将Github默认的个人页面URL修改为自定义二级域名</li>
+</ol>
               
-  
-  
-  
-    <div class="image-gallery">
-      <div class="image-gallery-metabar">
-        <span>Gallery 10 images</span>
-      </div>
-      <div class="image-gallery-photos image-gallery-photos--thumbnail">
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;Sei&amp;Stella&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/Sei_Stella_e0vjpz.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/Sei_Stella_e0vjpz.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;cobaltkiss_first_theme&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/cobaltkiss_first_theme_obhcup.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/cobaltkiss_first_theme_obhcup.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;soapbox_cobaltkiss&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/soapbox_cobaltkiss_chezcr.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/soapbox_cobaltkiss_chezcr.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;takeabreak&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899671/Themes%20Display/take_a_break_xhuqho.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899671/Themes%20Display/take_a_break_xhuqho.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;Halloween2020&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Halloween2020_g302ct.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Halloween2020_g302ct.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;放課後&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/afterschool_cjiuvf.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899672/Themes%20Display/afterschool_cjiuvf.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;GalaxySplash(ByRieki)&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Galaxy_Splash_by_Rieki_hvd62a.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899670/Themes%20Display/Galaxy_Splash_by_Rieki_hvd62a.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;Apatite(byocnys)&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899678/Themes%20Display/Apatite_by_ocnys_mant92.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899678/Themes%20Display/Apatite_by_ocnys_mant92.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;I&#39;m_freezing&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/I_m_freezing_lpyuvh.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/I_m_freezing_lpyuvh.png" itemprop="image">
-            </a>
-          </div>
-        
-          
-          
-          <div class="photo-box">
-            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-48015adf2166f4147cabbc786be07f57"
-               title="&#34;neonlight&#34;" href="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/neonlight_plrajr.png">
-              <img class="photo" src="//res.cloudinary.com/suicablue/image/upload/v1613899669/Themes%20Display/neonlight_plrajr.png" itemprop="image">
-            </a>
-          </div>
-        
-      </div>
-    </div>
-    
-
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -395,9 +300,15 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/pleroma/">pleroma</a>
+  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/hugo/">hugo</a>
 
-  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/theme/">theme</a>
+  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+
+  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/github/">github</a>
+
+  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/git/">git</a>
+
+  <a class="tag tag--primary tag--small" href="https://suicablog.cobaltkiss.blue/tags/cloudflare/">cloudflare</a>
 
                   </div>
                 
@@ -410,7 +321,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/" data-tooltip="Themes Gallery">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -418,7 +329,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/" data-tooltip="在Windows上搭建Hugo博客之Github部署填坑记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/" data-tooltip="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -436,19 +347,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -496,7 +407,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/" data-tooltip="Themes Gallery">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -504,7 +415,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/" data-tooltip="在Windows上搭建Hugo博客之Github部署填坑记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/" data-tooltip="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -522,19 +433,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -564,19 +475,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fthemes-gallery%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fdeploy-hugo-as-a-github-pages-project%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fthemes-gallery%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fdeploy-hugo-as-a-github-pages-project%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fthemes-gallery%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fsuicablog.cobaltkiss.blue%2F2021%2F02%2Fdeploy-hugo-as-a-github-pages-project%2F">
           <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
         </a>
       </li>
@@ -656,9 +567,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/suicablog.cobaltkiss.blue\/2021\/02\/themes-gallery\/';
+          this.page.url = 'https:\/\/suicablog.cobaltkiss.blue\/2021\/02\/deploy-hugo-as-a-github-pages-project\/';
           
-            this.page.identifier = '\/2021\/02\/themes-gallery\/'
+            this.page.identifier = '\/2021\/02\/deploy-hugo-as-a-github-pages-project\/'
           
         };
         (function() {

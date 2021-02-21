@@ -4,47 +4,77 @@
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/categories/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://suicablog.cobaltkiss.blue/categories/gallery/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <loc>https://suicablog.cobaltkiss.blue/tags/cloudflare/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/tags/git/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/tags/github/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/tags/hugo/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/tags/pleroma/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/categories/pleroma/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/post/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/tags/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/tags/theme/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/</loc>
-    <lastmod>2021-02-21T17:07:54+08:00</lastmod>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://suicablog.cobaltkiss.blue/categories/%E8%8F%9C%E9%B8%9F%E7%9A%84%E7%9E%8E%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -6,11 +6,47 @@
     <description>Recent content in Tags on SuicaBlue&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cloudflare</title>
+      <link>https://suicablog.cobaltkiss.blue/tags/cloudflare/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/tags/cloudflare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://suicablog.cobaltkiss.blue/tags/git/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://suicablog.cobaltkiss.blue/tags/github/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://suicablog.cobaltkiss.blue/tags/hugo/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>pleroma</title>
       <link>https://suicablog.cobaltkiss.blue/tags/pleroma/</link>
-      <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://suicablog.cobaltkiss.blue/tags/pleroma/</guid>
       <description></description>
@@ -19,9 +55,18 @@
     <item>
       <title>theme</title>
       <link>https://suicablog.cobaltkiss.blue/tags/theme/</link>
-      <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://suicablog.cobaltkiss.blue/tags/theme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>博客</title>
+      <link>https://suicablog.cobaltkiss.blue/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://suicablog.cobaltkiss.blue/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     
