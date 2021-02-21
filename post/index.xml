@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on SuicaBlue&#39;s blog</title>
-    <link>https://suicablue.github.io/post/</link>
+    <link>https://suicablog.cobaltkiss.blue/post/</link>
     <description>Recent content in Posts on SuicaBlue&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablue.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 17:07:54 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Themes Gallery</title>
-      <link>https://suicablue.github.io/2021/02/themes-gallery/</link>
+      <link>https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/</link>
       <pubDate>Sun, 21 Feb 2021 17:07:54 +0800</pubDate>
       
-      <guid>https://suicablue.github.io/2021/02/themes-gallery/</guid>
+      <guid>https://suicablog.cobaltkiss.blue/2021/02/themes-gallery/</guid>
       <description>&lt;p&gt;Default themes display in CobaltKiss Pleroma.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）</title>
-      <link>https://suicablue.github.io/2020/09/pleroma-installation-on-linux-using-otp-releases/</link>
+      <link>https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/</link>
       <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://suicablue.github.io/2020/09/pleroma-installation-on-linux-using-otp-releases/</guid>
+      <guid>https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/</guid>
       <description>&lt;p&gt;适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南&lt;/p&gt;</description>
     </item>
     
