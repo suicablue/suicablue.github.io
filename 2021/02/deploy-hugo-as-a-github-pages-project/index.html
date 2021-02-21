@@ -327,7 +327,7 @@ Git The requested URL returned error:403</p>
 <li>您修改过github账户用户名与密码</li>
 <li>您曾在电脑上使用过其他github账户</li>
 </ol>
-<p>我当时出现了两次这个报错，第一次是因为我曾在电脑上安装hexo博客，当时我使用的是另一个github账户，也就是第三种情况。这是您需要打开控制面板-&gt;用户账户-&gt;管理Windows凭据，向下看有普通凭据，找到关于git:https://github.com并删除。<a href="https://www.cnblogs.com/wangxiaozhang/p/11303557.html">方法来自WANGXIAOZHANG的博文</a></p>
+<p>我当时出现了两次这个报错，第一次是因为我曾在电脑上安装hexo博客，当时我使用的是另一个github账户，也就是第三种情况。这是您需要打开控制面板-&gt;用户账户-&gt;管理Windows凭据，向下看有普通凭据，找到关于 <code>git:https://github.com</code> 并删除。 <a href="https://www.cnblogs.com/wangxiaozhang/p/11303557.html">方法来自WANGXIAOZHANG的博文</a></p>
 <p>第二次报错是因为我注册的新github账户没有在电脑上使用过，也就是第一种情况，这时您需要<strong>生成SSH添加到GitHub</strong>。</p>
 <pre><code>git config --global user.name &lt;username&gt;
 git config --global user.email &lt;useremail&quot;&gt;
@@ -344,7 +344,7 @@ git config --global user.email &lt;useremail&quot;&gt;
 <h1 id="四发布修改删除博文">四、发布、修改、删除博文</h1>
 <p>添加新博文，在根目录执行命令：</p>
 <pre><code>hugo new post/标题.md
-</code></pre><p>或者直接将markdown文件拖到您主题对应的存放博文的目录下并添加修改源数据。</p>
+</code></pre><p>或者直接将markdown文件拖到您主题对应的存放博文的目录下并添加修改前置数据。</p>
 <p>在此之前可以先在archetypes目录下添加编辑post.md文件，设置文章模板。这里要根据您安装的主题去编辑，在tranquilpeak主题中，博文默认储存在content/post/中，默认博文样式文件名为post.md，有些主题content下的目录可能为posts，请在您安装的主题目录中的content与archetypes目录中找到正确的格式。</p>
 <p>对于tranquilpeak主题，可以这么设置post.md:
 (这部分内容来自<a href="https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/#%E5%BB%BA%E7%AB%8Bgithub-pages%E5%B9%B6%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A">SAquarius的梦想屋</a>)</p>
