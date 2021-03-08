@@ -117,6 +117,10 @@ Hugo主题的下载、安装与配置（简略说明）
     <link rel="stylesheet" href="https://suicablog.cobaltkiss.blue/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
     
     
+      
+        <link rel="stylesheet"  href="https://suicablog.cobaltkiss.blue/css/blogroll.css">
+      
+    
 
     
       
@@ -299,7 +303,9 @@ Hugo主题的下载、安装与配置（简略说明）
 <li>发布、修改、删除博文</li>
 <li>将Github默认的个人页面URL修改为自定义二级域名</li>
 </ol>
-<p><em>正式阅读正文前您需要了解，本人在 CS方面完完全全就是菜鸟一只。到底有多菜鸟呢？在 Hugo的部署过程中需要大量git操作，而我是因为要建 Hugo才开始学习git的基础操作。这篇博文算是我在自建Hugo博客过程中各路乱抄的作业答案整理归纳，抄作业过程中，我由于不明原理而抄错答案，导致博客运行出现了很多问题，这篇博文也对这些错误、错误原因和解决方式进行了总结。博文中可能难免出现描述性错误或可以进一步完善的地方，如有修改建议，希望您可以在下方评论指正，或通过fediverse账号、邮箱联系我修改。</em></p>
+<div class="alert warning no-icon ">
+  <p>正式阅读正文前您需要了解，本人在 CS方面完完全全就是菜鸟一只。到底有多菜鸟呢？在 Hugo的部署过程中需要大量git操作，而我是因为要建 Hugo才开始学习git的基础操作。这篇博文算是我在自建Hugo博客过程中各路乱抄的作业答案整理归纳，抄作业过程中，我由于不明原理而抄错答案，导致博客运行出现了很多问题，这篇博文也对这些错误、错误原因和解决方式进行了总结。博文中可能难免出现描述性错误或可以进一步完善的地方，如有修改建议，希望您可以在下方评论指正，或通过fediverse账号、邮箱联系我修改。</p>
+</div>
 <h1 id="一hugo在windows-10系统上的下载与安装">一、Hugo在Windows 10系统上的下载与安装</h1>
 <p>Hugo的官方网站上有Hugo在各种系统上安装的详细说明视频，对于熟悉Window 10系统操作的朋友来说并不困难，这里不再做复述和进一步说明，详情请看 <a href="https://gohugo.io/getting-started/installing/">Hugo-Getting Started-Install Hugo</a> 。</p>
 <p>按照视频下载安装后，您的计算机中应该有一个名为&quot;Hugo&quot;的目录、一个名为&quot;Sites&quot;的用于存放所有博客站点的目录，Hugo目录下应有三个文件；同时，您的计算中应已下载Git程序。</p>
@@ -502,7 +508,7 @@ url: https://custom.url
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/03/a-friendly-talk-on-march-eighth/" data-tooltip="鸡杂味道的谈话">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -570,7 +576,7 @@ url: https://custom.url
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://suicablog.cobaltkiss.blue/2021/03/a-friendly-talk-on-march-eighth/" data-tooltip="鸡杂味道的谈话">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
