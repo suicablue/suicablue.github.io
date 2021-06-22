@@ -410,7 +410,7 @@ location ~ /.well-known/acme-challenge { root /var/lib/letsencrypt/; }
 <p>6、确认自动更新任务设置成功（注意修改域名）
 <code>certbot renew --cert-name &lt;yourinstance.tld&gt; --webroot -w /var/lib/letsencrypt/ --dry-run --post-hook 'systemctl reload nginx'</code></p>
 <p>显示以下内容则设置成功：
-Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/cobaltkiss.blue/fullchain.pem (success)
+Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/yourinstance.tld/fullchain.pem (success)
 ** DRY RUN: simulating &lsquo;certbot renew&rsquo; close to cert expiry
 ** (The test certificates above have not been saved.)</p>
 <p>7、添加自动任务（注意修改域名）</p>
