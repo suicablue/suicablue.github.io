@@ -1,170 +1,22 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"利用Github Pages与Github Action搭建并部署Hugo博客","image":"//","datePublished":"2021-09-18T17:02:51+08:00","dateModified":"2021-09-18T17:02:51+08:00","author":{"@type":"Person","name":"博客装修中…","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/2021\/09\/use-github-pages-to-create-your-own-blog-and-deploy-automatically\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"}},"description":"目录    ♡ 正式开始前你需要知道 ✦ 快速在本地生成一个博客！  Sites 和 Bin 第一次使用Git和SSH？ 来安装主题吧！   ✦ 自动部署准备  两种部署方案 上传公钥 生成Token 建立存放博客根目录的仓库并储存到本地 将博客根目录上传至github新建的仓库 为根目录仓库生成Secrets 建立存放public目录的仓库   ✦ 自动部署！  确认以下步骤是否已经完成： Github Action 自定义域名注意事项 ✧ 部署完成后续管理 ✧ 一些可能有用的 tips ✧ 参考链接      ","keywords":["keyword"]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"利用Github Pages与Github Action搭建并部署Hugo博客","image":"//","datePublished":"2021-09-18T17:02:51+08:00","dateModified":"2021-09-18T17:02:51+08:00","author":{"@type":"Person","name":"博客装修中…","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/2021\/09\/use-github-pages-to-create-your-own-blog-and-deploy-automatically\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"}},"description":"节日快乐，建个Hugo玩吗 (≧∀≦)ゞ？","keywords":["keyword"]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=generator content="Hugo 0.88.1 with theme Tranquilpeak 0.5.2-BETA">
 <meta name=author content="博客装修中…">
 <meta name=keywords content="keyword">
-<meta name=description content="目录
-
-  
-    
-      
-        ♡ 正式开始前你需要知道
-        ✦ 快速在本地生成一个博客！
-          
-            Sites 和 Bin
-            第一次使用Git和SSH？
-            来安装主题吧！
-          
-        
-        ✦ 自动部署准备
-          
-            两种部署方案
-            上传公钥
-            生成Token
-            建立存放博客根目录的仓库并储存到本地
-            将博客根目录上传至github新建的仓库
-            为根目录仓库生成Secrets
-            建立存放public目录的仓库
-          
-        
-        ✦ 自动部署！
-          
-            确认以下步骤是否已经完成：
-            Github Action
-            自定义域名注意事项
-            ✧ 部署完成后续管理
-            ✧ 一些可能有用的 tips
-            ✧ 参考链接
-          
-        
-      
-    
-  
-">
-<meta property="og:description" content="目录
-
-  
-    
-      
-        ♡ 正式开始前你需要知道
-        ✦ 快速在本地生成一个博客！
-          
-            Sites 和 Bin
-            第一次使用Git和SSH？
-            来安装主题吧！
-          
-        
-        ✦ 自动部署准备
-          
-            两种部署方案
-            上传公钥
-            生成Token
-            建立存放博客根目录的仓库并储存到本地
-            将博客根目录上传至github新建的仓库
-            为根目录仓库生成Secrets
-            建立存放public目录的仓库
-          
-        
-        ✦ 自动部署！
-          
-            确认以下步骤是否已经完成：
-            Github Action
-            自定义域名注意事项
-            ✧ 部署完成后续管理
-            ✧ 一些可能有用的 tips
-            ✧ 参考链接
-          
-        
-      
-    
-  
-">
+<meta name=description content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ？">
+<meta property="og:description" content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用Github Pages与Github Action搭建并部署Hugo博客">
 <meta name=twitter:title content="利用Github Pages与Github Action搭建并部署Hugo博客">
 <meta property="og:url" content="https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/">
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
-<meta property="og:description" content="目录
-
-  
-    
-      
-        ♡ 正式开始前你需要知道
-        ✦ 快速在本地生成一个博客！
-          
-            Sites 和 Bin
-            第一次使用Git和SSH？
-            来安装主题吧！
-          
-        
-        ✦ 自动部署准备
-          
-            两种部署方案
-            上传公钥
-            生成Token
-            建立存放博客根目录的仓库并储存到本地
-            将博客根目录上传至github新建的仓库
-            为根目录仓库生成Secrets
-            建立存放public目录的仓库
-          
-        
-        ✦ 自动部署！
-          
-            确认以下步骤是否已经完成：
-            Github Action
-            自定义域名注意事项
-            ✧ 部署完成后续管理
-            ✧ 一些可能有用的 tips
-            ✧ 参考链接
-          
-        
-      
-    
-  
-">
-<meta name=twitter:description content="目录
-
-  
-    
-      
-        ♡ 正式开始前你需要知道
-        ✦ 快速在本地生成一个博客！
-          
-            Sites 和 Bin
-            第一次使用Git和SSH？
-            来安装主题吧！
-          
-        
-        ✦ 自动部署准备
-          
-            两种部署方案
-            上传公钥
-            生成Token
-            建立存放博客根目录的仓库并储存到本地
-            将博客根目录上传至github新建的仓库
-            为根目录仓库生成Secrets
-            建立存放public目录的仓库
-          
-        
-        ✦ 自动部署！
-          
-            确认以下步骤是否已经完成：
-            Github Action
-            自定义域名注意事项
-            ✧ 部署完成后续管理
-            ✧ 一些可能有用的 tips
-            ✧ 参考链接
-          
-        
-      
-    
-  
-">
+<meta property="og:description" content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ？">
+<meta name=twitter:description content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ？">
 <meta property="og:locale" content="zh-cn">
 <meta property="article:published_time" content="2021-09-18T17:02:51">
 <meta property="article:modified_time" content="2021-09-18T17:02:51">
