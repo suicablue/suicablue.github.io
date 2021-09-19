@@ -151,7 +151,7 @@ hasCoverMetaIn">
 </li>
 <li><a href=#-自动部署>✦ 自动部署！</a>
 <ul>
-<li></li>
+<li><a href=#确认以下步骤是否已经完成>确认以下步骤是否已经完成：</a></li>
 <li><a href=#github-action>Github Action</a></li>
 <li><a href=#自定义域名注意事项>自定义域名注意事项</a></li>
 <li><a href=#-部署完成后续管理>✧ 部署完成后续管理</a></li>
@@ -256,7 +256,7 @@ git push -u origin main # 将本地内容推送到远程
 <p>确定要使用自定义域名的话，就完全不需要管repository的名称问题了。但想要用github免费提供的 .github.io 这个域名的话，就需要注意一下名称问题了。</p>
 <hr>
 <h2 id=-自动部署>✦ 自动部署！</h2>
-<h4 id=确认以下步骤是否已经完成>确认以下步骤是否已经完成：</h4>
+<h3 id=确认以下步骤是否已经完成>确认以下步骤是否已经完成：</h3>
 <p>建好两个仓库，一个私有的已经存放博客根目录内容的仓库，一个公开的空白仓库；github账号已经上传了无passphrase的公钥并确保公钥可以使用，生成了Token并将其添加到私有仓库的Secrets中</p>
 <h3 id=github-action>Github Action</h3>
 <p>进入博客根目录仓库，点上方的Actions，set up a workflow yourself，之后你会发现github会在根目录下新建/.github/workflows/xxx.yml文件，下方是这个文件的编辑区域。把下面的配置复制进去，yml文件的名称与配置第一行的name随意填，特别注意我添加注释的地方。</p>
