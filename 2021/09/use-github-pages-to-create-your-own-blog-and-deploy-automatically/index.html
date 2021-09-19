@@ -125,6 +125,43 @@ hasCoverMetaIn">
 <div class="post-content markdown">
 <div class=main-content-wrap>
 <p>节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？</p>
+<h1 id=table-of-contents>Table of Contents</h1>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#-正式开始前你需要知道>♡ 正式开始前你需要知道</a></li>
+<li><a href=#-快速在本地生成一个博客>✦ 快速在本地生成一个博客！</a>
+<ul>
+<li><a href=#sites-和-bin>Sites 和 Bin</a></li>
+<li><a href=#第一次使用git和ssh>第一次使用Git和SSH？</a></li>
+<li><a href=#来安装主题吧>来安装主题吧！</a></li>
+</ul>
+</li>
+<li><a href=#-自动部署准备>✦ 自动部署准备</a>
+<ul>
+<li></li>
+<li><a href=#上传公钥>上传公钥</a></li>
+<li><a href=#生成token>生成Token</a></li>
+<li><a href=#建立存放博客根目录的仓库并储存到本地>建立存放博客根目录的仓库并储存到本地</a></li>
+<li><a href=#将博客根目录上传至github新建的仓库>将博客根目录上传至github新建的仓库</a></li>
+<li><a href=#为根目录仓库生成secrets>为根目录仓库生成Secrets</a></li>
+<li><a href=#建立存放public目录的仓库>建立存放public目录的仓库</a></li>
+</ul>
+</li>
+<li><a href=#-自动部署>✦ 自动部署！</a>
+<ul>
+<li></li>
+<li><a href=#github-action>Github Action</a></li>
+<li><a href=#-部署完成后续管理>✧ 部署完成后续管理</a></li>
+<li><a href=#-一些可能有用的-tips>✧ 一些可能有用的 tips</a></li>
+<li><a href=#-参考链接>✧ 参考链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
 <p><em>年初时写过一篇很混乱的hugo搭建笔记：<a href=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/>在Windows上搭建Hugo博客之Github部署填坑记</a> 。这篇的思路大致是将本地 <code>hugo</code> 命令生成的public文件夹丢到github的名称为&lt;github_username>.github.io的repository上，写了新博文后public内的内容需要更新并重新部署到github pages上。由于用了自定义域名，还有一些细节问题需要注意（后经友邻提醒，CSS无法正常加载可能有其他原因，应该不需要借助_config.yml使网页正常显示；也不需要每次删除public内部分内容，直接覆盖并调整后续操作即可；CNAME等需要保留的文件放进static文件夹中即可），虽然每次发布的过程也称不上麻烦，但还是会觉得有些繁琐，并因为Github Action运转失败（也不想借助VPS与github之外的第三方的应用来进行部署），我也一直只能借助电脑进行添加、删除、修改博文的操作，而无法在其他机器上快速编辑。</em></p>
 <p><em>最近不少友邻在尝试新建博客并尝试自动部署，看着看着也想久违地挑战下之前一直失败的自动部署，总算是成功了！部署过程中参考了不少教程和笔记，也踩了一些坑，希望这篇笔记可以帮到对静态博客感兴趣的朋友~</em></p>
 <h2 id=-正式开始前你需要知道>♡ 正式开始前你需要知道</h2>
