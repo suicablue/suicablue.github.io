@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-us>
+<!doctype html><html lang=zh-cn>
 <head>
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"通配符域名证书申请（Nginx，Debian 10）","image":"//","datePublished":"2021-08-28T00:00:00Z","dateModified":"2021-08-28T00:00:00Z","author":{"@type":"Person","name":"博客装修中…","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/2021\/08\/%E9%80%9A%E9%85%8D%E7%AC%A6%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7nginxdebian-10\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"}},"description":"仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用CloudFlare作为DNS provider，而ertbot提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。\n","keywords":[]}</script>
 <meta charset=utf-8>
@@ -21,7 +21,7 @@
 使用CloudFlare作为DNS provider，而ertbot提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
 <meta name=twitter:description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
 使用CloudFlare作为DNS provider，而ertbot提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
-<meta property="og:locale" content="en-us">
+<meta property="og:locale" content="zh-cn">
 <meta property="article:published_time" content="2021-08-28T00:00:00">
 <meta property="article:modified_time" content="2021-08-28T00:00:00">
 <meta property="article:section" content="实例管理">
@@ -47,17 +47,17 @@
 <header id=header data-behavior=5>
 <i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
 <div class=header-title>
-<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label=去首页>Home Sweet Home ♡</a>
 </div>
-<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
-<img class=header-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="打开链接: /#about">
+<img class=header-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt=作者的图片>
 </a>
 </header>
 <nav id=sidebar data-behavior=5>
 <div class=sidebar-container>
 <div class=sidebar-profile>
-<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
-<img class=sidebar-profile-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label=阅读有关作者的更多信息>
+<img class=sidebar-profile-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt=作者的图片>
 </a>
 <h4 class=sidebar-profile-name>博客装修中…</h4>
 </div>
@@ -65,13 +65,13 @@
 <li class=sidebar-button>
 <a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
 <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
-<span class=sidebar-button-desc>Home</span>
+<span class=sidebar-button-desc>首页</span>
 </a>
 </li>
 <li class=sidebar-button>
 <a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
 <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
-<span class=sidebar-button-desc>Archives</span>
+<span class=sidebar-button-desc>归档</span>
 </a>
 </li>
 <li class=sidebar-button>
@@ -93,7 +93,7 @@
 <li class=sidebar-button>
 <a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
 <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden=true></i>
-<span class=sidebar-button-desc>About</span>
+<span class=sidebar-button-desc>关于</span>
 </a>
 </li>
 <li class=sidebar-button>
@@ -114,9 +114,9 @@ post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
 </h1>
 <div class="postShorten-meta post-meta">
 <time datetime=2021-08-28T00:00:00Z>
-August 28, 2021
+八月 28, 2021
 </time>
-<span>in</span>
+<span>发布在</span>
 <a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e5%ae%9e%e4%be%8b%e7%ae%a1%e7%90%86>实例管理</a>
 </div>
 </div>
@@ -233,7 +233,7 @@ sudo certbot renew --dry-run
 </div>
 <div id=post-footer class="post-footer main-content-wrap">
 <div class=post-footer-tags>
-<span class="text-color-light text-small">TAGGED IN</span><br>
+<span class="text-color-light text-small">标签</span><br>
 <a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/letsencrypt/>let'sencrypt</a>
 <a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/certbot/>certbot</a>
 <a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/cloudflare/>cloudflare</a>
@@ -242,14 +242,14 @@ sudo certbot renew --dry-run
 <nav>
 <ul class="post-actions post-action-nav">
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="NEXT: 利用Github Pages与Github Action搭建并部署Hugo博客">
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="下一篇: 利用Github Pages与Github Action搭建并部署Hugo博客">
 <i class="fa fa-angle-left"></i>
-<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+<span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/07/%E6%90%8F%E5%87%BB%E4%BF%B1%E4%B9%90%E9%83%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="PREVIOUS: 搏击俱乐部 - 读书笔记">
-<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/07/%E6%90%8F%E5%87%BB%E4%BF%B1%E4%B9%90%E9%83%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="上一篇: 搏击俱乐部 - 读书笔记">
+<span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
 <i class="fa fa-angle-right"></i>
 </a>
 </li>
@@ -257,17 +257,17 @@ sudo certbot renew --dry-run
 </nav>
 <ul class="post-actions post-action-share">
 <li class="post-action hide-lg hide-md hide-sm">
-<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label=分享这个帖子>
 <i class="fa fa-share-alt" aria-hidden=true></i>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label=发表评论>
 <i class="fa fa-comment"></i>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<a class="post-action-btn btn btn--default" href=#top aria-label=回到顶部>
 <i class="fa fa-arrow-up" aria-hidden=true></i>
 </a>
 </li>
@@ -291,14 +291,14 @@ sudo certbot renew --dry-run
 <nav>
 <ul class="post-actions post-action-nav">
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="NEXT: 利用Github Pages与Github Action搭建并部署Hugo博客">
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="下一篇: 利用Github Pages与Github Action搭建并部署Hugo博客">
 <i class="fa fa-angle-left"></i>
-<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+<span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/07/%E6%90%8F%E5%87%BB%E4%BF%B1%E4%B9%90%E9%83%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="PREVIOUS: 搏击俱乐部 - 读书笔记">
-<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/07/%E6%90%8F%E5%87%BB%E4%BF%B1%E4%B9%90%E9%83%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="上一篇: 搏击俱乐部 - 读书笔记">
+<span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
 <i class="fa fa-angle-right"></i>
 </a>
 </li>
@@ -306,17 +306,17 @@ sudo certbot renew --dry-run
 </nav>
 <ul class="post-actions post-action-share">
 <li class="post-action hide-lg hide-md hide-sm">
-<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label=分享这个帖子>
 <i class="fa fa-share-alt" aria-hidden=true></i>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label=发表评论>
 <i class="fa fa-comment"></i>
 </a>
 </li>
 <li class=post-action>
-<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<a class="post-action-btn btn btn--default" href=#top aria-label=回到顶部>
 <i class="fa fa-arrow-up" aria-hidden=true></i>
 </a>
 </li>
@@ -329,7 +329,7 @@ sudo certbot renew --dry-run
 <div id=about-btn-close>
 <i class="fa fa-times"></i>
 </div>
-<img id=about-card-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+<img id=about-card-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt=作者的图片>
 <h4 id=about-card-name>博客装修中…</h4>
 </div>
 </div>
