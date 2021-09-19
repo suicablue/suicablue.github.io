@@ -1,0 +1,464 @@
+<!doctype html><html lang=en-us>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"利用Github Pages与Github Action搭建并部署Hugo博客","image":"//","datePublished":"2021-09-18T17:02:51+08:00","dateModified":"2021-09-18T17:02:51+08:00","author":{"@type":"Person","name":"博客装修中…","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/2021\/09\/%E5%88%A9%E7%94%A8github-pages%E4%B8%8Egithub-action%E6%90%AD%E5%BB%BA%E5%B9%B6%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"}},"description":"节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？\n","keywords":["keyword"]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.88.1 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="博客装修中…">
+<meta name=keywords content="keyword">
+<meta name=description content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？">
+<meta property="og:description" content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Github Pages与Github Action搭建并部署Hugo博客">
+<meta name=twitter:title content="利用Github Pages与Github Action搭建并部署Hugo博客">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/2021/09/%E5%88%A9%E7%94%A8github-pages%E4%B8%8Egithub-action%E6%90%AD%E5%BB%BA%E5%B9%B6%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/2021/09/%E5%88%A9%E7%94%A8github-pages%E4%B8%8Egithub-action%E6%90%AD%E5%BB%BA%E5%B9%B6%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？">
+<meta name=twitter:description content="节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？">
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2021-09-18T17:02:51">
+<meta property="article:modified_time" content="2021-09-18T17:02:51">
+<meta property="article:section" content="菜鸟的瞎折腾笔记">
+<meta property="article:tag" content="hugo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="cloudflare">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.gif">
+<meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.gif">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<title>利用Github Pages与Github Action搭建并部署Hugo博客</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/2021/09/%E5%88%A9%E7%94%A8github-pages%E4%B8%8Egithub-action%E6%90%AD%E5%BB%BA%E5%B9%B6%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-c5yjx2losbmkttdif4mskx5f9pqjjquywurgngxfvceyyrtyatseix5hpd.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>博客装修中…</h4>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/page/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+利用Github Pages与Github Action搭建并部署Hugo博客
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2021-09-18T17:02:51+08:00>
+September 18, 2021
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e8%8f%9c%e9%b8%9f%e7%9a%84%e7%9e%8e%e6%8a%98%e8%85%be%e7%ac%94%e8%ae%b0>菜鸟的瞎折腾笔记</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<p>节日快乐，建个Hugo玩吗 (≧∀≦)ゞ ？</p>
+<p><em>年初时写过一篇很混乱的hugo搭建笔记：<a href=https://suicablog.cobaltkiss.blue/2021/02/deploy-hugo-as-a-github-pages-project/>在Windows上搭建Hugo博客之Github部署填坑记</a> 。这篇的思路大致是将本地 <code>hugo</code> 命令生成的public文件夹丢到github的名称为&lt;github_username>.github.io的repository上，写了新博文后public内的内容需要更新并重新部署到github pages上。由于用了自定义域名，还有一些细节问题需要注意（后经友邻提醒，CSS无法正常加载可能有其他原因，应该不需要借助_config.yml使网页正常显示；也不需要每次删除public内部分内容，直接覆盖并调整后续操作即可；CNAME等需要保留的文件放进static文件夹中即可），虽然每次发布的过程也称不上麻烦，但还是会觉得有些繁琐，并因为Github Action运转失败（也不想借助VPS与github之外的第三方的应用来进行部署），我也一直只能借助电脑进行添加、删除、修改博文的操作，而无法在其他机器上快速编辑。</em></p>
+<p><em>最近不少友邻在尝试新建博客并尝试自动部署，看着看着也想久违地挑战下之前一直失败的自动部署，总算是成功了！部署过程中参考了不少教程和笔记，也踩了一些坑，希望这篇笔记可以帮到对静态博客感兴趣的朋友~</em></p>
+<h2 id=-正式开始前你需要知道>♡ 正式开始前你需要知道</h2>
+<ul>
+<li>操作系统为Windows 10，Mac的操作过程应该是相似的，将涉及到系统操作时的步骤替换为Mac的即可</li>
+<li>用这篇笔记的方法实现自动部署，最终效果为可以通过在其他机器上登录github远程修改博文与各种设定，修改后github action会自动运行，将改动推送到博客页面上；在本地发布新博文，依旧需要至少三步git操作（<code>git add</code>、<code>git commit</code>和<code>git push</code>），因为远程可以进行操作，每次push前最好添加一步 <code>git pull</code>避免版本混乱</li>
+<li>搭建前需要本机安装 <a href=https://git-scm.com/>git</a> 和 <a href=https://gohugo.io/getting-started/installing/#windows>hugo</a> ，还需要你有一个 <a href=https://github.com/>github</a> 的帐号，相关步骤这里不再阐释；如果你有自定义域名的需求，你还需要去购买域名或者申请免费域名</li>
+</ul>
+<hr>
+<h2 id=-快速在本地生成一个博客>✦ 快速在本地生成一个博客！</h2>
+<h3 id=sites-和-bin>Sites 和 Bin</h3>
+<p>你的hugo目录下此时应该有两个文件夹：Sites和bin 。bin文件夹平时不用去管，如需更换hugo版本可用新版本的hugo直接将原文件覆盖，在这里查看并下载各版本的hugo：<a href=https://github.com/gohugoio/hugo/releases>Hugo Releases</a> ，个别主题需要你使用extended版本：</p>
+<blockquote>
+<p>If you process <code>SCSS</code> or <code>SASS</code> to <code>CSS</code> in your Hugo project, you need the Hugo <code>extended</code> version, or else you may see this error message:</p>
+<p><code>error: failed to transform resource: TOCSS: failed to transform "scss/main.scss" (text/x-scss): this feature is not available in your current Hugo version</code></p>
+</blockquote>
+<p><a href=https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version>Hugo Frequently Asked Questions</a></p>
+<p>进入Site文件夹，鼠标右键点击Git Bash或打开Git Bash后cd到这个目录，创建你的hugo博客所在目录(替换为你的博客名称)：</p>
+<pre tabindex=0><code>hugo new site &lt;example&gt;
+</code></pre><pre tabindex=0><code>emample
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+</code></pre><p>简单说下每个目录和文件是做什么的。archetypes文件夹用于存放模板，<code>hugo new posts/new-post.md</code>会使用default.md中的模板生成新博文；config.toml是存放博客基础设置的文件，一般会被安装后的主题中的同名文件替代；content用来存放page与post，所有新博文都要存放在content中；data用于存放数据模板；layouts用来存放布局模板文件，如果你想要调整你安装的主题中的页面布局，可以在layouts中放入同名文件，hugo将优先读取根目录中的layouts文件；static用来存放静态资源，比如自定义css、图片图标等；themes用来放你想要使用的主题。</p>
+<p>进入新生成的博客文件夹并初始化一个空的 git 本地仓库，之后博客文件夹里会出现一个隐藏的.git文件夹。</p>
+<pre tabindex=0><code>cd &lt;example&gt;
+git init
+</code></pre><h3 id=第一次使用git和ssh>第一次使用Git和SSH？</h3>
+<p><em>如果之前进行过git全局配置，且本机上存有SSH key，可以忽略这步。SSH key一般存储在系统盘 C:\Users&lt;用户名>.ssh 目录中，git全局设置存在 C:\Users&lt;用户名>.gitconfig 文件中。</em></p>
+<p>先来生成SSH密钥！</p>
+<pre tabindex=0><code>ssh-keygen -t rsa -C &quot;example@email.com&quot;
+# -C 的意思是注释，后面的邮箱可以填写任意邮箱，与github账号邮箱不一致也是可以的
+</code></pre><p>之后会跳出一堆提示，在系统提示输入passphrase时直接回车不添加。生成的密钥对会储存在C:\Users&lt;用户名>.ssh中，公钥存放在id_rsa.pub里，私钥存放在id_rsa里，<strong>请妥善保管密钥对，公钥稍后我们需要使用，私钥非极特殊情况请勿上传到本机外的地方！</strong></p>
+<p>接下来在博客根目录进行git的配置！</p>
+<pre tabindex=0><code>git config user.name &quot;examplename&quot;
+git config user.email &quot;example@email.com&quot;
+</code></pre><p>建议将引号内的内容替换为准备部署博客的github账号用户名和密码，当然，用其他的名称和邮箱替代也可，只是这样每次本地提交commit时github上会无法查看提交者信息。</p>
+<p>之后点进.git目录查看config文件，可以发现里面多了name和email信息。</p>
+<p><em>网络上很多教程的这两行命令后有添加 <code>--global</code>，这个的意思是全局配置，如果git账户没有进行本地配置，将默认使用全局配置，使用 <code>--global</code>后name与email信息将存在系统目录的C:\Users&lt;用户名>.gitconfig 文件中。</em></p>
+<h3 id=来安装主题吧>来安装主题吧！</h3>
+<p>在<a href=https://themes.gohugo.io/>这里</a>挑选你心仪的主题，看看demo的效果是否满意，如果没有demo也不要紧，下载到本地后也能够在部署前查看。</p>
+<p>有三种安装主题的方法。最简单粗暴的一种是在主题的github页面直接下载主题打包文件，解压到themes中就好了；另外两种可以参考<a href=https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-start>hello-friend</a>这个主题的说明，在themes目录下<code>git clone</code>或者<code>git submodule add</code>，后者能较方便的升级主题。一般根据主题的说明文档进行安装就好了~</p>
+<p>下载好的主题目录下会有一个exampleSite的示例文件夹，把里面的东西复制下来，覆盖根目录中的文件和文件夹，打开新的config.toml文件，修改theme = &ldquo;example-theme&rdquo; 为你安装的主题名，主题名要与themes中的主题文件夹名称一致。这样一个主题就安装好了。</p>
+<p>在sites目录下git bash，<code>hugo server</code>来看下主题的效果！跳出一大堆提示后，在任意浏览器打开 http://localhost:1313/ 就能实时查看博客效果与调整。如果的博客设置有误，页面会无法查看，请先排除错误后再进行尝试。不需要查看后Ctrl+C退出即可。</p>
+<hr>
+<h2 id=-自动部署准备>✦ 自动部署准备</h2>
+<h4 id=两种部署方案>两种部署方案</h4>
+<p>一般来说利用Github Action进行自动部署有两个方案。一个是建一个repository并使用两个分支（main和gh-pages），这样做的不太好的是，该repository只能设置为公开，main中的博客根目录内容谁都可以看（包括草稿状态的已上传博文），除非付费将页面公开（听说gitlab可以免费单独公开私有项目的页面）；另一个是建两个repositories，一个存放根目录文件，设置为私密，另一个用来存放public中的内容，设置为公开。</p>
+<p>两个方法我都有尝试，主要说说建立两个repositories的部署方案。</p>
+<h3 id=上传公钥>上传公钥</h3>
+<p>我们既可以将公钥直接上传到该github用户的setting里，也可以上传到单独这个repository的setting里。前面的方法的效果是，如果你还想用这个账号建博客或者做一些其他项目，不需要二次上传公钥。</p>
+<p>点击github页面右上角头像右侧下拉按钮，进入Settings，找到左侧页面 <a href=https://github.com/settings/keys>SSH and GPG keys</a> ，点击New SSH key ，取一个便于识别的名称，下方填入之前生成的id_rsa.pub中的内容（以"ssh-rsa"开头，以邮箱结尾）。</p>
+<p>之后我们在本地测试看看，在git bash里输入：</p>
+<pre tabindex=0><code>ssh -T git@github.com
+</code></pre><p>成功的话会提示：</p>
+<pre tabindex=0><code>Hi &lt;github-username&gt;! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre><h3 id=生成token>生成Token</h3>
+<p>右上角Settings里找到Developer settings，再点Personal access tokens，Generate new token生成新的token，有效期可选永久生效（永久生效的话，这个Token就不要用于其他用途，只用于部署这一个hugo博客），否则要记得定时更换或称新生成Token。</p>
+<p>Select scopes里勾选repo全部内容与workflow。最后点击绿色按钮生成。</p>
+<p>生成后，Token上会浮现一串字符，将它复制下来备份。页面刷新后这个Token将不再显示，所以在导入Token前不要把它弄丢！</p>
+<h3 id=建立存放博客根目录的仓库并储存到本地>建立存放博客根目录的仓库并储存到本地</h3>
+<p>接下来建根目录用的私密仓库。右上角新建repository，Repository name随意填，设置为private，创建。</p>
+<p>接下来将仓库remote到本地。复制SSH链接，进入git bash，确保目前的位置是在博客根目录下。</p>
+<pre tabindex=0><code>git remote add origin git@github.com:&lt;github-username&gt;/&lt;repository-name&gt;.git
+</code></pre><p><em>如果你这个目录之前存有远程仓库，你需要先把之前的orrigin删掉，再创建新的。</em></p>
+<p><em>用 <code>git remote</code>查看当前目录下所有远程仓库，如果无结果说明这里之前没有远程仓库；如果有一个已经不再使用origin，<code>git remote rm origin</code>将它删除掉 。</em></p>
+<p><a href=https://blog.csdn.net/m0_37034294/article/details/79986198>git通过命令更换远程仓库地址&mdash;&ndash;和更换地址后对项目进行操作显示无权限问题</a></p>
+<h3 id=将博客根目录上传至github新建的仓库>将博客根目录上传至github新建的仓库</h3>
+<p>确保git bash中位置为博客根目录，git默认的分支应该是(master)，因为现在github的默认分支从master换成了main（详见<a href=https://www.sohu.com/a/405073858_478315>GitHub将替换掉master等术语</a>），我们先切换分支到main：</p>
+<pre tabindex=0><code>git checkout -b main
+</code></pre><p>之后输入这三个命令（今后要经常和这三个指令打招呼了）</p>
+<pre tabindex=0><code>git add . # 添加目录下全部内容
+git commit -m &quot;new blog&quot; # 提交说明，出问题了可以回退到之前的commit
+git push -u origin main # 将本地内容推送到远程
+</code></pre><p>没有报错的话，现在已经可以在github刚刚创建的仓库中看到推送上去的内容了~</p>
+<p>检查检查有没有缺少什么东西。空文件夹不会被push上去，不用去管；如果有其他文件夹没有上传上去，看看你根目录下有没有.gitignore这个文件，里面存放上传时会被忽略掉的目录与文件（比如我正在用的Tranquilpeak主题就会忽略掉主题文件夹，应该是用于本地魔改主题测试放置远程受影响用的），把这个文件删掉或者把里面的内容清除，再重复上面的指令，这次应该就成功了。</p>
+<h3 id=为根目录仓库生成secrets>为根目录仓库生成Secrets</h3>
+<p>进入刚刚建好的repository，点进它的Settings中，找到Secrets，点击New repository secret，名称为PERSONAL_TOKEN，内容为之前备份下来的Token。</p>
+<h3 id=建立存放public目录的仓库>建立存放public目录的仓库</h3>
+<h4 id=建立仓库>建立仓库</h4>
+<p>回到github再建一个repository。注意这次repository的名称须为 .github.io 这个格式。这个仓库要设置为公开状态。</p>
+<h5 id=题外话repository名称问题>题外话：repository名称问题</h5>
+<p><a href=https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites>Github关于github pages 类型的说明</a></p>
+<p>个人建博客不考虑organization的情况。除去网络上大多数教程强调的使用 .github.io 作为repository名称的方法，其实还可以建一个任意名称的仓库，在不使用自定义域名的前提下，这样建起来的hugo博客网址为 .github.io/ 。</p>
+<p>比方说你github的用户名为suicablue，repo名为my-blog，那最后你的博客域名就是 suicablue.github.io/blog 。少数派的这篇教程就是这样建起来的：<a href=https://sspai.com/post/64639>使用 Hugo 从 0 到 1 搭建个人博客</a></p>
+<p>确定要使用自定义域名的话，就完全不需要管repository的名称问题了。但想要用github免费提供的 .github.io 这个域名的话，就需要注意一下名称问题了。</p>
+<hr>
+<h2 id=-自动部署>✦ 自动部署！</h2>
+<h4 id=确认以下步骤是否已经完成>确认以下步骤是否已经完成：</h4>
+<p>建好两个仓库，一个私有的已经存放博客根目录内容的仓库，一个公开的空白仓库；github账号已经上传了无passphrase的公钥并确保公钥可以使用，生成了Token并将其添加到私有仓库的Secrets中</p>
+<h3 id=github-action>Github Action</h3>
+<p>进入博客根目录仓库，点上方的Actions，set up a workflow yourself，之后你会发现github会在根目录下新建/.github/workflows/xxx.yml文件，下方是这个文件的编辑区域。把下面的配置复制进去，yml文件的名称与配置第一行的name随意填，特别注意我添加注释的地方。</p>
+<pre tabindex=0><code>name: hugo-blog
+
+on:
+  push:
+    branches:
+      - main  # 博客根目录的默认分支，这里是main，有时也是master
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v2
+#         with:               # 如果你安装主题时用的是git submodule add
+#           submodules: true  # 那么这三行不必注释掉，这一行填写 true
+#           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.88.1'  # 填写你的hugo版本，可用hugo version查看
+          extended: true          # 如果你使用的不是extended版本的hugo，将true改为false
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}  # 注意填写main或者master
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }} # 如果secret取了其他名称，将PERSONAL_TOKEN替换掉
+          external_repository: &lt;username&gt;/&lt;username&gt;.github.io # 填写远程仓库，不一定是这个格式，按照自己的情况写 
+          publish_dir: ./public
+          cname: blog.example.com        # 填写你的自定义域名。如果没有用自定义域名，注释掉这行
+</code></pre><p>格式参考<a href=https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-set-personal-access-token-personal_token>GitHub Pages action</a>，可以根据自己需要，按照说明文档上的建议对上面的配置进一步调整。</p>
+<p>提交commit，保存！之后会发现action在尝试运行，等待不到一分钟结果就会出来，变成绿色就说明成功啦！</p>
+<p>这时跑去公开仓库瞅瞅看，应该已经可以看到自动建了一个名为gh-pages的分支，里面出现了许多东西，此时打开你的博客域名应该已经可以看到博客内容啦！</p>
+<p>如果github action没成功跑起来也不要慌，点进deploy详细看下报错，一般都可以根据报错内容发现原因，对应去调整后再跑几遍即可。</p>
+<h4 id=自定义域名注意事项>自定义域名注意事项</h4>
+<ul>
+<li>博客根目录下的config文件中base url更换为自定义域名</li>
+<li>为自定义域名添加了CNAME记录（顶级域名也可添加四条A记录），详见github官方说明：<a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#about-custom-domain-configuration>Managing a custom domain for your GitHub Pages site</a></li>
+<li>部署成功后，进入公开仓库settings，pages页面添加自定义域名，等待DNS检验成功</li>
+<li>如果使用了CDN（比如cloudflare），github上的强制https按钮可能不能点；cloudflare免费提供https证书，如果无法正常显示https，可以建立<strong>强制https</strong>规则</li>
+<li>不适用CDN的情况下，github已支持为自定义域名办法let&rsquo;s encrypt证书，稍等一会儿即可生效</li>
+</ul>
+<h3 id=-部署完成后续管理>✧ 部署完成后续管理</h3>
+<p>按照上述流程完成部署后，今后每次在本地执行操作前，都要记得用<code>git pull</code>先同步本地与远程操作。</p>
+<p>上面我们在远程博客根目录新建了workflow，在本地开始写新的博文前，先在本地的博客根目录进行同步：</p>
+<pre tabindex=0><code>git pull
+</code></pre><p>之后本地会出现.github文件夹。记得每次在github远程编辑并commit后，本地都要pull；而本地无论是写博文还是调整主题（主题可在根目录同名文件夹内进行调整，不建议直接对themes下的设定进行改动），都建议先用 <code>hugo server</code>本地查看效果，确定能够正常显示博客与调整后的内容后再push到远程。</p>
+<p>到这里，hugo博客的搭建与部署过程就结束啦！（撒花）</p>
+<hr>
+<h3 id=-一些可能有用的-tips>✧ 一些可能有用的 tips</h3>
+<ol>
+<li>
+<p>执行<code>hugo server</code>过程中错误退出git，导致之后执行时1313端口被占用</p>
+<p>windows+r 输入cmd 打开窗口：</p>
+<pre tabindex=0><code>netstat -aon|findstr &quot;1313&quot;  筛选使用1313端口的进程
+taskkill /f /PID xxxxx  杀死占用的进程
+</code></pre><p>来源：<a href=https://blog.csdn.net/qq_45728623/article/details/118859532>端口号被占用？怎么办</a></p>
+</li>
+<li>
+<p>空文档无法提交的解决方法</p>
+<p>在你想要提交的空文档下新建一个.gitkeep文件，里面填入以下内容：</p>
+<pre tabindex=0><code># Ignore everything in this directory
+*
+# Except this file !.gitkeep
+</code></pre><p>来源：<a href=https://blog.csdn.net/fengchao2016/article/details/52769151>git提交空文件夹</a></p>
+</li>
+<li>
+<p>我不在意博客根目录公开，我不想要建两个仓库</p>
+<p>这种情况大致的操作过程和上面是一样的，只是如果你需要使用.github.io这个免费域名时同样要注意仓库名称问题，并将workflow文件里的这行删掉：</p>
+<pre tabindex=0><code>external_repository: &lt;username&gt;/&lt;username&gt;.github.io
+</code></pre><p>之后你的仓库中会有main和gh-pages两个分支，main分支存放博客根目录文件，gh-pages存放页面文件。</p>
+</li>
+<li>
+<p>github pages如何才能使用呢？</p>
+<ul>
+<li>
+<p>发布路径在默认分支main的根目录</p>
+</li>
+<li>
+<p>发布路径在gh-pages分支</p>
+</li>
+<li>
+<p>发布路径在默认分支main的docs目录</p>
+</li>
+</ul>
+<p>来源：<a href=https://www.jianshu.com/p/02b3343295ac>Hugo配合GitHub搭建博客（Windows 10）</a></p>
+<p>这边笔记的思路就是<strong>发布路径在gh-pages分支</strong>，使用其他思路也可成功完成部署，但需要调整workflow设置。需要用docs替换默认的public目录的话，博客根目录下config中添加这一行：</p>
+<pre tabindex=0><code>publishDir = &quot;docs&quot;
+</code></pre></li>
+<li>
+<p>为Hugo添加favicon</p>
+<p>一般情况下，在static目录下直接添加favicon.ico就可以添加上favicon了，但也不排除部分主题设置不同的情况。要让多平台支持favicon的显示，可以参考这篇博文：<a href=https://www.kiroule.com/article/add-favicon-to-hugo-based-website/>Add Favicon to Hugo-Based Website </a></p>
+</li>
+</ol>
+<h3 id=-参考链接>✧ 参考链接</h3>
+<p>​ <a href=https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version>Hugo Frequently Asked Questions</a></p>
+<p>​ <a href=https://blog.csdn.net/m0_37034294/article/details/79986198>git通过命令更换远程仓库地址&mdash;&ndash;和更换地址后对项目进行操作显示无权限问题</a></p>
+<p>​ <a href=https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites>About GitHub Pages</a></p>
+<p>​ <a href=https://sspai.com/post/64639>使用 Hugo 从 0 到 1 搭建个人博客</a></p>
+<p>​ <a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#about-custom-domain-configuration>Managing a custom domain for your GitHub Pages site</a></p>
+<p>​ <a href=https://blog.csdn.net/qq_45728623/article/details/118859532>端口号被占用？怎么办</a></p>
+<p>​ <a href=https://blog.csdn.net/fengchao2016/article/details/52769151>git提交空文件夹</a></p>
+<p>​ <a href=https://www.jianshu.com/p/02b3343295ac>Hugo配合GitHub搭建博客（Windows 10）</a></p>
+<p>​ <a href=https://www.kiroule.com/article/add-favicon-to-hugo-based-website/>Add Favicon to Hugo-Based Website </a></p>
+<p>​ <a href=https://cloud.tencent.com/developer/article/1647964>折腾Hugo | GitHub Pages | Github Actions自动构建发布免费个人网站</a></p>
+<p>​ <a href=https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/>Hugo使用Github Action自动部署博客到Github Pages</a></p>
+<p>​ <a href=https://akilar.top/posts/f752c86d/>使用 Github Action 实现全自动部署</a></p>
+<p>​ <a href=http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html>阮一峰：GitHub Actions 入门教程</a></p>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/hugo/>hugo</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/%E5%8D%9A%E5%AE%A2/>博客</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/github/>github</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/git/>git</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/cloudflare/>cloudflare</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/test/ data-tooltip=Test aria-label="NEXT: Test">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/08/%E9%80%9A%E9%85%8D%E7%AC%A6%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7nginxdebian-10/ data-tooltip="通配符域名证书申请（Nginx，Debian 10）" aria-label="PREVIOUS: 通配符域名证书申请（Nginx，Debian 10）">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'87ad3f38cccbd34fec85a1b8d1b1b549',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2021 博客装修中…. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/09/test/ data-tooltip=Test aria-label="NEXT: Test">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/2021/08/%E9%80%9A%E9%85%8D%E7%AC%A6%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7nginxdebian-10/ data-tooltip="通配符域名证书申请（Nginx，Debian 10）" aria-label="PREVIOUS: 通配符域名证书申请（Nginx，Debian 10）">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+<h4 id=about-card-name>博客装修中…</h4>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
