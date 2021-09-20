@@ -179,6 +179,7 @@ hasCoverMetaIn">
 <p><code>error: failed to transform resource: TOCSS: failed to transform "scss/main.scss" (text/x-scss): this feature is not available in your current Hugo version</code></p>
 </blockquote>
 <p><a href=https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version>Hugo Frequently Asked Questions</a></p>
+<p>使用<code>hugo</code>命令，需要将hugo添加到环境变量： <a href=https://ripple-zjw.github.io/2019/%E6%90%AD%E5%BB%BAhugo%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9D%91/>搭建Hugo时需要注意的坑</a></p>
 <p>进入Site文件夹，鼠标右键点击Git Bash或打开Git Bash后cd到这个目录，创建你的hugo博客所在目录(替换为你的博客名称)：</p>
 <pre tabindex=0><code>hugo new site &lt;example&gt;
 </code></pre><pre tabindex=0><code>emample
@@ -208,7 +209,7 @@ git config user.email &quot;example@email.com&quot;
 <p><em>网络上很多教程的这两行命令后有添加 <code>--global</code>，这个的意思是全局配置，如果git账户没有进行本地配置，将默认使用全局配置，使用 <code>--global</code>后name与email信息将存在系统目录的C:\Users&lt;用户名>.gitconfig 文件中。</em></p>
 <h3 id=来安装主题吧>来安装主题吧！</h3>
 <p>在<a href=https://themes.gohugo.io/>这里</a>挑选你心仪的主题，看看demo的效果是否满意，如果没有demo也不要紧，下载到本地后也能够在部署前查看。</p>
-<p>有三种安装主题的方法。最简单粗暴的一种是在主题的github页面直接下载主题打包文件，解压到themes中就好了；另外两种可以参考<a href=https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-start>hello-friend</a>这个主题的说明，在themes目录下<code>git clone</code>或者<code>git submodule add</code>，后者能较方便的升级主题。一般根据主题的说明文档进行安装就好了~</p>
+<p>有三种安装主题的方法。最简单粗暴的一种是在主题的github页面直接下载主题打包文件，解压到themes中就好了；另外两种可以参考<a href=https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-start>hello-friend</a>这个主题的说明，在themes目录下<code>git clone</code>或者<code>git submodule add</code>，后者能较方便的升级主题(根目录上传到GitHub后，themes文件夹会显示为一个无法打开的带白箭头的文件夹图标，之后action要想跑起来一定要记得加上submodule的配置）。一般根据主题的说明文档进行安装就好了~</p>
 <p>下载好的主题目录下会有一个exampleSite的示例文件夹，把里面的东西复制下来，覆盖根目录中的文件和文件夹，打开新的config.toml文件，修改theme = &ldquo;example-theme&rdquo; 为你安装的主题名，主题名要与themes中的主题文件夹名称一致。这样一个主题就安装好了。</p>
 <p>在sites目录下git bash，<code>hugo server</code>来看下主题的效果！跳出一大堆提示后，在任意浏览器打开 http://localhost:1313/ 就能实时查看博客效果与调整。如果的博客设置有误，页面会无法查看，请先排除错误后再进行尝试。不需要查看后Ctrl+C退出即可。</p>
 <hr>
@@ -373,6 +374,10 @@ taskkill /f /PID xxxxx  杀死占用的进程
 <p>​ <a href=https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/>Hugo使用Github Action自动部署博客到Github Pages</a></p>
 <p>​ <a href=https://akilar.top/posts/f752c86d/>使用 Github Action 实现全自动部署</a></p>
 <p>​ <a href=http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html>阮一峰：GitHub Actions 入门教程</a></p>
+<pre><code>    [搭建Hugo时需要注意的坑](https://ripple-zjw.github.io/2019/%E6%90%AD%E5%BB%BAhugo%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9D%91/)
+
+    [Alola World | 暨简明麻瓜快速念咒 Hugo 搭建笔记](https://mantyke.icu/posts/f185ce41/)
+</code></pre>
 </div>
 </div>
 <div id=post-footer class="post-footer main-content-wrap">
