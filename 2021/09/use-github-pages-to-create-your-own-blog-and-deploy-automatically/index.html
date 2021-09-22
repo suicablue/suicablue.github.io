@@ -211,7 +211,7 @@ git config user.email &quot;example@email.com&quot;
 <p>在<a href=https://themes.gohugo.io/>这里</a>挑选你心仪的主题，看看demo的效果是否满意，如果没有demo也不要紧，下载到本地后也能够在部署前查看。</p>
 <p>有三种安装主题的方法。最简单粗暴的一种是在主题的github页面直接下载主题打包文件，解压到themes中就好了；另外两种可以参考<a href=https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-start>hello-friend</a>这个主题的说明，在themes目录下<code>git clone</code>或者<code>git submodule add</code>，后者能较方便的升级主题(根目录上传到GitHub后，themes文件夹会显示为一个无法打开的带白箭头的文件夹图标，之后action要想跑起来一定要记得加上submodule的配置）。一般根据主题的说明文档进行安装就好了~</p>
 <p>下载好的主题目录下会有一个exampleSite的示例文件夹，把里面的东西复制下来，覆盖根目录中的文件和文件夹，打开新的config.toml文件，修改theme = &ldquo;example-theme&rdquo; 为你安装的主题名，主题名要与themes中的主题文件夹名称一致。这样一个主题就安装好了。</p>
-<p>在sites目录下git bash，<code>hugo server</code>来看下主题的效果！（<code>hugo server -d</code>的话草稿也会显示）跳出一大堆提示后，在任意浏览器打开 http://localhost:1313/ 就能实时查看博客效果与调整。如果的博客设置有误，页面会无法查看，请先排除错误后再进行尝试。不需要查看后Ctrl+C退出即可。</p>
+<p>在sites目录下git bash，<code>hugo server</code>来看下主题的效果！（<code>hugo server -D</code>的话草稿也会显示，注意是大写D）跳出一大堆提示后，在任意浏览器打开 http://localhost:1313/ 就能实时查看博客效果与调整。如果的博客设置有误，页面会无法查看，请先排除错误后再进行尝试。不需要查看后Ctrl+C退出即可。</p>
 <hr>
 <h2 id=-自动部署准备>✦ 自动部署准备</h2>
 <h3 id=两种部署方案>两种部署方案</h3>
@@ -431,7 +431,7 @@ taskkill /f /PID xxxxx  杀死占用的进程
 </article>
 <footer id=footer class=main-content-wrap>
 <span class=copyrights>
-&copy; 2021 博客装修中…. All Rights Reserved
+&copy; 2021 博客装修中… <a href="https://www.patreon.com/posts/pixel-bg-8888285?epik=dj0yJnU9VDBIWlc4Um9Eck1VLXlLbExBYXpRM3BtQ282akdkV0ImcD0wJm49YkVkXzltTjBWNWkyMnE3NVljdmkzdyZ0PUFBQUFBR0ZMV3V3">Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
 </span>
 </footer>
 </div>
