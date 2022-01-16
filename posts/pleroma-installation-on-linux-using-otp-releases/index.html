@@ -1,0 +1,452 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）","image":"//","datePublished":"2020-09-13T00:00:00Z","dateModified":"2020-09-13T00:00:00Z","author":{"@type":"Person","name":"何時修友鏈？","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/pleroma-installation-on-linux-using-otp-releases\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.gif"}},"description":"适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南","keywords":[]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="何時修友鏈？">
+<meta name=keywords content>
+<meta name=description content="适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南">
+<meta property="og:description" content="适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
+<meta name=twitter:title content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content="适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南">
+<meta name=twitter:description content="适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南">
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2020-09-13T00:00:00">
+<meta property="article:modified_time" content="2020-09-13T00:00:00">
+<meta property="article:section" content="pleroma">
+<meta property="article:tag" content="pleroma">
+<meta property="article:tag" content="debian 10">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.gif">
+<meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.gif">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<meta property="og:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica37.png">
+<meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica37.png">
+<title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>何時修友鏈？</h4>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
+<i class="sidebar-button-icon fas fa-suitcase"></i>
+<span class=sidebar-button-desc>Portfolio</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/page/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2020-09-13T00:00:00Z>
+September 13, 2020
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/pleroma>pleroma</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<h1 id=适合技术小白们的debian-10--ubuntu-2004-pleroma安装指南>适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南</h1>
+<p>如果您通过“适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南 ”这个连接进入此页面，请注意这里的“适合技术小白”意思是只需复制代码框里的内容到终端并根据说明进行适量调整即可完成安装并使用建好的实例，并不包括对操作原理的解释（<del>因为我也是个小白并不明白</del>），也并不包含建站之后的实例管理操作内容，以下内容以 <a href=https://docs-develop.pleroma.social/backend/installation/otp_en/>pleroma官方安装教程</a> 为基础，结合 <a href=https://perch.vercel.app/2020/install-Pleroma/#%E6%B5%8B%E8%AF%95-Pleroma>如何在 Debian 10 上安装 Pleroma</a> 教程以及以 <a href=https://i.nebula.moe/posts/2019-09-13-mastodon/>奈卜拉的mastodon一键安装教程</a> 为基础的 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html>技术小白如何搭建Mastodon实例</a> 等多篇mastodon安装教程，在实际操作过程中就可能遇到的细节问题方面对官方教程中的省略或模糊处理内容进行补充，域名、VPS等前期准备过程已有多篇教程进行过详细说明，这里就简略带过并提供链接供您查看。</p>
+<p>本文并非严谨的教程，更多是我个人作为一个技术小白对自己的建站过程进行的整理和概括。如果您发现文中有内容错误、随pleroma版本更新需要进行更改的地方、用词不严谨以及必要的补充内容，您可以使用notion账号进行评论，或使用fediverse账号联系 @Blue@cobaltkiss.blue ；如果您对于本文有疑问或在建站过程中遇到问题，请使用fediverse账号联系 @Blue@cobaltkiss.blue 。</p>
+<h1 id=table-of-contents>Table of Contents</h1>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#适合技术小白们的debian-10--ubuntu-2004-pleroma安装指南>适合技术小白们的Debian 10 / Ubuntu 20.04 Pleroma安装指南</a>
+<ul>
+<li><a href=#在终端进行操作前您需要购买域名与vps服务>在终端进行操作前，您需要购买域名与VPS服务</a>
+<ul>
+<li><a href=#vps相关说明>VPS相关说明</a></li>
+<li><a href=#登陆服务器>登陆服务器</a></li>
+<li><a href=#域名购买>域名购买</a></li>
+<li><a href=#可选实例接入cloudflare>（可选）实例接入Cloudflare</a></li>
+</ul>
+</li>
+<li><a href=#正式安装>正式安装</a>
+<ul>
+<li><a href=#一安装前准备><strong>一、安装前准备</strong></a></li>
+<li><a href=#二安装pleroma><strong>二、安装pleroma</strong></a></li>
+<li><a href=#三设置-nginx-并获取-lets-encrypt-ssl-证书><strong>三、设置 nginx 并获取 Let’s Encrypt SSL 证书</strong></a></li>
+<li><a href=#四设置系统服务><strong>四、设置系统服务</strong></a></li>
+<li><a href=#五设置-lets-encrypt-证书的自动更新><strong>五、设置 Let’s Encrypt 证书的自动更新</strong></a></li>
+<li><a href=#六创建第一个用户并设置为管理员><strong>六、创建第一个用户并设置为管理员</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<h2 id=在终端进行操作前您需要购买域名与vps服务>在终端进行操作前，您需要购买域名与VPS服务</h2>
+<h3 id=vps相关说明>VPS相关说明</h3>
+<p>本文使用的VPS所在服务提供商是Vultr。</p>
+<p>最初我使用的是Vultr New York 3.5美元/月的套餐，之后更改为同一服务商 New Jersey 5美元/月的套餐。pleroma占用内存远远低于mastodon和misskey，我目前的配置是1GB内存和25GB硬盘空间，这个配置对于用户较少的小型实例是足够的，请根据您的实例预计使用情况选择合适的套餐。</p>
+<p>服务商当然不止有Vultr可以选择，Vultr价格适中、运行稳定，可使用快照免费快速备份，可使用支付宝付款，新注册有一定的优惠，注册账号时一般不会因为IP等问题导致账号被封锁，而我在尝试使用mastodon教程中常见的DigitalOcean注册时则出现过账号被冻结必须进行实名认证才可解封的情况。如果追求更低的价格，还有很多服务商可以选择，但要注意价格非常低廉的服务往往有可能出现大陆网络无法访问、访问速度缓慢以及建站后续的与个别实例无法互联等问题，初次建站建议选择口碑较好的服务商。</p>
+<p>服务器选购以及Vultr具体操作可以参考 <a href=https://guide.mastodon.im/68b0e4bb0b9e4fa5a9dd74d03b71a328>o3o.ca站长的教程</a> 。</p>
+<p>操作系统请选择Debian 10 或 Ubuntu 20.04 。如需使用其他操作系统，请参考 <a href=https://docs-develop.pleroma.social/backend/>官方教程</a> 。</p>
+<p>请注意，建立fediverse实例最好不要使用位于国内服务器与国内的服务器提供商，否则您可能会面临无法与其他站点互联互通、甚至站点下线的风险。</p>
+<h3 id=登陆服务器>登陆服务器</h3>
+<p>如非必要不要用网页上的控制台，速度极慢且使用并不稳定，我在建站时根据 <a href=https://malaxiaolongmao.github.io/%E5%B7%A5%E5%85%B7/2020/07/17/mastodon-instance-1/>该篇教程</a> 建议选择Bitvise SSH Client 这个工具，方便windows用户进行实例远程操作，它提供的SFTP窗口对于草履虫在后续的实例管理中非常有用。下载并安装后，在Host一栏输入刚刚购买VPS的IP地址，Port端口输入22，点击登录，点击“New terminal console”即可使用root账户进行后续终端操作。</p>
+<p>建议先修改root帐户密码，防止原默认密码丢失：</p>
+<p><code>passwd 你要修改的密码</code></p>
+<p>密码不显示，输入后直接按回车，再次输入确认即可</p>
+<h3 id=域名购买>域名购买</h3>
+<p>建议使用Namecheap，常用后缀以及各自的价格请参考 <a href=https://www.namecheap.com/domains/new-tlds/explore/>此页面</a> ，往往第一年的价格为优惠价格，续费价格恢复为正常价格。域名一旦选定并用于建站，后期更改会比较繁琐且容易出现各种问题，请谨慎思考想要的域名。建议不使用国内的域名注册商与位于国内的域名，详情请参考 <a href=https://blog.bgme.me/posts/precautions-for-registering-domains/>这篇博文</a> 。</p>
+<p>Namecheap的购买与验证操作请参考 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html#1-%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D>技术小白如何搭建Mastodon实例中的购买域名部分</a> 。</p>
+<p>Namecheap使用后期可能由于IP问题导致账号被封锁，如果出现这种情况，请按照Namecheap的说明进行操作，一般为在指定网站实时拍摄盖住姓名地址的信用卡背面照片。如果想避免这种情况出现，请不要在使用Namecheap网站的过程中频繁更换VPN节点。</p>
+<p>购买域名后，在Namecheap域名管理器（Advanced DNS Setting - HOST RECORDS）中添加一个A Record，Host一般填写 @ ，Value填写你服务器的IP地址，点击确定，DNS Setting中除自定义设置外的Namecheap自动生成内容需要全部删除。</p>
+<p>如果使用cloudflare服务，添加A record这个步骤可以直接在Cloudflare中进行。</p>
+<h3 id=可选实例接入cloudflare>（可选）实例接入Cloudflare</h3>
+<p>Cloudflare可以为实例提供很大程度上的安全防护并提升网站访问速度（<del>不过有时它也会降低网站访问速度，人称降速器</del>），前不久cloudflare遭到攻击，使用cloudflare服务的网站几乎全军覆没，短暂出现了的大陆网络无法访问的情况（现已恢复）；但cloudflare就像一堵强力防护墙，能保护网站遭受许多网络攻击，目前并没有更好的替代方案，还是建议接入的。</p>
+<p>网络上有许多cloudflare设置教程，也可参考 <a href=https://guide.mastodon.im/cloudflare>o3o.ca 站长这篇教程</a> 进行配置，并在DNS板块仿照之前的说明添加A Record。</p>
+<p>接入cloudflare后，域名相关的操作可直接在cloudflare进行而无需登录namecheap。</p>
+<h2 id=正式安装>正式安装</h2>
+<h3 id=一安装前准备><strong>一、安装前准备</strong></h3>
+<p>1、安装依赖
+<code>apt install curl unzip libncurses5 postgresql postgresql-contrib nginx certbot libmagic-dev</code></p>
+<p>如果安装途中出现错误，则执行以下命令后再次尝试安装：
+<code>apt-get update</code></p>
+<p>2、安装可选安装包（建议全部安装）</p>
+<p><code>apt install imagemagick ffmpeg libimage-exiftool-perl</code></p>
+<p>3、Postgresql 性能调优（可选）
+为了优化性能，你可以使用 <a href=https://pgtune.leopard.in.ua/#/>pgTune</a> 生成一个合适的配置文件。编辑/etc/postgresql/11.9/main/postgresql.conf 中的相应数值并使用以下命令重启 PostgreSQL 。
+<code>systemctl restart postgresql</code></p>
+<h3 id=二安装pleroma><strong>二、安装pleroma</strong></h3>
+<p>1、创建一个 pleroma 用户
+<code>adduser --system --shell /bin/false --home /opt/pleroma pleroma</code></p>
+<p>2、设置环境变量 FLAVOUR
+<code>export FLAVOUR="amd64"</code></p>
+<p>3、下载安装 Pleroma 所需的文件到/tmp文件夹并解压</p>
+<pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;
+curl 'https://git.pleroma.social/api/v4/projects/2/jobs/artifacts/stable/download?job=$FLAVOUR' -o /tmp/pleroma.zip
+unzip /tmp/pleroma.zip -d /tmp/
+&quot;
+</code></pre><p>4、移动文件到 /opt/pleroma 并删除临时文件夹</p>
+<pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;
+mv /tmp/release/* /opt/pleroma
+rmdir /tmp/release
+rm /tmp/pleroma.zip
+&quot;
+</code></pre><p>5、创建/uploads文件夹并设置适当的权限</p>
+<pre tabindex=0><code>mkdir -p /var/lib/pleroma/uploads
+chown -R pleroma /var/lib/pleroma
+</code></pre><p>6、创建static文件（用于存放表情等文件）并设置适当的权限</p>
+<pre tabindex=0><code>mkdir -p /var/lib/pleroma/static
+chown -R pleroma /var/lib/pleroma
+</code></pre><p>7、创建存放配置文件的文件夹并设置适当的权限</p>
+<pre tabindex=0><code>mkdir -p /etc/pleroma
+chown -R pleroma /etc/pleroma
+</code></pre><p>8、生成config配置文件
+<code>su pleroma -s $SHELL -lc "./bin/pleroma_ctl instance gen --output /etc/pleroma/config.exs --output-psql /tmp/setup_db.psql"</code></p>
+<p>9、若config文件生成成功，则出现若干问题需要回答：</p>
+<p>What domain will your instance use? (e.g pleroma.soykaf.com) []
+你的网站将使用什么网址？</p>
+<p>What is the name of your instance? (e.g. Pleroma/Soykaf) []
+你的网站叫什么名字？</p>
+<p>What is your admin email address? []
+网站管理员的电子邮箱地址是什么？</p>
+<p>What email address do you want to use for sending email notifications?
+[]
+你想要用什么电子邮件地址来发生电子邮件通知？</p>
+<p>Do you want search engines to index your site? (y/n) [n]
+你希望搜索引擎收录你的网站吗？（建议不收录）</p>
+<p>Do you want to store the configuration in the database (allows controlling it from admin-fe)? (y/n) [n] y
+你希望将配置信息存入数据库吗（允许从管理后台进行控制）？（建议存入，否则admin-fe将无法使用）</p>
+<p>Do you want to strip location (GPS) data from uploaded images? (y/n) [y] n</p>
+<p>你希望从上传的图片中消除GPS信息吗？（建议消除）
+Do you want to anonymize the filenames of uploads? (y/n) [n] y</p>
+<p>你希望将上传文件的文件名匿名化吗？（建议匿名化）
+Do you want to deduplicate uploaded files? (y/n) [n] y</p>
+<p>你希望去除重复的已上传文件吗？（建议去除）</p>
+<p>除以上问题外，其余选项均按enter选择默认配置即可</p>
+<p>如果成功则有如下显示：
+All files successfully written! Refer to the installation instructions for your platform for next steps. Please transfer your config to the database after running database migrations. Refer to &ldquo;Transfering the config to/from the database&rdquo; section of the docs for more information.</p>
+<p>10、创建 postgres 数据库
+<code>su postgres -s $SHELL -lc "psql -f /tmp/setup_db.psql"</code></p>
+<p>11、创建数据表
+<code>su pleroma -s $SHELL -lc "./bin/pleroma_ctl migrate"</code></p>
+<p>12、启动实例以验证一切都按预期工作
+<code>su pleroma -s $SHELL -lc "./bin/pleroma daemon"</code></p>
+<p>13、等待大约20秒并检测实例运行状况，如果它正确地显示了您的网址、网站名称和电子邮件地址，则说明实例已经安装成功
+<code>sleep 20 && curl http://localhost:4000/api/v1/instance</code></p>
+<p>注：如果出现错误"curl: (7) Failed to connect to localhost port 4000: Connection refused" ，请耐心等待一段时间，错误可能由pleroma初次加载时间较慢导致的。</p>
+<p>14、暂停实例的运行
+<code>su pleroma -s $SHELL -lc "./bin/pleroma stop"</code></p>
+<h3 id=三设置-nginx-并获取-lets-encrypt-ssl-证书><strong>三、设置 nginx 并获取 Let’s Encrypt SSL 证书</strong></h3>
+<p>1、获取一个 Let’s Encrypt 证书（注意修改域名）
+<code>certbot certonly --standalone --preferred-challenges http -d &lt;yourinstance.tld></code></p>
+<p>2、输入你的邮箱地址（用于紧急重建和安全通知）并按照指示选择A（agree）和Y(yes)</p>
+<p>3、显示以下结果证明证书获取成功（否则尝试再次执行第一个指令）：
+Congratulations! Your certificate and chain have been saved at: /etc/letsencrypt/live/实例域名/fullchain.pem Your key file has been saved at: /etc/letsencrypt/live/实例域名/privkey.pem Your cert will expire on 到期日期. To obtain a new or tweaked version of this certificate in the future, simply run certbot again. To non-interactively renew <em>all</em> of your certificates, run &ldquo;certbot renew&rdquo;</p>
+<ul>
+<li>
+<p>If you like Certbot, please consider supporting our work by:</p>
+<p>Donating to ISRG / Let&rsquo;s Encrypt: <a href=https://letsencrypt.org/donate>https://letsencrypt.org/donate</a>
+Donating to EFF: <a href=https://eff.org/donate-le>https://eff.org/donate-le</a></p>
+</li>
+</ul>
+<p>注：如果提示与我上面写的不同，请仔细检查证书有没有成功申请并存放到"/etc/letsencrypt/live/实例域名/"，若没有申请成功，后面依旧会卡住。
+一般这一部出错有两种可能，第一，您没有添加A记录，请到域名注册网站添加或修改A记录；二，80和443端口未开放，如果这里出现错误"Problem binding to port 80: Could not bind to IPv4 or IPv6."，请检查防火墙端口开放情况：<code>sudo ufw status verbose</code>，如果只有22端口开放，请通过<code>sudo ufw allow 80/tcp</code>、<code>sudo ufw allow 443/tcp</code>将80和443端口开放。之后检查nginx状态，如开启请将其暂时关闭。
+操作完成后，再次输入指令，直到看到正确的成功提示。</p>
+<p>4、复制 Pleroma nginx 配置到 nginx 文件夹</p>
+<pre tabindex=0><code>cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.conf
+ln -s /etc/nginx/sites-available/pleroma.conf /etc/nginx/sites-enabled/pleroma.conf
+</code></pre><p>5、使用nano编辑器打开 Nginx 配置文件
+<code>nano /etc/nginx/sites-available/pleroma.conf</code></p>
+<p>6、将文件中所有example.tld更改为你的实例的对应名称（操控方向键滑动页面，用backspace删除默认名称，并输入新的地址即可）</p>
+<p>注：location处这样修改（只保留后面的$符号，删除前面的$符号）：</p>
+<p>location / { return 301 https:/你的实例域名$request_uri; }</p>
+<p>7、修改完毕后按ctrl X，选择Y（yes）保存，然后按enter退出</p>
+<p>8、确认nginx是否配置正确
+<code>nginx -t</code></p>
+<p>出现以下内容则配置成功：
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
+<p>9、启动nginx
+<code>systemctl start nginx</code></p>
+<h3 id=四设置系统服务><strong>四、设置系统服务</strong></h3>
+<p>1、将pleroma.service复制到适当的文件夹中
+<code>cp /opt/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service</code></p>
+<p>2、启动 pleroma 并设置开机自启动</p>
+<pre tabindex=0><code>systemctl start pleroma
+systemctl enable pleroma
+</code></pre><p>在地址栏输入你的实例域名，若pleroma服务启动成功，则应显示pleroma页面；若显示502 bad gateway，再次执行 systemctl start pleroma ，之后刷新页面</p>
+<h3 id=五设置-lets-encrypt-证书的自动更新><strong>五、设置 Let’s Encrypt 证书的自动更新</strong></h3>
+<p><em>这部分内容可以参考 → <a href=https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/>通配符域名证书申请与自动更新</a></em></p>
+<p>1、创建路径
+<code>mkdir -p /var/lib/letsencrypt</code></p>
+<p>2、使用nano编辑器打开 Nginx 配置文件
+<code>nano /etc/nginx/sites-available/pleroma.conf</code></p>
+<p>3、去除
+location ~ /.well-known/acme-challenge { root /var/lib/letsencrypt/; }
+前的#注释符号</p>
+<p>内容全部显示为白色后按ctrl X，选择Y（yes）保存，然后按enter退出</p>
+<p>4、确认配置是否正确
+<code>nginx -t</code></p>
+<p>5、重启nginx
+<code>systemctl restart nginx</code></p>
+<p>6、确认自动更新任务设置成功（注意修改域名）
+<code>certbot renew --cert-name &lt;yourinstance.tld> --webroot -w /var/lib/letsencrypt/ --dry-run --post-hook 'systemctl reload nginx'</code></p>
+<p>显示以下内容则设置成功：
+Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/yourinstance.tld/fullchain.pem (success)
+** DRY RUN: simulating &lsquo;certbot renew&rsquo; close to cert expiry
+** (The test certificates above have not been saved.)</p>
+<p>7、添加自动任务（注意修改域名）</p>
+<pre tabindex=0><code>echo '#!/bin/sh
+certbot renew --cert-name &lt;yourinstance.tld&gt; --webroot -w /var/lib/letsencrypt/ --post-hook &quot;systemctl reload nginx&quot;
+' &gt; /etc/cron.daily/renew-pleroma-cert
+chmod +x /etc/cron.daily/renew-pleroma-cert
+</code></pre><p>8、确认任务添加成功
+<code>run-parts --test /etc/cron.daily</code></p>
+<p>若显示内容中包含 /etc/cron.daily/renew-pleroma-cert 则添加成功</p>
+<h3 id=六创建第一个用户并设置为管理员><strong>六、创建第一个用户并设置为管理员</strong></h3>
+<p>joeuser处为管理员ID，后面为管理员邮箱地址，根据自己情况设置</p>
+<pre tabindex=0><code>cd /opt/pleroma/bin
+su pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl user new &lt;joeuser&gt; &lt;joeuser@sld.tld&gt; --admin&quot;
+</code></pre><p>之后会跳出该管理员账户信息，确认无误后输入y，需要修改输入n</p>
+<p>帐户创建成功后，复制页面最下方的URL地址并在网页打开，输入帐户密码。</p>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>pleroma</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/debian-10/>debian 10</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/on-the-airplane/ data-tooltip="On the Airplane" aria-label="NEXT: On the Airplane">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--disabled">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'0ad36b2ca1a197596a595a99bc08bf58',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2022 何時修友鏈？ <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/on-the-airplane/ data-tooltip="On the Airplane" aria-label="NEXT: On the Airplane">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--disabled">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src=https://suicablog.cobaltkiss.blue/images/profile%20picture.gif alt="Author's picture">
+<h4 id=about-card-name>何時修友鏈？</h4>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
