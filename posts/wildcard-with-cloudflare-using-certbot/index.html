@@ -1,6 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"通配符域名证书申请与自动续费（Nginx，Debian 10）","image":"//","datePublished":"2021-08-28T00:00:00Z","dateModified":"2021-08-28T00:00:00Z","author":{"@type":"Person","name":"suica","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/wildcard-with-cloudflare-using-certbot\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"}},"description":"仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。\n","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"通配符域名证书申请与自动续费（Nginx，Debian 10）","image":"https://suicablog.cobaltkiss.blue/thumbnailimages/suica_stare1.png","datePublished":"2021-08-28T00:00:00Z","dateModified":"2021-08-28T00:00:00Z","author":{"@type":"Person","name":"suica","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/wildcard-with-cloudflare-using-certbot\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"}},"description":"仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。\n","keywords":[]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
@@ -8,9 +8,9 @@
 <meta name=author content="suica">
 <meta name=keywords content>
 <meta name=description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
 <meta property="og:description" content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通配符域名证书申请与自动续费（Nginx，Debian 10）">
 <meta name=twitter:title content="通配符域名证书申请与自动续费（Nginx，Debian 10）">
@@ -18,9 +18,9 @@
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
 <meta property="og:description" content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
 <meta name=twitter:description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先确认Certbot是否提供你需要的插件。">
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
 <meta property="og:locale" content="en-us">
 <meta property="article:published_time" content="2021-08-28T00:00:00">
 <meta property="article:modified_time" content="2021-08-28T00:00:00">
@@ -31,8 +31,6 @@
 <meta name=twitter:card content="summary">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
-<meta property="og:image" content="//">
-<meta property="twitter:image" content="//">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica_stare1.png">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica_stare1.png">
 <title>通配符域名证书申请与自动续费（Nginx，Debian 10）</title>
@@ -114,9 +112,8 @@
 </ul>
 </div>
 </nav>
-<div class="post-header-cover
-text-left
-post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div id=main data-behavior=5 class=hasCoverMetaIn>
+<article class=post id=top>
 <div class="post-header main-content-wrap text-left">
 <h1 class=post-title>
 通配符域名证书申请与自动续费（Nginx，Debian 10）
@@ -129,39 +126,35 @@ August 28, 2021
 <a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e5%ae%9e%e4%be%8b%e7%ae%a1%e7%90%86>实例管理</a>
 </div>
 </div>
-</div>
-<div id=main data-behavior=5 class="hasCover
-hasCoverMetaIn">
-<article class=post id=top>
 <div class="post-content markdown">
 <div class=main-content-wrap>
 <p>仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用CloudFlare作为DNS provider，而提供CloudFlare的插件安装，开始阅读请先<a href=https://certbot.eff.org/docs/using.html#dns-plugins>确认</a>Certbot是否提供你需要的插件。</p>
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 <a href=https://certbot.eff.org/docs/using.html#dns-plugins>确认</a> Certbot是否提供你需要的插件。</p>
 <h1 id=通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</h1>
-<p>之前曾经申请过主域名的证书，现在想要再添加通配符域名证书（*.yourinstance.com格式的所有域名），或者第一次通过Let&rsquo;sEncrypt与Certbot申请SSL证书，都可以参考这篇记录；系统配置与我不同的话，在<a href=https://certbot.eff.org/instructions>Certbot页面</a>上输入您的配置，注意不同系统的命令差异。</p>
+<p>之前曾经申请过主域名的证书，现在想要再添加通配符域名证书（*.yourinstance.com 格式的所有域名），或者第一次通过 Let&rsquo;sEncrypt 与 Certbot 申请 SSL 证书，都可以参考这篇记录；系统配置与我不同的话，在 <a href=https://certbot.eff.org/instructions>Certbot 页面</a> 上输入您的配置，注意不同系统的命令差异。</p>
 <p>欢迎提出用语或逻辑错误。</p>
 <h1 id=table-of-contents>Table of Contents</h1>
 <nav id=TableOfContents>
 <ul>
 <li><a href=#通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</a>
 <ul>
-<li><a href=#一-安装snap>一. 安装snap</a></li>
-<li><a href=#二-移除一切certbot相关旧软件并安装新软件>二. 移除一切Certbot相关旧软件并安装新软件</a></li>
+<li><a href=#一-安装-snap>一. 安装 snap</a></li>
+<li><a href=#二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</a></li>
 <li><a href=#三-放置凭据>三. 放置凭据</a></li>
 <li><a href=#四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</a></li>
 </ul>
 </li>
 </ul>
 </nav>
-<h2 id=一-安装snap>一. 安装snap</h2>
+<h2 id=一-安装-snap>一. 安装 snap</h2>
 <ol>
 <li>
-<p>debian可以直接用<code>apt install</code>下载软件包。非root用户要加上<code>sudo</code>；如果您正在使用root用户，则不需要添加<code>sudo</code></p>
+<p>debian 可以直接用 <code>apt install</code> 下载软件包。非 root 用户要加上 <code>sudo</code>；如果您正在使用 root 用户，则不需要添加 <code>sudo</code></p>
 <pre tabindex=0><code>sudo apt update
 sudo apt install snapd
 </code></pre></li>
 <li>
-<p>关闭SSH或退出登录，并再次登录，确保snap路径正常更新，之后安装<code>core</code>来得到最新版本的snapd</p>
+<p>关闭 SSH 或退出登录，并再次登录，确保 snap 路径正常更新，之后安装 <code>core</code> 来得到最新版本的 snapd</p>
 <pre tabindex=0><code>sudo snap install core
 sudo snap refresh core
 </code></pre><p>测试看看：</p>
@@ -169,15 +162,15 @@ sudo snap refresh core
 # 是否输出：hello-world 6.3 from Canonical✓ installed
 hello-world
 # 是否输出：Hello World!
-</code></pre><p>Debian 10可能遇到的问题：</p>
+</code></pre><p>Debian 10 可能遇到的问题：</p>
 <p>There is a known issue affecting some Debian 10 users with snaps that depend on browser-sandbox, such as Microsoft Teams. The issues can be bypassed with the following command:</p>
 <p><code>sudo sysctl kernel unprivileged_userns_clone=1</code></p>
 </li>
 </ol>
-<h2 id=二-移除一切certbot相关旧软件并安装新软件>二. 移除一切Certbot相关旧软件并安装新软件</h2>
+<h2 id=二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</h2>
 <ol>
 <li>
-<p>根据你的系统任选其一将certbot删除：</p>
+<p>根据你的系统任选其一将 certbot 删除：</p>
 <pre tabindex=0><code># 1
 sudo apt-get remove certbot
 # 2
@@ -186,30 +179,28 @@ sudo dnf remove certbot
 sudo yum remove certbot
 </code></pre></li>
 <li>
-<p>通过snap安装certbot</p>
+<p>通过 snap 安装 certbot</p>
+</li>
+</ol>
 <pre tabindex=0><code> sudo snap install --classic certbot
-</code></pre></li>
-<li>
-<p>确保certbot命令可执行</p>
+</code></pre><ol start=3>
+<li>确保 certbot 命令可执行
 <pre tabindex=0><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot
 </code></pre></li>
-<li>
-<p>确保已安装的插件与Certbot snap 具有相同容器</p>
+<li>确保已安装的插件与 Certbot snap 具有相同容器
 <pre tabindex=0><code>sudo snap set certbot trust-plugin-with-root=ok
 </code></pre></li>
-<li>
-<p>安装DNS插件，<code>sudo snap install certbot-dns-&lt;PLUGIN></code>，如果你使用CloudFlare，直接执行：</p>
+<li>安装 DNS 插件，<code>sudo snap install certbot-dns-&lt;PLUGIN></code>，如果你使用 CloudFlare，直接执行：
 <pre tabindex=0><code>sudo snap install certbot-dns-cloudflare
-</code></pre><p>如果这里报错，再执行一遍步骤4</p>
-</li>
+</code></pre>如果这里报错，再执行一遍步骤 4</li>
 </ol>
 <h2 id=三-放置凭据>三. 放置凭据</h2>
 <ol>
 <li>
-<p>登录CloudFlare，在主页面上找到API keys；如果你的cloudflare python module 版本大于等于2.3.1，建议复制restricted API Token，否则复制Global API Key</p>
+<p>登录 CloudFlare，在主页面上找到 API keys；如果你的 cloudflare python module 版本大于等于 2.3.1，建议复制 restricted API Token，否则复制 Global API Key</p>
 </li>
 <li>
-<p>设置DNS凭据</p>
+<p>设置 DNS 凭据</p>
 <pre tabindex=0><code>sudo mkdir -p /root/.secrets/
 sudo touch /root/.secrets/cloudflare.ini
 # 添加/.secrets目录与cloudflare.ini文件
@@ -220,10 +211,10 @@ sudo chmod 0400 /root/.secrets/cloudflare.ini
 
 nano /root/.secrets/cloudflare.ini
 # 编辑cloudflare.ini文件
-</code></pre><p>如果您使用restricted API Token，按照下方格式编辑并变更token数值：</p>
+</code></pre><p>如果您使用 restricted API Token，按照下方格式编辑并变更 token 数值：</p>
 <pre tabindex=0><code># Cloudflare API token used by Certbot
 dns_cloudflare_api_token = 0123456789abcdef0123456789abcdef01234567
-</code></pre><p>如果您使用Global API Key，按照下方格式编辑并变更key数值与cloudflare邮箱：</p>
+</code></pre><p>如果您使用 Global API Key，按照下方格式编辑并变更 key 数值与 cloudflare 邮箱：</p>
 <pre tabindex=0><code># Cloudflare API credentials used by Certbot
 dns_cloudflare_email = cloudflare@example.com
 dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
@@ -235,8 +226,8 @@ dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
   --dns-cloudflare-credentials ~/.secrets/cloudflare.ini \
   -d example.com
   -d *.example.com
-</code></pre><p>记得将example.com替换为您的域名，之后若您第一次申请，可能会要求您进行TXT验证，按照指示在cloudflare上操作即可；除此之外，您还应完成主域名的A记录验证</p>
-<p>如果系统提示Another instance of Certbot is already running，使用<code>ps -ef | grep certb</code>指令查看ID，并杀死进程<code>kill ID_number</code></p>
+</code></pre><p>记得将 example.com 替换为您的域名，之后若您第一次申请，可能会要求您进行 TXT 验证，按照指示在 cloudflare 上操作即可；除此之外，您还应完成主域名的 A 记录验证</p>
+<p>如果系统提示 Another instance of Certbot is already running，使用 <code>ps -ef | grep certb</code> 指令查看 ID，并杀死进程 <code>kill ID_number</code></p>
 </li>
 </ol>
 <h2 id=四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</h2>
@@ -244,7 +235,7 @@ dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
 sudo certbot renew --dry-run
 ```
 </code></pre>
-<p>没有报错的话证书申请与自动续期就配置完成啦，之后如果需要用主域名或者任一子域名配置代理（比如nginx），将配置文件里需要证书pem路径的地方替换为生成的证书配置文件对应的路径就好了。</p>
+<p>没有报错的话证书申请与自动续期就配置完成啦，之后如果需要用主域名或者任一子域名配置代理（比如 nginx），将配置文件里需要证书 pem 路径的地方替换为生成的证书配置文件对应的路径就好了。</p>
 <p>参考链接：</p>
 <ol>
 <li><a href=https://certbot.eff.org/lets-encrypt/debianbuster-nginx>certbot wildcard certificates</a></li>
@@ -265,7 +256,7 @@ sudo certbot renew --dry-run
 <nav>
 <ul class="post-actions post-action-nav">
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="NEXT: 利用Github Pages与Github Action搭建并部署Hugo博客">
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客" aria-label="NEXT: 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客">
 <i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
 </a>
@@ -314,7 +305,7 @@ sudo certbot renew --dry-run
 <nav>
 <ul class="post-actions post-action-nav">
 <li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用Github Pages与Github Action搭建并部署Hugo博客" aria-label="NEXT: 利用Github Pages与Github Action搭建并部署Hugo博客">
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客" aria-label="NEXT: 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客">
 <i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
 </a>

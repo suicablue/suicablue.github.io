@@ -1,22 +1,22 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在Windows上搭建Hugo博客之Github部署填坑记","image":"//","datePublished":"2021-02-22T03:37:09+08:00","dateModified":"2021-02-22T03:37:09+08:00","author":{"@type":"Person","name":"suica","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/deploy-hugo-as-a-github-pages-project\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"}},"description":"笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → 利用Github Pages与Github Action搭建并部署Hugo博客\n","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 Windows 上搭建 Hugo 博客之 Github 部署填坑记","image":"https://suicablog.cobaltkiss.blue/thumbnailimages/suica77.jpg","datePublished":"2021-02-22T03:37:09+08:00","dateModified":"2021-02-22T03:37:09+08:00","author":{"@type":"Person","name":"suica","image":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/deploy-hugo-as-a-github-pages-project\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://suicablog.cobaltkiss.blue/images/profile%20picture.png"}},"description":"**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客 **\n","keywords":[]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
 <meta name=author content="suica">
 <meta name=keywords content>
-<meta name=description content="笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → 利用Github Pages与Github Action搭建并部署Hugo博客">
-<meta property="og:description" content="笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → 利用Github Pages与Github Action搭建并部署Hugo博客">
+<meta name=description content="**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客 **">
+<meta property="og:description" content="**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客 **">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Windows上搭建Hugo博客之Github部署填坑记">
-<meta name=twitter:title content="在Windows上搭建Hugo博客之Github部署填坑记">
+<meta property="og:title" content="在 Windows 上搭建 Hugo 博客之 Github 部署填坑记">
+<meta name=twitter:title content="在 Windows 上搭建 Hugo 博客之 Github 部署填坑记">
 <meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/deploy-hugo-as-a-github-pages-project/">
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/deploy-hugo-as-a-github-pages-project/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
-<meta property="og:description" content="笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → 利用Github Pages与Github Action搭建并部署Hugo博客">
-<meta name=twitter:description content="笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → 利用Github Pages与Github Action搭建并部署Hugo博客">
+<meta property="og:description" content="**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客 **">
+<meta name=twitter:description content="**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客 **">
 <meta property="og:locale" content="en-us">
 <meta property="article:published_time" content="2021-02-22T03:37:09">
 <meta property="article:modified_time" content="2021-02-22T03:37:09">
@@ -29,11 +29,9 @@
 <meta name=twitter:card content="summary">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
-<meta property="og:image" content="//">
-<meta property="twitter:image" content="//">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica77.jpg">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica77.jpg">
-<title>在Windows上搭建Hugo博客之Github部署填坑记</title>
+<title>在 Windows 上搭建 Hugo 博客之 Github 部署填坑记</title>
 <link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
 <link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/deploy-hugo-as-a-github-pages-project/>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
@@ -112,12 +110,11 @@
 </ul>
 </div>
 </nav>
-<div class="post-header-cover
-text-left
-post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div id=main data-behavior=5 class=hasCoverMetaIn>
+<article class=post id=top>
 <div class="post-header main-content-wrap text-left">
 <h1 class=post-title>
-在Windows上搭建Hugo博客之Github部署填坑记
+在 Windows 上搭建 Hugo 博客之 Github 部署填坑记
 </h1>
 <div class="postShorten-meta post-meta">
 <time datetime=2021-02-22T03:37:09+08:00>
@@ -127,97 +124,93 @@ February 22, 2021
 <a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e8%8f%9c%e9%b8%9f%e7%9a%84%e7%9e%8e%e6%8a%98%e8%85%be%e7%ac%94%e8%ae%b0>菜鸟的瞎折腾笔记</a>
 </div>
 </div>
-</div>
-<div id=main data-behavior=5 class="hasCover
-hasCoverMetaIn">
-<article class=post id=top>
 <div class="post-content markdown">
 <div class=main-content-wrap>
-<p><strong>笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的Hugo博客搭建与部署博文 → <a href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/>利用Github Pages与Github Action搭建并部署Hugo博客</a></strong></p>
-<h1 id=在windows上搭建hugo博客之github部署填坑记>在Windows上搭建Hugo博客之Github部署填坑记</h1>
-<p>这篇博文记录了本CS菜鸟搭建Hugo博客的崎岖过程，内容涵盖以下方面：</p>
+<p>**笔记保留仅供个人复习，请不要参考这篇笔记搭建博客。写了新的思路更清晰的 Hugo 博客搭建与部署博文 → <a href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/>利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客</a> **</p>
+<h1 id=在-windows-上搭建-hugo-博客之-github-部署填坑记>在 Windows 上搭建 Hugo 博客之 Github 部署填坑记</h1>
+<p>这篇博文记录了本 CS 菜鸟搭建 Hugo 博客的崎岖过程，内容涵盖以下方面：</p>
 <ol>
-<li>Hugo在Windows 10系统上的下载与安装（简略说明）</li>
-<li>Hugo主题的下载、安装与配置（简略说明）</li>
-<li>将Hugo从本地部署到Github个人页面</li>
+<li>Hugo 在 Windows 10 系统上的下载与安装（简略说明）</li>
+<li>Hugo 主题的下载、安装与配置（简略说明）</li>
+<li>将 Hugo 从本地部署到 Github 个人页面</li>
 <li>发布、修改、删除博文</li>
-<li>将Github默认的个人页面URL修改为自定义二级域名</li>
+<li>将 Github 默认的个人页面 URL 修改为自定义二级域名</li>
 </ol>
 <div class="alert warning no-icon">
-<p>正式阅读正文前您需要了解，本人在 CS方面完完全全就是菜鸟一只。到底有多菜鸟呢？在 Hugo的部署过程中需要大量git操作，而我是因为要建 Hugo才开始学习git的基础操作。这篇博文算是我在自建Hugo博客过程中各路乱抄的作业答案整理归纳，抄作业过程中，我由于不明原理而抄错答案，导致博客运行出现了很多问题，这篇博文也对这些错误、错误原因和解决方式进行了总结。博文中可能难免出现描述性错误或可以进一步完善的地方，如有修改建议，希望您可以在下方评论指正，或通过fediverse账号、邮箱联系我修改。</p>
+<p>正式阅读正文前您需要了解，本人在 CS 方面完完全全就是菜鸟一只。到底有多菜鸟呢？在 Hugo 的部署过程中需要大量 git 操作，而我是因为要建 Hugo 才开始学习 git 的基础操作。这篇博文算是我在自建 Hugo 博客过程中各路乱抄的作业答案整理归纳，抄作业过程中，我由于不明原理而抄错答案，导致博客运行出现了很多问题，这篇博文也对这些错误、错误原因和解决方式进行了总结。博文中可能难免出现描述性错误或可以进一步完善的地方，如有修改建议，希望您可以在下方评论指正，或通过 fediverse 账号、邮箱联系我修改。</p>
 </div>
 <h1 id=table-of-contents>Table of Contents</h1>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#在windows上搭建hugo博客之github部署填坑记>在Windows上搭建Hugo博客之Github部署填坑记</a>
+<li><a href=#在-windows-上搭建-hugo-博客之-github-部署填坑记>在 Windows 上搭建 Hugo 博客之 Github 部署填坑记</a>
 <ul>
-<li><a href=#一hugo在windows-10系统上的下载与安装>一、Hugo在Windows 10系统上的下载与安装</a></li>
-<li><a href=#二hugo主题的下载安装与配置>二、Hugo主题的下载、安装与配置</a></li>
-<li><a href=#三将hugo从本地部署到github个人页面>三、将Hugo从本地部署到Github个人页面</a></li>
+<li><a href=#一hugo-在-windows-10-系统上的下载与安装>一、Hugo 在 Windows 10 系统上的下载与安装</a></li>
+<li><a href=#二hugo-主题的下载安装与配置>二、Hugo 主题的下载、安装与配置</a></li>
+<li><a href=#三将-hugo-从本地部署到-github-个人页面>三、将 Hugo 从本地部署到 Github 个人页面</a></li>
 <li><a href=#四发布修改删除博文>四、发布、修改、删除博文</a></li>
-<li><a href=#五将github默认的个人页面url修改为自定义二级域名>五、将Github默认的个人页面URL修改为自定义二级域名</a></li>
+<li><a href=#五将-github-默认的个人页面-url-修改为自定义二级域名>五、将 Github 默认的个人页面 URL 修改为自定义二级域名</a></li>
 </ul>
 </li>
 </ul>
 </nav>
-<h2 id=一hugo在windows-10系统上的下载与安装>一、Hugo在Windows 10系统上的下载与安装</h2>
-<p>Hugo的官方网站上有Hugo在各种系统上安装的详细说明视频，对于熟悉Window 10系统操作的朋友来说并不困难，这里不再做复述和进一步说明，详情请看 <a href=https://gohugo.io/getting-started/installing/>Hugo-Getting Started-Install Hugo</a> 。</p>
-<p>按照视频下载安装后，您的计算机中应该有一个名为"Hugo"的目录、一个名为"Sites"的用于存放所有博客站点的目录，Hugo目录下应有三个文件；同时，您的计算中应已下载Git程序。</p>
-<h2 id=二hugo主题的下载安装与配置>二、Hugo主题的下载、安装与配置</h2>
-<p>这部分内容在网络上可以搜索到很多指南，我在操作过程中也遇到没什么问题，也不再进行详细说明。大致有这几个步骤：创建博客、下载安装主题、主题配置、本地测试，完成这部分操作后，您应该已经可以通过 <a href=http://localhost:1313/>http://localhost:1313/</a> 查看您选择的主题成功安装在Hugo博客上的样子了。</p>
-<p>因为每个主题的配置文件、目录都略有不同，在主题配置过程中的具体操作请参考每个主题的说明文档。我的博客选用的主题是<a href=https://themes.gohugo.io/hugo-tranquilpeak-theme/>tranquilpeak</a>。</p>
-<p>此时您的博客目录下应该有已经配置完毕的config.toml文件，themes目录下存放着您已经安装完毕的主题。一般这个主题目录不做改动，除非您是主题设计者，对主体魔改有强烈的需求。tranquilpeak主题目录中有一个名为"exampleSite"的目录，将目录下的所有目录与文件复制粘贴到博客根目录下并覆盖原有的目录、文件，通常主题应该都有类似exampleSite的目录，普通的主题调整一般只需在config.toml文件与static目录中进行。</p>
-<p>我建议您主题下载完成后在本地其他的目录再保存一份主题文档。在我自己搭建博客的过程中，混乱的窗口、git操作失误导致我的博客目录混乱不堪，不得不将整个目录删除重建，通过Hugo下载主题，速度可能由于众所周知的网络原因而变得十分缓慢（尽管主题文件往往并不大）。（假如您不幸和我一样需要重建博客，）将备份的主题目录直接粘贴到博客目录下会大大减少您的博客搭建测试时间。</p>
-<h2 id=三将hugo从本地部署到github个人页面>三、将Hugo从本地部署到Github个人页面</h2>
-<p>这部分是我自己踩坑最多的地方，其实直到现在，我也没有完全弄清楚这一步怎么做是最好的或最适合自己的，所以在我把git基础教程看完并再去整理之前看过的各个教程后，这部分内容应该会再做修改更新。</p>
-<p>Hugo部署到Github似乎有两种方式：</p>
+<h2 id=一hugo-在-windows-10-系统上的下载与安装>一、Hugo 在 Windows 10 系统上的下载与安装</h2>
+<p>Hugo 的官方网站上有 Hugo 在各种系统上安装的详细说明视频，对于熟悉 Window 10 系统操作的朋友来说并不困难，这里不再做复述和进一步说明，详情请看 <a href=https://gohugo.io/getting-started/installing/>Hugo-Getting Started-Install Hugo</a> 。</p>
+<p>按照视频下载安装后，您的计算机中应该有一个名为"Hugo"的目录、一个名为"Sites"的用于存放所有博客站点的目录，Hugo 目录下应有三个文件；同时，您的计算中应已下载 Git 程序。</p>
+<h2 id=二hugo-主题的下载安装与配置>二、Hugo 主题的下载、安装与配置</h2>
+<p>这部分内容在网络上可以搜索到很多指南，我在操作过程中也遇到没什么问题，也不再进行详细说明。大致有这几个步骤：创建博客、下载安装主题、主题配置、本地测试，完成这部分操作后，您应该已经可以通过 <a href=http://localhost:1313/>http://localhost:1313/</a> 查看您选择的主题成功安装在 Hugo 博客上的样子了。</p>
+<p>因为每个主题的配置文件、目录都略有不同，在主题配置过程中的具体操作请参考每个主题的说明文档。我的博客选用的主题是 <a href=https://themes.gohugo.io/hugo-tranquilpeak-theme/>tranquilpeak</a> 。</p>
+<p>此时您的博客目录下应该有已经配置完毕的 config.toml 文件，themes 目录下存放着您已经安装完毕的主题。一般这个主题目录不做改动，除非您是主题设计者，对主体魔改有强烈的需求。tranquilpeak 主题目录中有一个名为"exampleSite"的目录，将目录下的所有目录与文件复制粘贴到博客根目录下并覆盖原有的目录、文件，通常主题应该都有类似 exampleSite 的目录，普通的主题调整一般只需在 config.toml 文件与 static 目录中进行。</p>
+<p>我建议您主题下载完成后在本地其他的目录再保存一份主题文档。在我自己搭建博客的过程中，混乱的窗口、git 操作失误导致我的博客目录混乱不堪，不得不将整个目录删除重建，通过 Hugo 下载主题，速度可能由于众所周知的网络原因而变得十分缓慢（尽管主题文件往往并不大）。（假如您不幸和我一样需要重建博客，）将备份的主题目录直接粘贴到博客目录下会大大减少您的博客搭建测试时间。</p>
+<h2 id=三将-hugo-从本地部署到-github-个人页面>三、将 Hugo 从本地部署到 Github 个人页面</h2>
+<p>这部分是我自己踩坑最多的地方，其实直到现在，我也没有完全弄清楚这一步怎么做是最好的或最适合自己的，所以在我把 git 基础教程看完并再去整理之前看过的各个教程后，这部分内容应该会再做修改更新。</p>
+<p>Hugo 部署到 Github 似乎有两种方式：</p>
 <ul>
-<li>创建两个repository，一个存放hugo博客源文件，一个存放个人博客public中的文件</li>
-<li>创建一个repository和两个分支，分支分别存放源文件与public目录下的文件（也可创建一个分支，将public目录下文件存放进/doc）</li>
+<li>创建两个 repository，一个存放 hugo 博客源文件，一个存放个人博客 public 中的文件</li>
+<li>创建一个 repository 和两个分支，分支分别存放源文件与 public 目录下的文件（也可创建一个分支，将 public 目录下文件存放进/doc）</li>
 </ul>
-<p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个gh-pages的repository（即.github.io，替换为github账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支master与一个repository的情况下建立起来的，并没有上传源文件，这样大概是没办法使用github actions（自动部署工具）的，不过目前并不影响我正常使用。</p>
+<p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个 gh-pages 的 repository（即.github.io，替换为 github 账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支 master 与一个 repository 的情况下建立起来的，并没有上传源文件，这样大概是没办法使用 github actions（自动部署工具）的，不过目前并不影响我正常使用。</p>
 <p>特别提醒两点：</p>
-<p>第一，创建repository完毕后，请在您的repository页面上方找到Settings，点击进入，在下方找到添加主题按钮为你的github页面添加一个主题，添加主题后，这个repository下会生成两个新文件：README.md和_config.yml。</p>
+<p>第一，创建 repository 完毕后，请在您的 repository 页面上方找到 Settings，点击进入，在下方找到添加主题按钮为你的 github 页面添加一个主题，添加主题后，这个 repository 下会生成两个新文件：README.md 和_config.yml。</p>
 <pre tabindex=0><code>hugo
 cd public
 git add .
 git commit -m &quot;xxx(任意内容)&quot;
 git remote add origin https://github.com/&lt;user&gt;/&lt;user&gt;.github.io.git
-# 这里如果git地址写错误上传，可执行git remote remove origin
-git pull origin master  
-# 这一步将repository上的两个文件拉到本地，如果今后远程repository中出现变动，需要这一步拉取远程数据，否则无法进行git push
+# 这里如果 git 地址写错误上传，可执行 git remote remove origin
+git pull origin master
+# 这一步将 repository 上的两个文件拉到本地，如果今后远程 repository 中出现变动，需要这一步拉取远程数据，否则无法进行 git push
 git push -u origin master
-</code></pre><p>（有一些教程中可能会提示您若git push后报错就用<code>git push -f origin master</code>这个命令，-f 即 &ndash;force ，是强制执行的意思，这个命令会强行删除远程repository中的文件后将本地文件push到远程，不建议使用；如果本地与远程不同步，请尽量使用git pull命令，或使用 <code>git status</code> 寻找的具体问题。）</p>
-<p>为什么需要添加主题呢，如果缺少这一步，部署成功后打开你的博客页面可能会出现css、js文件加载失败的问题；除此之外，如果您有自定义域名并让博客域名由http转换为https的需求，这个_comfig.yml文件是必须的。</p>
+</code></pre><p>（有一些教程中可能会提示您若 git push 后报错就用 <code>git push -f origin master</code> 这个命令，-f 即 &ndash;force ，是强制执行的意思，这个命令会强行删除远程 repository 中的文件后将本地文件 push 到远程，不建议使用；如果本地与远程不同步，请尽量使用 git pull 命令，或使用 <code>git status</code> 寻找的具体问题。）</p>
+<p>为什么需要添加主题呢，如果缺少这一步，部署成功后打开你的博客页面可能会出现 css、js 文件加载失败的问题；除此之外，如果您有自定义域名并让博客域名由 http 转换为 https 的需求，这个_comfig.yml 文件是必须的。</p>
 <p>第二，执行上面的命令过程中可能会出现这个报错：
 Git The requested URL returned error:403</p>
 <p>出现这个报错有三种可能：</p>
 <ol>
 <li>您没有权限</li>
-<li>您修改过github账户用户名与密码</li>
-<li>您曾在电脑上使用过其他github账户</li>
+<li>您修改过 github 账户用户名与密码</li>
+<li>您曾在电脑上使用过其他 github 账户</li>
 </ol>
-<p>我当时出现了两次这个报错，第一次是因为我曾在电脑上安装hexo博客，当时我使用的是另一个github账户，也就是第三种情况。这是您需要打开控制面板->用户账户->管理Windows凭据，向下看有普通凭据，找到关于 <code>git:https://github.com</code> 并删除。 <a href=https://www.cnblogs.com/wangxiaozhang/p/11303557.html>方法来自WANGXIAOZHANG的博文</a></p>
-<p>第二次报错是因为我注册的新github账户没有在电脑上使用过，也就是第一种情况，这时您需要<strong>生成SSH添加到GitHub</strong>。</p>
+<p>我当时出现了两次这个报错，第一次是因为我曾在电脑上安装 hexo 博客，当时我使用的是另一个 github 账户，也就是第三种情况。这是您需要打开控制面板->用户账户->管理 Windows 凭据，向下看有普通凭据，找到关于 <code>git: https://github.com</code> 并删除。 <a href=https://www.cnblogs.com/wangxiaozhang/p/11303557.html>方法来自 WANGXIAOZHANG 的博文</a></p>
+<p>第二次报错是因为我注册的新 github 账户没有在电脑上使用过，也就是第一种情况，这时您需要<strong>生成 SSH 添加到 GitHub</strong>。</p>
 <pre tabindex=0><code>git config --global user.name &lt;username&gt;
 git config --global user.email &lt;useremail&quot;&gt;
-</code></pre><p>根据您的github账户信息替换上面的内容，之后创建SSH：</p>
+</code></pre><p>根据您的 github 账户信息替换上面的内容，之后创建 SSH：</p>
 <p><code>ssh-keygen -t rsa -C &lt;useremail></code></p>
 <p>之后输入：</p>
 <pre tabindex=0><code>cat ~/.ssh/id_rsa.pub
-</code></pre><p>将输出结果复制下来，请在您的repository页面上方找到Settings，点击进入并在左边找到SSH and GPG keys，创建SSH keys，Title处可随意填写，在Key处输入刚刚复制的结果，之后保存。</p>
-<p>在git bash输入：</p>
+</code></pre><p>将输出结果复制下来，请在您的 repository 页面上方找到 Settings，点击进入并在左边找到 SSH and GPG keys，创建 SSH keys，Title 处可随意填写，在 Key 处输入刚刚复制的结果，之后保存。</p>
+<p>在 git bash 输入：</p>
 <pre tabindex=0><code>ssh -T git@github.com
-</code></pre><p>输出了你的github用户名即代表SSH添加成功。
-第一次在本地使用这个github账户可能跳出新窗口，按照指示输入github用户名、邮箱、密钥等信息即可，之后不会再出现这个窗口。</p>
-<p>到现在您可以刷新您的github页面，里面的内容应该已经更新为和本地的public目录下同样的状态，在url栏输入 .github.io 应就该会跳出您的博客页面啦~</p>
+</code></pre><p>输出了你的 github 用户名即代表 SSH 添加成功。
+第一次在本地使用这个 github 账户可能跳出新窗口，按照指示输入 github 用户名、邮箱、密钥等信息即可，之后不会再出现这个窗口。</p>
+<p>到现在您可以刷新您的 github 页面，里面的内容应该已经更新为和本地的 public 目录下同样的状态，在 url 栏输入 .github.io 应就该会跳出您的博客页面啦~</p>
 <h2 id=四发布修改删除博文>四、发布、修改、删除博文</h2>
 <p>添加新博文，在根目录执行命令：</p>
 <pre tabindex=0><code>hugo new post/标题.md
-</code></pre><p>或者直接将markdown文件拖到您主题对应的存放博文的目录下并添加修改前置数据。</p>
-<p>在此之前可以先在archetypes目录下添加编辑post.md文件，设置文章模板。这里要根据您安装的主题去编辑，在tranquilpeak主题中，博文默认储存在content/post/中，默认博文样式文件名为post.md，有些主题content下的目录可能为posts，请在您安装的主题目录中的content与archetypes目录中找到正确的格式。</p>
-<p>对于tranquilpeak主题，可以这么设置post.md:
-(这部分内容来自<a href=https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/#%E5%BB%BA%E7%AB%8Bgithub-pages%E5%B9%B6%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A>SAquarius的梦想屋</a>)</p>
+</code></pre><p>或者直接将 markdown 文件拖到您主题对应的存放博文的目录下并添加修改前置数据。</p>
+<p>在此之前可以先在 archetypes 目录下添加编辑 post.md 文件，设置文章模板。这里要根据您安装的主题去编辑，在 tranquilpeak 主题中，博文默认储存在 content/post/中，默认博文样式文件名为 post.md，有些主题 content 下的目录可能为 posts，请在您安装的主题目录中的 content 与 archetypes 目录中找到正确的格式。</p>
+<p>对于 tranquilpeak 主题，可以这么设置 post.md:
+(这部分内容来自 <a href=https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/#%E5%BB%BA%E7%AB%8Bgithub-pages%E5%B9%B6%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A>SAquarius 的梦想屋</a> )</p>
 <pre tabindex=0><code>---
 title: &quot;{{ replace .TranslationBaseName &quot;-&quot; &quot; &quot; | title }}&quot;
 date: {{ .Date }}
@@ -230,37 +223,37 @@ tags:
 keywords:
 - tech
 # 每次编辑文档时请删去这些解释的注释
-# 缩略图，最好采用宽度为750的图片，可以使用本地文件或者使用git图床
-# 使用本地图库，请把图片存在themes/static/images文件夹下，并且用下面的路径引用
+# 缩略图，最好采用宽度为 750 的图片，可以使用本地文件或者使用 git 图床
+# 使用本地图库，请把图片存在 themes/static/images 文件夹下，并且用下面的路径引用
 thumbnailImage: /images/cover.jpg
 # 缩略图位置，我觉得放在上面好看，如果用的小图片作缩略图
-# 可以放在（left或者right），设置此项会取代配置文件中默认在下边的设置
+# 可以放在（left 或者 right），设置此项会取代配置文件中默认在下边的设置
 thumbnailImagePosition: top
 # 这个下边默认就好了，暂时不清楚有什么影响
 autoThumbnailImage: yes
 metaAlignment: center
-# 封面图片，如果选用本地文件的话，和缩略图同样的路径，21：9的图片效果很好看
+# 封面图片，如果选用本地文件的话，和缩略图同样的路径，21：9 的图片效果很好看
 coverImage: /images/cover.jpg
 # 封面图片的描述引号中的文字可以自己选
-coverCaption: &quot;文章cover图片描述&quot;
-# in表示文章标题显示在封面图片上，out表示显示在封面图片的外边，也就是文章开头
+coverCaption: &quot;文章 cover 图片描述&quot;
+# in 表示文章标题显示在封面图片上，out 表示显示在封面图片的外边，也就是文章开头
 coverMeta: in
-# 封面图片的覆盖大小，直接默认为full吧，21:9的图片这样设置显示效果真的不错
+# 封面图片的覆盖大小，直接默认为 full 吧，21:9 的图片这样设置显示效果真的不错
 coverSize: full
 ---
 #缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概
 &lt;!--more--&gt;
 &lt;!-- toc --&gt;
 </code></pre><p>除此之外还可以添加：</p>
-<pre tabindex=0><code>slug: xxx  
-# 标题中含中文时可以利用slug简化url，纯英文标题一般不需要。
-# 比如标题&quot;在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）&quot;的默认url会很混乱
-# 此时可以在slug后输入&quot;Pleroma-Installation-on-Linux-using-OTP-releases&quot;（注意冒号后的空格）
-# 这篇博文的url就会变为&quot;https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/&quot;
+<pre tabindex=0><code>slug: xxx
+# 标题中含中文时可以利用 slug 简化 url，纯英文标题一般不需要。
+# 比如标题&quot;在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）&quot;的默认 url 会很混乱
+# 此时可以在 slug 后输入&quot;Pleroma-Installation-on-Linux-using-OTP-releases&quot;（注意冒号后的空格）
+# 这篇博文的 url 就会变为&quot;https://suicablog.cobaltkiss.blue/2020/09/pleroma-installation-on-linux-using-otp-releases/&quot;
 
-draft: false  
-#false表示这篇博文不是草稿，push后的博文将直接公开出现在播客主页上
-# 若设置为true，则代表这篇博文是草稿状态。
+draft: false
+#false 表示这篇博文不是草稿，push 后的博文将直接公开出现在播客主页上
+# 若设置为 true，则代表这篇博文是草稿状态。
 </code></pre><ul>
 <li>发布新博文/修改博文</li>
 </ul>
@@ -272,11 +265,11 @@ git push -u origin master
 </code></pre><ul>
 <li>删除博文</li>
 </ul>
-<p>在尝试删除博文时，由于我之前不了解git基础操作，误删了连接本地与和远程repository的重要目录".git"，之后便是不断地报错。前往不要直接将public删除，这回将里面的隐藏目录".git"以及之前手动pull的两个文件一并删除（如果之后设置了自定义域名，CNAME文件也会被删除），所以请在删除public中其他文件时保留：</p>
+<p>在尝试删除博文时，由于我之前不了解 git 基础操作，误删了连接本地与和远程 repository 的重要目录".git"，之后便是不断地报错。前往不要直接将 public 删除，这回将里面的隐藏目录".git"以及之前手动 pull 的两个文件一并删除（如果之后设置了自定义域名，CNAME 文件也会被删除），所以请在删除 public 中其他文件时保留：</p>
 <ul>
 <li>
 <ul>
-<li>.git目录</li>
+<li>.git 目录</li>
 </ul>
 </li>
 <li>
@@ -302,26 +295,26 @@ cd public
 git add .
 git commit -m &quot;post deleted(或任意内容)&quot;
 git push -u origin master
-</code></pre><h2 id=五将github默认的个人页面url修改为自定义二级域名>五、将Github默认的个人页面URL修改为自定义二级域名</h2>
-<p>将博客url弄到二级域名上是个不错的选择，顶级域名则可用作其他用途。
-首先您需要先有个自己的域名，关于买域名购买方式这里也不多阐释，国内的域名需要备案，非国内域名则无需备案；之后您需要为域名申请证书，常见的免费证书申请方案是Let&rsquo;s encrypt（三个月后失效，需手动重新申请或添加自动申请certbot），或者您也可以将您的域名绑定到cloudflare上，申请免费的15年根域名与通配符域名证书。</p>
-<p>之后，您需要在您的域名购买商那边或者CF的DNS设置界面添加A记录，我的顶级域名已添加A记录到我的服务器IP用作其他用途，这里只需为二级域名添加一条新的A记录，指向下面四个域名中的任意一条：</p>
+</code></pre><h2 id=五将-github-默认的个人页面-url-修改为自定义二级域名>五、将 Github 默认的个人页面 URL 修改为自定义二级域名</h2>
+<p>将博客 url 弄到二级域名上是个不错的选择，顶级域名则可用作其他用途。
+首先您需要先有个自己的域名，关于买域名购买方式这里也不多阐释，国内的域名需要备案，非国内域名则无需备案；之后您需要为域名申请证书，常见的免费证书申请方案是 Let&rsquo;s encrypt（三个月后失效，需手动重新申请或添加自动申请 certbot），或者您也可以将您的域名绑定到 cloudflare 上，申请免费的 15 年根域名与通配符域名证书。</p>
+<p>之后，您需要在您的域名购买商那边或者 CF 的 DNS 设置界面添加 A 记录，我的顶级域名已添加 A 记录到我的服务器 IP 用作其他用途，这里只需为二级域名添加一条新的 A 记录，指向下面四个域名中的任意一条：</p>
 <pre><code>185.199.108.153
 185.199.109.153
 185.199.110.153
 185.199.111.153
 </code></pre>
-<p>详细步骤请参考这篇博文：<a href=https://iseex.github.io/2018-08/custom-domain/>GitHub Pages域名绑定及https支持的配置步骤</a></p>
-<p>我在操作过程中，始终无法通过github强制我的博客URL支持https协议，最终我是通过在CF为耳机域名指定强制https页面规则达到https支持的。</p>
-<p>这样操作后会有个问题，强制导向https的博客页面有可能无法加载CSS、JS文件，这时您需要对之前我们手动添加的_config.yml文件进行修改。
-（您既可以在github上修改后git pull，也可在本地修改后git push）</p>
+<p>详细步骤请参考这篇博文： <a href=https://iseex.github.io/2018-08/custom-domain/>GitHub Pages 域名绑定及 https 支持的配置步骤</a></p>
+<p>我在操作过程中，始终无法通过 github 强制我的博客 URL 支持 https 协议，最终我是通过在 CF 为耳机域名指定强制 https 页面规则达到 https 支持的。</p>
+<p>这样操作后会有个问题，强制导向 https 的博客页面有可能无法加载 CSS、JS 文件，这时您需要对之前我们手动添加的_config.yml 文件进行修改。
+（您既可以在 github 上修改后 git pull，也可在本地修改后 git push）</p>
 <p>在文件中添加这么两行：</p>
 <pre><code>root: /xxx.github.io
 url: https://custom.url
-（把xxx和custom.url分别替换为github默认页面url以及自定义的url）
 </code></pre>
-<p>之后保存文件git push或git pull即可让博客页面加载CSS、JS文件。</p>
-<p><strong>到此为止一个个性化的Hugo博客就建好啦！</strong></p>
+<p>（把 xxx 和 custom.url 分别替换为 github 默认页面 url 以及自定义的 url）</p>
+<p>之后保存文件 git push 或 git pull 即可让博客页面加载 CSS、JS 文件。</p>
+<p><strong>到此为止一个个性化的 Hugo 博客就建好啦！</strong></p>
 </div>
 </div>
 <div id=post-footer class="post-footer main-content-wrap">
