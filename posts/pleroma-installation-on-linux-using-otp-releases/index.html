@@ -22,7 +22,7 @@
 <meta property="article:modified_time" content="2020-09-13T00:00:00">
 <meta property="article:section" content="pleroma">
 <meta property="article:tag" content="pleroma">
-<meta property="article:tag" content="debian 10">
+<meta property="article:tag" content="debian10">
 <meta name=twitter:card content="summary">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/images/profile%20picture.png">
@@ -197,7 +197,9 @@ hasCoverMetaIn">
 <h3 id=二安装-pleroma><strong>二、安装 pleroma</strong></h3>
 <p>1、创建一个 pleroma 用户
 <code>adduser --system --shell /bin/false --home /opt/pleroma pleroma</code></p>
-<p>2、设置环境变量 FLAVOUR
+<p>2、（<span class="highlight-text red">更新</span>）检测并设置环境变量 FLAVOUR</p>
+<pre tabindex=0><code>arch=&quot;$(uname -m)&quot;;if [ &quot;$arch&quot; = &quot;x86_64&quot; ];then arch=&quot;amd64&quot;;elif [ &quot;$arch&quot; = &quot;armv7l&quot; ];then arch=&quot;arm&quot;;elif [ &quot;$arch&quot; = &quot;aarch64&quot; ];then arch=&quot;arm64&quot;;else echo &quot;Unsupported arch: $arch&quot;&gt;&amp;2;fi;if getconf GNU_LIBC_VERSION&gt;/dev/null;then libc_postfix=&quot;&quot;;elif [ &quot;$(ldd 2&gt;&amp;1|head -c 9)&quot; = &quot;musl libc&quot; ];then libc_postfix=&quot;-musl&quot;;elif [ &quot;$(find /lib/libc.musl*|wc -l)&quot; ];then libc_postfix=&quot;-musl&quot;;else echo &quot;Unsupported libc&quot;&gt;&amp;2;fi;echo &quot;$arch$libc_postfix&quot;
+</code></pre><p>假设输出结果是 &ldquo;amd64&rdquo; ：
 <code>export FLAVOUR="amd64"</code></p>
 <p>3、下载安装 Pleroma 所需的文件到/tmp 文件夹并解压</p>
 <pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;
@@ -334,7 +336,7 @@ su pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl user new &lt;joeuser&gt; &lt;jo
 <div class=post-footer-tags>
 <span class="text-color-light text-small">TAGGED IN</span><br>
 <a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>pleroma</a>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/debian-10/>debian 10</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/debian10/>debian10</a>
 </div>
 <div class=post-actions-wrap>
 <nav>
