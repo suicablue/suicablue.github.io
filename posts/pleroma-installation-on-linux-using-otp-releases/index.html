@@ -269,7 +269,7 @@ Donating to EFF: <a href=https://eff.org/donate-le>https://eff.org/donate-le</a>
 </li>
 </ul>
 <p>注：如果提示与我上面写的不同，请仔细检查证书有没有成功申请并存放到"/etc/letsencrypt/live/实例域名/"，若没有申请成功，后面依旧会卡住。
-一般这一部出错有两种可能，第一，您没有添加 A 记录，请到域名注册网站添加或修改 A 记录；二，80 和 443 端口未开放，如果这里出现错误"Problem binding to port 80: Could not bind to IPv4 or IPv6."，请检查防火墙端口开放情况：<code>sudo ufw status verbose</code>，如果只有 22 端口开放，请通过 <code>sudo ufw allow 80/tcp</code>、<code>sudo ufw allow 443/tcp</code> 将 80 和 443 端口开放。之后检查 nginx 状态，如开启请将其暂时关闭。
+一般这一部出错有两种可能，第一，您没有添加 A 记录，请到域名注册网站添加或修改 A 记录；二，80 和 443 端口未开放，如果这里出现错误"Problem binding to port 80: Could not bind to IPv4 or IPv6."，请检查防火墙端口开放情况（<span class="highlight-text red">补充： Debian 需要额外安装 ufw</span>）：<code>sudo ufw status verbose</code>，如果只有 22 端口开放，请通过 <code>sudo ufw allow 80/tcp</code>、<code>sudo ufw allow 443/tcp</code> 将 80 和 443 端口开放。之后检查 nginx 状态，如开启请将其暂时关闭。
 操作完成后，再次输入指令，直到看到正确的成功提示。</p>
 <p>4、复制 Pleroma nginx 配置到 nginx 文件夹</p>
 <pre tabindex=0><code>cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.conf
