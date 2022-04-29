@@ -1,6 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）","image":"//","datePublished":"2020-09-13T00:00:00Z","dateModified":"2020-09-13T00:00:00Z","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/pleroma-installation-on-linux-using-otp-releases\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"}},"description":"适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 Debian 10 / Ubuntu 20.04 上安装 Pleroma","image":"//","datePublished":"2020-09-13T00:00:00Z","dateModified":"2020-09-13T00:00:00Z","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/pleroma-installation-on-linux-using-otp-releases\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"}},"description":"适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南","keywords":[]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
@@ -10,8 +10,8 @@
 <meta name=description content="适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南">
 <meta property="og:description" content="适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
-<meta name=twitter:title content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）">
+<meta property="og:title" content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma">
+<meta name=twitter:title content="在 Debian 10 / Ubuntu 20.04 上安装 Pleroma">
 <meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/">
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
@@ -21,8 +21,8 @@
 <meta property="article:published_time" content="2020-09-13T00:00:00">
 <meta property="article:modified_time" content="2020-09-13T00:00:00">
 <meta property="article:section" content="pleroma">
-<meta property="article:tag" content="pleroma">
-<meta property="article:tag" content="debian10">
+<meta property="article:tag" content="Pleroma">
+<meta property="article:tag" content="Fediverse">
 <meta name=twitter:card content="summary">
 <meta property="og:image" content="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=640">
 <meta property="twitter:image" content="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=640">
@@ -30,7 +30,7 @@
 <meta property="twitter:image" content="//">
 <meta property="og:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica37.png">
 <meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica37.png">
-<title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）</title>
+<title>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma</title>
 <link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
 <link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
@@ -114,7 +114,7 @@ text-left
 post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
 <div class="post-header main-content-wrap text-left">
 <h1 class=post-title>
-在 Debian 10 / Ubuntu 20.04 上安装 Pleroma（版本：2.2.1）
+在 Debian 10 / Ubuntu 20.04 上安装 Pleroma
 </h1>
 <div class="postShorten-meta post-meta">
 <time datetime=2020-09-13T00:00:00Z>
@@ -130,13 +130,15 @@ hasCoverMetaIn">
 <article class=post id=top>
 <div class="post-content markdown">
 <div class=main-content-wrap>
-<h1 id=适合技术小白们的-debian-10--ubuntu-2004-pleroma-安装指南>适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南</h1>
-<p>如果您通过“适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南 ”这个连接进入此页面，请注意这里的“适合技术小白”意思是只需复制代码框里的内容到终端并根据说明进行适量调整即可完成安装并使用建好的实例，并不包括对操作原理的解释（<del>因为我也是个小白并不明白</del>），也并不包含建站之后的实例管理操作内容，以下内容以 <a href=https://docs-develop.pleroma.social/backend/installation/otp_en/>pleroma 官方安装教程</a> 为基础，结合 <a href=https://perch.vercel.app/2020/install-Pleroma/#%E6%B5%8B%E8%AF%95-Pleroma>如何在 Debian 10 上安装 Pleroma</a> 教程以及以 <a href=https://i.nebula.moe/posts/2019-09-13-mastodon/>奈卜拉的mastodon一键安装教程</a> 为基础的 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html>技术小白如何搭建Mastodon实例</a> 等多篇mastodon安装教程，在实际操作过程中就可能遇到的细节问题方面对官方教程中的省略或模糊处理内容进行补充，域名、VPS等前期准备过程已有多篇教程进行过详细说明，这里就简略带过并提供链接供您查看。</p>
-<p>本文并非严谨的教程，更多是我个人作为一个技术小白对自己的建站过程进行的整理和概括。如果您发现文中有内容错误、随 pleroma 版本更新需要进行更改的地方、用词不严谨以及必要的补充内容，您可以使用 notion 账号进行评论，或使用 fediverse 账号联系 @Blue@cobaltkiss.blue ；如果您对于本文有疑问或在建站过程中遇到问题，请使用 fediverse 账号联系 @Blue@cobaltkiss.blue 。</p>
+<h1 id=适合技术小白的-debian-10--ubuntu-2004-pleroma-安装指南>适合技术小白的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南</h1>
+<p><strong>Pleroma 官方 OTP 方式安装教程：</strong> <a href=https://docs-develop.pleroma.social/backend/installation/otp_en/>https://docs-develop.pleroma.social/backend/installation/otp_en/</a></p>
+<p><em>请注意这里的“适合技术小白”意思是只需复制代码框里的内容到终端并根据说明进行适量调整即可完成安装并使用建好的实例，并不包括对操作原理的解释（<del>因为我也是个小白并不明白</del>），也并不包含建站之后的实例管理操作内容。不过虽然顺利的话复制粘贴就完事了，但还是不要图快，每一行都仔细检查下有没有什么奇怪的提示或报错，遇到无法理解的问题可以用搜索引擎搜搜报错看看有没有解决方案，解决前一个报错再继续后面的步骤，尽量不要总是减少全盘重来……<del>不过遇事不决直接重安装服务器也是个解决方法 XD（反正是全新的机子）</del></em></p>
+<p>以下内容以 Pleroma 官方 OTP 方式安装教程为基础，结合 <a href=https://perch.vercel.app/2020/install-Pleroma/#%E6%B5%8B%E8%AF%95-Pleroma>如何在 Debian 10 上安装 Pleroma</a> 教程以及以 <a href=https://i.nebula.moe/posts/2019-09-13-mastodon/>奈卜拉的 Mastodon 一键安装教程</a> 为基础的 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html>技术小白如何搭建 Mastodon 实例</a> 等多篇 Mastodon 安装教程，在实际操作过程中就可能遇到的细节问题方面对官方教程中的省略或模糊处理内容进行补充，域名、VPS 等前期准备过程已有多篇教程进行过详细说明，这里就简略带过并提供链接供您查看。</p>
+<p>本文并非严谨的教程，更多是我个人作为一个技术小白对自己的建站过程进行的整理和概括。如果您发现内容表述有误、随 Pleroma 版本更新需要进行更改的地方、用词不严谨以及必要的补充内容，又或对内容有疑问、在建站过程中遇到了问题，您可以在博客下方评论。</p>
 <h1 id=table-of-contents>Table of Contents</h1>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#适合技术小白们的-debian-10--ubuntu-2004-pleroma-安装指南>适合技术小白们的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南</a>
+<li><a href=#适合技术小白的-debian-10--ubuntu-2004-pleroma-安装指南>适合技术小白的 Debian 10 / Ubuntu 20.04 Pleroma 安装指南</a>
 <ul>
 <li><a href=#在终端进行操作前您需要购买域名与-vps-服务>在终端进行操作前，您需要购买域名与 VPS 服务</a>
 <ul>
@@ -149,40 +151,42 @@ hasCoverMetaIn">
 <li><a href=#正式安装>正式安装</a>
 <ul>
 <li><a href=#一安装前准备><strong>一、安装前准备</strong></a></li>
-<li><a href=#二安装-pleroma><strong>二、安装 pleroma</strong></a></li>
+<li><a href=#二安装-pleroma><strong>二、安装 Pleroma</strong></a></li>
 <li><a href=#三设置-nginx-并获取-lets-encrypt-ssl-证书><strong>三、设置 nginx 并获取 Let’s Encrypt SSL 证书</strong></a></li>
 <li><a href=#四设置系统服务><strong>四、设置系统服务</strong></a></li>
 <li><a href=#五设置-lets-encrypt-证书的自动更新><strong>五、设置 Let’s Encrypt 证书的自动更新</strong></a></li>
 <li><a href=#六创建第一个用户并设置为管理员><strong>六、创建第一个用户并设置为管理员</strong></a></li>
 </ul>
 </li>
+<li><a href=#一些可能对您有帮助的文章>一些可能对您有帮助的文章</a></li>
 </ul>
 </li>
 </ul>
 </nav>
 <h2 id=在终端进行操作前您需要购买域名与-vps-服务>在终端进行操作前，您需要购买域名与 VPS 服务</h2>
 <h3 id=vps-相关说明>VPS 相关说明</h3>
-<p>本文使用的 VPS 所在服务提供商是 Vultr。</p>
-<p>最初我使用的是 Vultr New York 3.5 美元/月的套餐，之后更改为同一服务商 New Jersey 5 美元/月的套餐。pleroma 占用内存远远低于 mastodon 和 misskey，我目前的配置是 1GB 内存和 25GB 硬盘空间，这个配置对于用户较少的小型实例是足够的，请根据您的实例预计使用情况选择合适的套餐。</p>
-<p>服务商当然不止有 Vultr 可以选择，Vultr 价格适中、运行稳定，可使用快照免费快速备份，可使用支付宝付款，新注册有一定的优惠，注册账号时一般不会因为 IP 等问题导致账号被封锁，而我在尝试使用 mastodon 教程中常见的 DigitalOcean 注册时则出现过账号被冻结必须进行实名认证才可解封的情况。如果追求更低的价格，还有很多服务商可以选择，但要注意价格非常低廉的服务往往有可能出现大陆网络无法访问、访问速度缓慢以及建站后续的与个别实例无法互联等问题，初次建站建议选择口碑较好的服务商。</p>
-<p>服务器选购以及 Vultr 具体操作可以参考 <a href=https://guide.mastodon.im/68b0e4bb0b9e4fa5a9dd74d03b71a328>o3o.ca 站长的教程</a> 。</p>
-<p>操作系统请选择 Debian 10 或 Ubuntu 20.04 。如需使用其他操作系统，请参考 <a href=https://docs-develop.pleroma.social/backend/>官方教程</a> 。</p>
-<p>请注意，建立 fediverse 实例最好不要使用位于国内服务器与国内的服务器提供商，否则您可能会面临无法与其他站点互联互通、甚至站点下线的风险。</p>
+<p><em>我之前写这篇文章时使用的 VPS 所在服务提供商是 Vultr ，随着 <strong>Pleroma 对内存的需求增加</strong>，经友邻推荐将实例转移到了性价比更高的 Contabo ，不过听说这家有超售现象，友邻建议在购买时备注要 AMD 的机子。性能更好，另外 Contabo 相较 Vultr 对身份审核要更加严格。最初我使用的是 Vultr New York 3.5 美元/月的套餐，后更改为同一服务商 New Jersey 5 美元/月的套餐，最后又转入了 Contabo 最低价格套餐。</em></p>
+<p>尽管 Pleroma 内存需求远低于 Mastodon 和 Misskey，但<strong>购入 VPS 请最低保证 1 GB 的内存</strong>。这个配置对于用户较少的小型实例是足够的，再小实例就容易变得不稳定。如果预计会在未来接纳更多用户，请根据您需要购买更合适的套餐。</p>
+<p>Vultr 的最大优势是可以快速免费更换 IP 地址与在国内较容易支付，可使用快照免费快速备份（之前有 20 个免费快照位置可用，现已缩减至 1 个，添加需要付费），新注册有一定的优惠。</p>
+<p><em>我还尝试使用过 mastodon 教程中常见的 DigitalOcean ，但出现了账号被冻结必须进行实名认证才可解封的情况，遂放弃，但是这家多年稳定经营的服务商依旧是很多站长的选择。</em></p>
+<p>如果追求更低的价格，还有很多服务商可以选择，但要注意价格过低的服务往往存在各种问题，轻则因超售而导致售卖的产品性能低下、大陆网络无法访问、建站后续与个别实例无法互联，重则在没有通知的情况下直接封锁账号甚至删除全部数据，购买前请一定多去查查他人的评价，实在不放心就选择 Vultr、DigitalOcean 这样口碑较好的服务商。服务器选购以及 Vultr 具体操作可以参考 <a href=https://guide.mastodon.im/68b0e4bb0b9e4fa5a9dd74d03b71a328>o3o.ca 站长的教程</a> 。</p>
+<p><strong>建立 Fediverse 实例请不要使用位于国内服务器与国内的服务器提供商。</strong></p>
+<p>我撰写本文时使用的操作系统为 Debian 10，之前也曾使用 Ubuntu 20.04，二者差别较小。如需使用其他操作系统，请在 <a href=https://docs-develop.pleroma.social/backend/>官方教程</a> 中根据自己的系统选择相应教程。</p>
 <h3 id=登陆服务器>登陆服务器</h3>
-<p>如非必要不要用网页上的控制台，速度极慢且使用并不稳定，我在建站时根据 <a href=https://malaxiaolongmao.github.io/%E5%B7%A5%E5%85%B7/2020/07/17/mastodon-instance-1/>该篇教程</a> 建议选择Bitvise SSH Client 这个工具，方便windows用户进行实例远程操作，它提供的SFTP窗口对于草履虫在后续的实例管理中非常有用。下载并安装后，在Host一栏输入刚刚购买VPS的IP地址，Port端口输入22，点击登录，点击“New terminal console”即可使用root账户进行后续终端操作。</p>
+<p>Vultr 网页上的控制台不适合日常管理使用，速度极慢且使用并不稳定，它主要用于在您在本地计算机远程 SSH 登录出现问题时用于修复操作错误。我在建站时根据 <a href=https://malaxiaolongmao.github.io/%E5%B7%A5%E5%85%B7/2020/07/17/mastodon-instance-1/>麻辣小龙猫的教程</a> 建议选择了 Bitvise SSH Client 这个工具，方便 Windows 用户进行实例远程操作，它提供的 SFTP 窗口对于草履虫在后续的实例管理中非常有用。下载并安装后，在 Host 一栏输入刚刚购买 VPS 的 IP 地址，Port 端口输入 22，点击登录，点击 “New Terminal Console” 即可使用 root 账户进行后续终端操作。</p>
 <p>建议先修改 root 帐户密码，防止原默认密码丢失：</p>
-<p><code>passwd 你要修改的密码 </code></p>
-<p>密码不显示，输入后直接按回车，再次输入确认即可</p>
+<p><code>passwd 您要修改的密码 </code></p>
+<p>密码是不显示的，输入密码后直接按回车，再次输入确认即可。</p>
 <h3 id=域名购买>域名购买</h3>
-<p>建议使用 Namecheap，常用后缀以及各自的价格请参考 <a href=https://www.namecheap.com/domains/new-tlds/explore/>此页面</a> ，往往第一年的价格为优惠价格，续费价格恢复为正常价格。域名一旦选定并用于建站，后期更改会比较繁琐且容易出现各种问题，请谨慎思考想要的域名。建议不使用国内的域名注册商与位于国内的域名，详情请参考 <a href=https://blog.bgme.me/posts/precautions-for-registering-domains/>这篇博文</a> 。</p>
-<p>Namecheap 的购买与验证操作请参考 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html#1-%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D>技术小白如何搭建 Mastodon 实例中的购买域名部分</a> 。</p>
-<p>Namecheap 使用后期可能由于 IP 问题导致账号被封锁，如果出现这种情况，请按照 Namecheap 的说明进行操作，一般为在指定网站实时拍摄盖住姓名地址的信用卡背面照片。如果想避免这种情况出现，请不要在使用 Namecheap 网站的过程中频繁更换 VPN 节点。</p>
-<p>购买域名后，在 Namecheap 域名管理器（Advanced DNS Setting - HOST RECORDS）中添加一个 A Record，Host 一般填写 @ ，Value 填写你服务器的 IP 地址，点击确定，DNS Setting 中除自定义设置外的 Namecheap 自动生成内容需要全部删除。</p>
-<p>如果使用 cloudflare 服务，添加 A record 这个步骤可以直接在 Cloudflare 中进行。</p>
+<p><em>初建站时我在 Namecheap 购买域名，之后转移到了 Porkbun 。</em> 域名购买与 DNS 设置步骤大致都是相似的，按照网站指引一步步操作即可 。域名往往第一年的价格低廉，续费价格恢复为正常价格。域名一旦选定并用于建站，后期更改会比较繁琐且容易出现各种问题，请谨慎思考想要的域名。请不要使用国内的域名注册商与位于国内的域名，详情请参考 <a href=https://blog.bgme.me/posts/precautions-for-registering-domains/>影子屋的博文</a> 。</p>
+<p>Namecheap 的购买与验证操作请参考 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html#1-%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D>技术小白如何搭建 Mastodon 实例中的前三部分</a> 。</p>
+<p>我使用 Namecheap 早期曾因 IP 问题致使账号被暂时封锁，如果出现这种情况，请按照 Namecheap 的说明进行操作，一般为在指定网站实时拍摄盖住姓名地址的信用卡背面照片。如果想避免这种情况出现，请不要在使用 Namecheap 网站的过程中频繁更换 VPN 节点。</p>
+<p>购买域名后，在域名管理器（Advanced DNS Setting - HOST RECORDS）中添加一个 A Record，Host 一般填写 @ ，Value 填写您服务器的 IP 地址，点击确定，DNS Setting 中除自定义设置外的 Namecheap 自动生成内容需要全部删除。</p>
+<p>如果使用 Cloudflare 服务，添加 A record 这个步骤可以直接在 Cloudflare 中进行。</p>
 <h3 id=可选实例接入-cloudflare>（可选）实例接入 Cloudflare</h3>
-<p>Cloudflare 可以为实例提供很大程度上的安全防护并提升网站访问速度（<del>不过有时它也会降低网站访问速度，人称降速器</del>），前不久 cloudflare 遭到攻击，使用 cloudflare 服务的网站几乎全军覆没，短暂出现了的大陆网络无法访问的情况（现已恢复）；但 cloudflare 就像一堵强力防护墙，能保护网站遭受许多网络攻击，目前并没有更好的替代方案，还是建议接入的。</p>
-<p>网络上有许多 cloudflare 设置教程，也可参考 <a href=https://guide.mastodon.im/cloudflare>o3o.ca 站长这篇教程</a> 进行配置，并在DNS板块仿照之前的说明添加A Record。</p>
-<p>接入 cloudflare 后，域名相关的操作可直接在 cloudflare 进行而无需登录 namecheap。</p>
+<p>Cloudflare 可以为实例提供很大程度上的安全防护并提升网站访问速度（<del>不过有时它也会降低网站访问速度，人称降速器</del>），先前 Cloudflare 曾遭到攻击，使用 Cloudflare 服务的实例几乎全军覆没，短暂出现了大陆网络无法访问的情况。不过 Cloudflare 依旧有能力保护网站顶住大部分网络攻击，若预算有限、技术有限且人没有更好的免费 CDN 方案，还是建议接入的。</p>
+<p>网络上有许多 Cloudflare 设置教程，也可参考 <a href=https://guide.mastodon.im/cloudflare>o3o.ca 站长这篇教程</a> 进行配置，并在 DNS 板块仿照之前的说明添加 A Record 。</p>
+<p>接入 Cloudflare 后，域名相关的操作可直接在 Cloudflare 进行而无需在之前的网站登录。</p>
 <h2 id=正式安装>正式安装</h2>
 <h3 id=一安装前准备><strong>一、安装前准备</strong></h3>
 <p>1、安装依赖
@@ -192,16 +196,17 @@ hasCoverMetaIn">
 <p>2、安装可选安装包（建议全部安装）</p>
 <p><code>apt install imagemagick ffmpeg libimage-exiftool-perl</code></p>
 <p>3、Postgresql 性能调优（可选）
-为了优化性能，你可以使用 <a href=https://pgtune.leopard.in.ua/#/>pgTune</a> 生成一个合适的配置文件。编辑/etc/postgresql/11.9/main/postgresql.conf 中的相应数值并使用以下命令重启 PostgreSQL 。
+为了优化性能，您可以使用 <a href=https://pgtune.leopard.in.ua/#/>pgTune</a> 生成一个合适的配置文件。编辑 /etc/postgresql/11.9/main/postgresql.conf 中的相应数值并使用以下命令重启 PostgreSQL 。
 <code>systemctl restart postgresql</code></p>
-<h3 id=二安装-pleroma><strong>二、安装 pleroma</strong></h3>
-<p>1、创建一个 pleroma 用户
+<p>（11.9 为我系统 Postgresql 的版本，您的版本不同的话会显示为其他序号）</p>
+<h3 id=二安装-pleroma><strong>二、安装 Pleroma</strong></h3>
+<p>1、创建一个 Pleroma 用户
 <code>adduser --system --shell /bin/false --home /opt/pleroma pleroma</code></p>
 <p>2、（<span class="highlight-text red">更新</span>）检测并设置环境变量 FLAVOUR</p>
 <pre tabindex=0><code>arch=&quot;$(uname -m)&quot;;if [ &quot;$arch&quot; = &quot;x86_64&quot; ];then arch=&quot;amd64&quot;;elif [ &quot;$arch&quot; = &quot;armv7l&quot; ];then arch=&quot;arm&quot;;elif [ &quot;$arch&quot; = &quot;aarch64&quot; ];then arch=&quot;arm64&quot;;else echo &quot;Unsupported arch: $arch&quot;&gt;&amp;2;fi;if getconf GNU_LIBC_VERSION&gt;/dev/null;then libc_postfix=&quot;&quot;;elif [ &quot;$(ldd 2&gt;&amp;1|head -c 9)&quot; = &quot;musl libc&quot; ];then libc_postfix=&quot;-musl&quot;;elif [ &quot;$(find /lib/libc.musl*|wc -l)&quot; ];then libc_postfix=&quot;-musl&quot;;else echo &quot;Unsupported libc&quot;&gt;&amp;2;fi;echo &quot;$arch$libc_postfix&quot;
-</code></pre><p>假设输出结果是 &ldquo;amd64&rdquo; ：
+</code></pre><p>假设输出结果是 &ldquo;amd64&rdquo;（请替换为您自己的输出结果），输入 ：
 <code>export FLAVOUR="amd64"</code></p>
-<p>3、下载安装 Pleroma 所需的文件到/tmp 文件夹并解压</p>
+<p>3、下载安装 Pleroma 所需的文件到 /tmp 文件夹并解压</p>
 <pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;
 curl 'https://git.pleroma.social/api/v4/projects/2/jobs/artifacts/stable/download?job=$FLAVOUR' -o /tmp/pleroma.zip
 unzip /tmp/pleroma.zip -d /tmp/
@@ -212,40 +217,40 @@ mv /tmp/release/* /opt/pleroma
 rmdir /tmp/release
 rm /tmp/pleroma.zip
 &quot;
-</code></pre><p>5、创建/uploads 文件夹并设置适当的权限</p>
+</code></pre><p>5、创建 /uploads 文件夹并设置适当的权限</p>
 <pre tabindex=0><code>mkdir -p /var/lib/pleroma/uploads
 chown -R pleroma /var/lib/pleroma
-</code></pre><p>6、创建 static 文件（用于存放表情等文件）并设置适当的权限</p>
+</code></pre><p>6、创建 static 文件（用于存放表情等文件）并设置其所有者为用户 pleroma</p>
 <pre tabindex=0><code>mkdir -p /var/lib/pleroma/static
 chown -R pleroma /var/lib/pleroma
-</code></pre><p>7、创建存放配置文件的文件夹并设置适当的权限</p>
+</code></pre><p>7、创建存放配置文件的文件夹并设置其所有者为用户 pleorma</p>
 <pre tabindex=0><code>mkdir -p /etc/pleroma
 chown -R pleroma /etc/pleroma
 </code></pre><p>8、生成 config 配置文件
 <code>su pleroma -s $SHELL -lc "./bin/pleroma_ctl instance gen --output /etc/pleroma/config.exs --output-psql /tmp/setup_db.psql"</code></p>
 <p>9、若 config 文件生成成功，则出现若干问题需要回答：</p>
 <p>What domain will your instance use? (e.g pleroma.soykaf.com) []
-你的网站将使用什么网址？</p>
+您的网站将使用什么网址？</p>
 <p>What is the name of your instance? (e.g. Pleroma/Soykaf) []
-你的网站叫什么名字？</p>
+您的网站叫什么名字？</p>
 <p>What is your admin email address? []
-网站管理员的电子邮箱地址是什么？</p>
+网站管理员的邮箱地址是什么？</p>
 <p>What email address do you want to use for sending email notifications?
 []
-你想要用什么电子邮件地址来发生电子邮件通知？</p>
+您想要用什么邮件地址来发送邮件通知？（这里先输入邮箱，之后若要向用户发送邮件需要额外配置）</p>
 <p>Do you want search engines to index your site? (y/n) [n]
-你希望搜索引擎收录你的网站吗？（建议不收录）</p>
+您希望搜索引擎收录您的网站吗？（建议不收录）</p>
 <p>Do you want to store the configuration in the database (allows controlling it from admin-fe)? (y/n) [n] y
-你希望将配置信息存入数据库吗（允许从管理后台进行控制）？（建议存入，否则 admin-fe 将无法使用）</p>
-<p>Do you want to strip location (GPS) data from uploaded images? (y/n) [y] n</p>
-<p>你希望从上传的图片中消除 GPS 信息吗？（建议消除）
-Do you want to anonymize the filenames of uploads? (y/n) [n] y</p>
-<p>你希望将上传文件的文件名匿名化吗？（建议匿名化）
-Do you want to deduplicate uploaded files? (y/n) [n] y</p>
-<p>你希望去除重复的已上传文件吗？（建议去除）</p>
+您希望将配置信息存入数据库吗（允许从管理后台进行控制）？（建议存入，否则 admin-fe 将无法使用）</p>
+<p>Do you want to strip location (GPS) data from uploaded images? (y/n) [y] n
+您希望从上传的图片中消除 GPS 信息吗？（建议消除）</p>
+<p>Do you want to anonymize the filenames of uploads? (y/n) [n] y
+您希望将上传文件的文件名匿名化吗？（建议匿名化）</p>
+<p>Do you want to deduplicate uploaded files? (y/n) [n] y
+您希望去除重复的已上传文件吗？（建议去除）</p>
 <p>除以上问题外，其余选项均按 enter 选择默认配置即可</p>
-<p>如果成功则有如下显示：
-All files successfully written! Refer to the installation instructions for your platform for next steps. Please transfer your config to the database after running database migrations. Refer to &ldquo;Transfering the config to/from the database&rdquo; section of the docs for more information.</p>
+<p>如果成功则有如下显示：</p>
+<p>All files successfully written! Refer to the installation instructions for your platform for next steps. Please transfer your config to the database after running database migrations. Refer to &ldquo;Transfering the config to/from the database&rdquo; section of the docs for more information.</p>
 <p>10、创建 postgres 数据库
 <code>su postgres -s $SHELL -lc "psql -f /tmp/setup_db.psql"</code></p>
 <p>11、创建数据表
@@ -254,40 +259,38 @@ All files successfully written! Refer to the installation instructions for your 
 <code>su pleroma -s $SHELL -lc "./bin/pleroma daemon"</code></p>
 <p>13、等待大约 20 秒并检测实例运行状况，如果它正确地显示了您的网址、网站名称和电子邮件地址，则说明实例已经安装成功
 <code>sleep 20 && curl http://localhost:4000/api/v1/instance</code></p>
-<p>注：如果出现错误"curl: (7) Failed to connect to localhost port 4000: Connection refused" ，请耐心等待一段时间，错误可能由 pleroma 初次加载时间较慢导致的。</p>
-<p>14、暂停实例的运行
+<p>注：如果出现错误 &ldquo;curl: (7) Failed to connect to localhost port 4000: Connection refused&rdquo; ，请等待一会儿再此尝试，错误可能是 Pleroma 初次加载时间较慢导致的。</p>
+<p>14、最后，暂时先暂停实例的运行
 <code>su pleroma -s $SHELL -lc "./bin/pleroma stop"</code></p>
 <h3 id=三设置-nginx-并获取-lets-encrypt-ssl-证书><strong>三、设置 nginx 并获取 Let’s Encrypt SSL 证书</strong></h3>
 <p>1、获取一个 Let’s Encrypt 证书（注意修改域名）
 <code>certbot certonly --standalone --preferred-challenges http -d &lt;yourinstance.tld></code></p>
-<p>2、输入你的邮箱地址（用于紧急重建和安全通知）并按照指示选择 A（agree）和 Y(yes)</p>
-<p>3、显示以下结果证明证书获取成功（否则尝试再次执行第一个指令）：
-Congratulations! Your certificate and chain have been saved at: /etc/letsencrypt/live/实例域名/fullchain.pem Your key file has been saved at: /etc/letsencrypt/live/实例域名/privkey.pem Your cert will expire on 到期日期. To obtain a new or tweaked version of this certificate in the future, simply run certbot again. To non-interactively renew <em>all</em> of your certificates, run &ldquo;certbot renew&rdquo;</p>
-<ul>
-<li>
-<p>If you like Certbot, please consider supporting our work by:</p>
-<p>Donating to ISRG / Let&rsquo;s Encrypt: <a href=https://letsencrypt.org/donate>https://letsencrypt.org/donate</a>
-Donating to EFF: <a href=https://eff.org/donate-le>https://eff.org/donate-le</a></p>
-</li>
-</ul>
+<p>2、输入您的邮箱地址（用于紧急重建和安全通知）并按照指示选择 A（agree）和 Y(yes)</p>
+<p><em>之前 Let’s Encrypt 曾撤销了一批有问题的证书，撤销前曾通过邮件进行通知，请务必留下一个有效的联系邮件。</em>*</p>
+<p>3、显示以下结果证明证书获取成功（否则尝试再次执行第一个指令）：</p>
+<p>Congratulations! Your certificate and chain have been saved at: /etc/letsencrypt/live/&lt;实例域名>/fullchain.pem Your key file has been saved at: /etc/letsencrypt/live/&lt;实例域名>/privkey.pem Your cert will expire on&lt;到期日期>. To obtain a new or tweaked version of this certificate in the future, simply run certbot again. To non-interactively renew <em>all</em> of your certificates, run &ldquo;certbot renew&rdquo;……（省略）</p>
 <p>注：如果提示与我上面写的不同，请仔细检查证书有没有成功申请并存放到"/etc/letsencrypt/live/实例域名/"，若没有申请成功，后面依旧会卡住。
-一般这一部出错有两种可能，第一，您没有添加 A 记录，请到域名注册网站添加或修改 A 记录；二，80 和 443 端口未开放，如果这里出现错误"Problem binding to port 80: Could not bind to IPv4 or IPv6."，请检查防火墙端口开放情况（<span class="highlight-text red">补充： Debian 需要额外安装 ufw</span>）：<code>sudo ufw status verbose</code>，如果只有 22 端口开放，请通过 <code>sudo ufw allow 80/tcp</code>、<code>sudo ufw allow 443/tcp</code> 将 80 和 443 端口开放。之后检查 nginx 状态，如开启请将其暂时关闭。
-操作完成后，再次输入指令，直到看到正确的成功提示。</p>
+一般这一部出错有两种可能，第一，您没有添加 A 记录，请到域名注册网站添加或修改 A 记录；二，80 和 443 端口未开放，如果这里出现错误"Problem binding to port 80: Could not bind to IPv4 or IPv6."，请检查防火墙端口开放情况（<span class="highlight-text red">补充： Debian 需要额外安装 ufw</span>）：<code>sudo ufw status verbose</code>，如果只有 22 端口开放，请通过 <code>sudo ufw allow 80/tcp</code>、<code>sudo ufw allow 443/tcp</code> 将 80 和 443 端口开放。(*备注)</p>
+<p>操作完成后，再次输入指令，直到看到正确的成功提示。</p>
 <p>4、复制 Pleroma nginx 配置到 nginx 文件夹</p>
 <pre tabindex=0><code>cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.conf
 ln -s /etc/nginx/sites-available/pleroma.conf /etc/nginx/sites-enabled/pleroma.conf
 </code></pre><p>5、使用 nano 编辑器打开 Nginx 配置文件
 <code>nano /etc/nginx/sites-available/pleroma.conf</code></p>
-<p>6、将文件中所有 example.tld 更改为你的实例的对应名称（操控方向键滑动页面，用 backspace 删除默认名称，并输入新的地址即可）</p>
-<p>注：location 处这样修改（只保留后面的$符号，删除前面的$符号）：</p>
-<p>location / { return 301 https:/你的实例域名$request_uri; }</p>
+<p>6、将文件中所有 example.tld 更改为您的实例的对应名称（操控方向键滑动页面，用 backspace 删除默认名称，并输入新的地址即可）</p>
+<p><em>注（未经验证）：location 处只保留后面的<code>$</code>符号，删除前面的<code>$</code>符号）：</em></p>
+<pre><code>location / {
+  return         301 https://&lt;您的实例名&gt;$request_uri;
+}
+</code></pre>
+<p>}</p>
 <p>7、修改完毕后按 ctrl X，选择 Y（yes）保存，然后按 enter 退出</p>
 <p>8、确认 nginx 是否配置正确
 <code>nginx -t</code></p>
-<p>出现以下内容则配置成功：
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+<p>出现以下内容则配置成功：</p>
+<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
-<p>9、启动 nginx
+<p>9、启动 nginx（若先前 nginx 已在运行则 reload <code>nginx -s reload</code>）
 <code>systemctl start nginx</code></p>
 <h3 id=四设置系统服务><strong>四、设置系统服务</strong></h3>
 <p>1、将 pleroma.service 复制到适当的文件夹中
@@ -295,7 +298,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
 <p>2、启动 pleroma 并设置开机自启动</p>
 <pre tabindex=0><code>systemctl start pleroma
 systemctl enable pleroma
-</code></pre><p>在地址栏输入你的实例域名，若 pleroma 服务启动成功，则应显示 pleroma 页面；若显示 502 bad gateway，再次执行 systemctl start pleroma ，之后刷新页面</p>
+</code></pre><p>在地址栏输入您的实例域名，若 pleroma 服务启动成功，则应显示 pleroma 页面；若显示 502 bad gateway，再次执行 systemctl start pleroma ，之后刷新页面</p>
 <h3 id=五设置-lets-encrypt-证书的自动更新><strong>五、设置 Let’s Encrypt 证书的自动更新</strong></h3>
 <p>*这部分内容可以参考 → <a href=https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/>通配符域名证书申请与自动更新</a> *</p>
 <p>1、创建路径
@@ -325,18 +328,25 @@ chmod +x /etc/cron.daily/renew-pleroma-cert
 <code>run-parts --test /etc/cron.daily</code></p>
 <p>若显示内容中包含 /etc/cron.daily/renew-pleroma-cert 则添加成功</p>
 <h3 id=六创建第一个用户并设置为管理员><strong>六、创建第一个用户并设置为管理员</strong></h3>
-<p>joeuser 处为管理员 ID，后面为管理员邮箱地址，根据自己情况设置</p>
+<p><code>&lt;joeuser></code> 处为管理员 ID，后面为管理员邮箱地址，根据自己情况设置</p>
 <pre tabindex=0><code>cd /opt/pleroma/bin
 su pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl user new &lt;joeuser&gt; &lt;joeuser@sld.tld&gt; --admin&quot;
 </code></pre><p>之后会跳出该管理员账户信息，确认无误后输入 y，需要修改输入 n</p>
 <p>帐户创建成功后，复制页面最下方的 URL 地址并在网页打开，输入帐户密码。</p>
+<h2 id=一些可能对您有帮助的文章>一些可能对您有帮助的文章</h2>
+<ul>
+<li><a href="https://wiki.iroiro.party/doku.php?id=start&do=index">形形色色 - 各种的建站教程以及一些建站所需要的基本知识</a></li>
+<li><a href=https://kyo.iroiro.party/posts/pleroma-building/>尽量细致的Pleroma搭建教程（仮）</a></li>
+<li><a href=https://mindpalace.michaelis.website/tech/fedi-intro-trans.html>一份友好的联邦宇宙介绍</a></li>
+<li><a href=https://dasgelobteland.github.io/posts/22pleroma/>我的pleroma搭建笔记</a></li>
+</ul>
 </div>
 </div>
 <div id=post-footer class="post-footer main-content-wrap">
 <div class=post-footer-tags>
 <span class="text-color-light text-small">TAGGED IN</span><br>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>pleroma</a>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/debian10/>debian10</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>Pleroma</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/fediverse/>Fediverse</a>
 </div>
 <div class=post-actions-wrap>
 <nav>
