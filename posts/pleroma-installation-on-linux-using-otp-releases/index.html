@@ -131,7 +131,7 @@ hasCoverMetaIn">
 <div class="post-content markdown">
 <div class=main-content-wrap>
 <h2 id=关于本文>关于本文</h2>
-<p><em>本文于 2022 年 4 月 29 日修改</em></p>
+<p><em>本文于 2022 年 4 月 30 日修改</em></p>
 <p><strong>Pleroma 官方 OTP 方式安装教程：</strong> <a href=https://docs-develop.pleroma.social/backend/installation/otp_en/>https://docs-develop.pleroma.social/backend/installation/otp_en/</a></p>
 <p><em>按照这篇文章安装 Pleroma，理论上只需复制代码框里的内容到终端并根据说明进行适量调整即可完成安装并使用建好的实例，文章并不包括对操作原理的解释（<del>因为作为一只技术菜鸟我也说不清楚</del>），也并不包含建站之后的实例管理操作内容。不过虽然顺利的话复制粘贴就完事了，但还是不要图快，每一行都仔细检查下有没有什么奇怪的提示或报错，遇到无法理解的问题可以用搜索引擎搜搜报错看看有没有解决方案，解决前一个报错再继续后面的步骤，尽量不要总是减少全盘重来……<del>不过遇事不决直接重安装服务器也是个解决方法。（反正是全新的机子）</del></em></p>
 <p>以下内容以 Pleroma 官方 OTP 方式安装教程为基础，结合 <a href=https://perch.vercel.app/2020/install-Pleroma/#%E6%B5%8B%E8%AF%95-Pleroma>如何在 Debian 10 上安装 Pleroma</a> 教程以及以 <a href=https://i.nebula.moe/posts/2019-09-13-mastodon/>奈卜拉的 Mastodon 一键安装教程</a> 为基础的 <a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html>技术小白如何搭建 Mastodon 实例</a> 等多篇 Mastodon 安装教程，在实际操作过程中就可能遇到的细节问题方面对官方教程中的省略或模糊处理内容进行补充，域名、VPS 等前期准备过程已有多篇教程进行过详细说明，这里就简略带过并提供链接供您查看。</p>
@@ -332,8 +332,7 @@ chmod +x /etc/cron.daily/renew-pleroma-cert
 <p><code>&lt;joeuser></code> 处为管理员 ID，后面为管理员邮箱地址，根据自己情况设置</p>
 <pre tabindex=0><code>cd /opt/pleroma/bin
 su pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl user new &lt;joeuser&gt; &lt;joeuser@sld.tld&gt; --admin&quot;
-</code></pre><p>之后会跳出该管理员账户信息，确认无误后输入 y，需要修改输入 n</p>
-<p>帐户创建成功后，复制页面最下方的 URL 地址并在网页打开，输入帐户密码。</p>
+</code></pre><p>选择 [y] 后终端会出现一个链接，复制链接并粘贴到浏览器打开，为管理员账号设置密码，设置完毕即可进入实例页面。</p>
 <h2 id=一些可能对您有帮助的文章>一些可能对您有帮助的文章</h2>
 <ul>
 <li><a href="https://wiki.iroiro.party/doku.php?id=start&do=index">形形色色 - 各种的建站教程以及一些建站所需要的基本知识</a></li>
