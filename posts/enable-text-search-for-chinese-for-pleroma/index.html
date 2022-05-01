@@ -1,0 +1,440 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）","image":"//","datePublished":"2022-05-02T01:20:14+08:00","dateModified":"2022-05-02T01:20:14+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/enable-text-search-for-chinese-for-pleroma\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"}},"description":"","keywords":[]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="suica">
+<meta name=keywords content>
+<meta name=description content>
+<meta property="og:description" content>
+<meta property="og:type" content="article">
+<meta property="og:title" content="让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）">
+<meta name=twitter:title content="让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/enable-text-search-for-chinese-for-pleroma/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/enable-text-search-for-chinese-for-pleroma/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content>
+<meta name=twitter:description content>
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2022-05-02T01:20:14">
+<meta property="article:modified_time" content="2022-05-02T01:20:14">
+<meta property="article:section" content="pleroma">
+<meta property="article:tag" content="pleroma">
+<meta property="article:tag" content="postgresql">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=640">
+<meta property="twitter:image" content="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=640">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1651425541/blog-thumbnail-images/suica_119_xfie6h.jpg">
+<meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1651425541/blog-thumbnail-images/suica_119_xfie6h.jpg">
+<title>让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/enable-text-search-for-chinese-for-pleroma/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=90" alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=110" alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>suica</h4>
+<h5 class=sidebar-profile-bio>博客装修中</h5>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
+<i class="sidebar-button-icon fas fa-suitcase"></i>
+<span class=sidebar-button-desc>Portfolio</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2022-05-02T01:20:14+08:00>
+May 2, 2022
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/pleroma>pleroma</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<h2 id=前言>前言</h2>
+<p><em>特别感谢 debula、light、shykana 近期与之前的帮助！</em></p>
+<p>Pleroma 官方文档 <a href=https://docs-develop.pleroma.social/backend/configuration/howto_search_cjk/>How to enable text search for Chinese, Japanese and Korean</a> 中对过程进行了简要说明，并提供了多个拓展可供选择，这里以 <a href=https://github.com/huangjimmy/pg_cjk_parser>pg_cjk_parse</a>为例，因为我个人曾在安装这个拓展的实例尝试搜索，感觉效果不错（但它不支持单字符搜索），除支持简体中文外，该拓展还支持繁体中文、日文和韩文。</p>
+<p>之前在 debula 指导下也曾试着安装 pg_jieba 拓展包，从结果上看搜索的确支持了中文，但不知是 jieba 本身的原因，还是我在安装期间不自觉操作出现了失误，搜索结果并不理想，数量少且结果都是很久之前的，且分词不支持繁中。拖了很久后，终于这次又在 debula 指导下重新尝试启用 pg_cjk_parser 拓展。</p>
+<p>Pleroma 可以搜索到 public 与 unlisted 两种状态的 status，无法搜索到 followers-only 状态的 status（不像 Mastodon 能够搜索到互动过的 followers-only 嘟文），不过用于快速查找一些之前时间线上偶然看到的、现在却找不到的 status，以及自己过去的某些 status，我觉得已经足够了。</p>
+<h2 id=安装>安装</h2>
+<ol>
+<li>安装依赖</li>
+</ol>
+<pre tabindex=0><code>sudo apt-get install -y postgresql-server-dev-all
+sudo apt-get install -y gcc
+sudo apt-get install -y icu-devtools libicu-dev
+</code></pre><p>使用 Debian 与 Ubuntu 外的系统请自行更换指令。</p>
+<ol start=2>
+<li>下载拓展包</li>
+</ol>
+<pre tabindex=0><code>sudo git clone https://github.com/huangjimmy/pg_cjk_parser.git
+</code></pre><p>假设目前操作的用户为 user ，拓展包目录为 /home/user/pg_cjk_parser ，进入这个目录</p>
+<pre tabindex=0><code>cd /home/user/pg_cjk_parser
+</code></pre><ol start=3>
+<li>安装拓展</li>
+</ol>
+<pre tabindex=0><code>make clean &amp;&amp; make install
+</code></pre><ol start=4>
+<li>以 postgres 用户身份访问终端 psql</li>
+</ol>
+<pre tabindex=0><code>sudo -u postgres psql
+</code></pre><ol start=5>
+<li>连接 pleroma 数据库</li>
+</ol>
+<pre tabindex=0><code>\c pleroma;
+</code></pre><ol start=6>
+<li>创建拓展 pg_cjk_parser</li>
+</ol>
+<pre tabindex=0><code>CREATE EXTENSION pg_cjk_parser;
+</code></pre><ol start=7>
+<li>配置搜索并设置为默认</li>
+</ol>
+<pre tabindex=0><code>CREATE TEXT SEARCH PARSER public.pg_cjk_parser (
+    START = prsd2_cjk_start,
+    GETTOKEN = prsd2_cjk_nexttoken,
+    END = prsd2_cjk_end,
+    LEXTYPES = prsd2_cjk_lextype,
+    HEADLINE = prsd2_cjk_headline);
+
+CREATE TEXT SEARCH CONFIGURATION public.config_2_gram_cjk (
+    PARSER = pg_cjk_parser
+);
+
+SET default_text_search_config = 'public.config_2_gram_cjk';
+</code></pre><ol start=8>
+<li>测试效果</li>
+</ol>
+<pre tabindex=0><code>SELECT alias, description, token FROM 
+ts_debug('Doraemnon Nobita「ドラえもん のび太の牧場物語」多拉A梦 野比大雄χΨψΩω https://www.doraemon.com/welcome.html');
+</code></pre><ol start=9>
+<li>设置映射</li>
+</ol>
+<pre tabindex=0><code>ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR asciihword
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR cjk
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR email
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR asciiword
+    WITH english_stem;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR entity
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR file
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR float
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR host
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR hword
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR hword_asciipart
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR hword_numpart
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR hword_part
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR int
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR numhword
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR numword
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR protocol
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR sfloat
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR tag
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR uint
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR url
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR url_path
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR version
+    WITH simple;
+
+ALTER TEXT SEARCH CONFIGURATION public.config_2_gram_cjk
+    ADD MAPPING FOR word
+    WITH simple;
+</code></pre><ol start=10>
+<li>再次测试</li>
+</ol>
+<pre tabindex=0><code>SELECT to_tsvector('Doraemnon Nobita「ドラえもん のび太の牧場物語」多拉A梦 野比大雄χΨψΩω'), to_tsquery('のび太'), 
+to_tsquery('野比大雄'),
+to_tsvector('Doraemnon Nobita「ドラえもん のび太の牧場物語」多拉A梦 野比大雄χΨψΩω') @@ to_tsquery('のび太'),
+to_tsvector('Doraemnon Nobita「ドラえもん のび太の牧場物語」多拉A梦 野比大雄χΨψΩω') @@ to_tsquery('野比大雄');
+</code></pre><ol start=11>
+<li>修改 postgresql.conf</li>
+</ol>
+<pre tabindex=0><code>sudo nano /etc/postgresql/11/main/postgresql.conf
+</code></pre><p>11 是我的 postgresql 版本号，如果版本不同，替换为您所用的版本号即可。</p>
+<p>按键 Ctrl + W 并输入 shared_preload_libraries 跳转到该配置所在行，修改引号内内容为 pg_cjk_parser.so</p>
+<ol start=12>
+<li>更新 Pleroma 的搜索配置和索引</li>
+</ol>
+<pre tabindex=0><code>sudo -Hu pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl database set_text_search_config public.config_2_gram_cjk&quot;
+</code></pre><p>根据数据库大小差异等待时间也有长有短，期间可能出现 ”NOTICE: word is too long to be indexed DETAIL: Words longer than 2047 characters are ignored.“ 不用管它。跑完后结果会显示 &ldquo;UPDATE XXX&rdquo;。</p>
+<p><strong>如果之前安装了 RUM 索引，这个命令可能会执行失败，报错大概这个样子：</strong></p>
+<pre tabindex=0><code>** (DBConnection.ConnectionError) tcp recv: closed (the connection was closed by the pool, possibly due to a timeout or because the pool has been terminated) lib/ecto/adapters/sql.ex:760: Ecto.Adapters.SQL.raise_sql_call_error/1 lib/mix/tasks/pleroma/database.ex:218: [Mix.Tasks.Pleroma.Database.run/1](https://Mix.Tasks.Pleroma.Database.run/1) (stdlib [3.12.1.2](https://3.12.1.2)) erl_eval.erl:680: :erl_[eval.do](https://eval.do)_apply/6 (elixir 1.10.4) lib/code.ex:341: Code.eval_string_with_error_handling/3
+</code></pre><p>如果出现这种情况，需要手动去跑下卡住的那行命令。</p>
+<pre tabindex=0><code>sudo -u postgres psql
+\c pleroma;
+UPDATE objects SET updated_at = NOW();
+</code></pre><p>可能要等待较长一段时间，更新完毕后会有 ”UPDATE XXX“ 的提示。（参考： UPDATE 4406338 等了三十分钟左右）</p>
+<ol start=13>
+<li>重启 postgrsql 服务</li>
+</ol>
+<pre tabindex=0><code>sudo systemctl restart postgresql
+</code></pre><p>理论上 postgresql 和 pleroma 二选一进行重启即可，由于上面变动了 shared_preload_libraries 需要重启 postgresql 。之后搜索便更新完毕了，试着在实例搜索框搜索看下效果如何。</p>
+<h2 id=参考链接>参考链接</h2>
+<ol>
+<li><a href="https://wiki.iroiro.party/doku.php?id=pleroma:zh-search">https://wiki.iroiro.party/doku.php?id=pleroma:zh-search</a></li>
+<li></li>
+</ol>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>pleroma</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/postgresql/>postgresql</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--disabled">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/shin-megami-tensei-5/ data-tooltip=《真·女神転生Ⅴ》一周目体验 aria-label="PREVIOUS: 《真·女神転生Ⅴ》一周目体验">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'0ea2ec7b75531c5e16095472b3d29a9e',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2022 suica <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--disabled">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/shin-megami-tensei-5/ data-tooltip=《真·女神転生Ⅴ》一周目体验 aria-label="PREVIOUS: 《真·女神転生Ⅴ》一周目体验">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src="https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e?s=110" alt="Author's picture">
+<h4 id=about-card-name>suica</h4>
+<div id=about-card-bio>博客装修中</div>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
