@@ -259,7 +259,7 @@ chown -R pleroma /etc/pleroma
 <pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;./bin/pleroma_ctl migrate&quot;
 </code></pre><p>12、启动实例以验证一切都按预期工作</p>
 <pre tabindex=0><code>su pleroma -s $SHELL -lc &quot;./bin/pleroma daemon&quot;
-</code></pre><p>13、等待大约 60 秒并检测实例运行状况，如果它正确地显示了您的网址、网站名称和电子邮件地址，则说明实例已经安装成功（update: 经建议，由 20 秒延长为 60 秒）</p>
+</code></pre><p>13、等待大约 60 秒并检测实例运行状况，如果它正确地显示了您的网址、网站名称和电子邮件地址，则说明实例已经安装成功 <span class="highlight-text yellow">（update: 经建议，由 20 秒延长为 60 秒）</span></p>
 <pre tabindex=0><code>sleep 60 &amp;&amp; curl http://localhost:4000/api/v1/instance
 </code></pre><p>注：如果出现错误 &ldquo;curl: (7) Failed to connect to localhost port 4000: Connection refused&rdquo; ，请等待一会儿再此尝试，错误可能是 Pleroma 初次加载时间较慢导致的。</p>
 <p>14、最后，暂时先暂停实例的运行</p>

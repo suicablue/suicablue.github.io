@@ -1,22 +1,22 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）","image":"//","datePublished":"2022-05-02T01:20:14+08:00","dateModified":"2022-05-02T01:20:14+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/enable-text-search-for-chinese-for-pleroma\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"}},"description":"","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）","image":"//","datePublished":"2022-05-02T01:20:14+08:00","dateModified":"2022-05-02T01:20:14+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/enable-text-search-for-chinese-for-pleroma\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/20b91bcfa6ba052a83715a9fb81a953e"}},"description":"大概率之后会继续补充内容。\n","keywords":[]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
 <meta name=author content="suica">
 <meta name=keywords content>
-<meta name=description content>
-<meta property="og:description" content>
+<meta name=description content="大概率之后会继续补充内容。">
+<meta property="og:description" content="大概率之后会继续补充内容。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）">
 <meta name=twitter:title content="让 Pleroma 支持中文搜索（pg_cjk_parser 拓展）">
 <meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/enable-text-search-for-chinese-for-pleroma/">
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/enable-text-search-for-chinese-for-pleroma/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
-<meta property="og:description" content>
-<meta name=twitter:description content>
+<meta property="og:description" content="大概率之后会继续补充内容。">
+<meta name=twitter:description content="大概率之后会继续补充内容。">
 <meta property="og:locale" content="en-us">
 <meta property="article:published_time" content="2022-05-02T01:20:14">
 <meta property="article:modified_time" content="2022-05-02T01:20:14">
@@ -130,6 +130,7 @@ hasCoverMetaIn">
 <article class=post id=top>
 <div class="post-content markdown">
 <div class=main-content-wrap>
+<p><em>大概率之后会继续补充内容。</em></p>
 <h2 id=前言>前言</h2>
 <p><em>特别感谢 debula、light、shykana 近期与之前的帮助！</em></p>
 <p>Pleroma 官方文档 <a href=https://docs-develop.pleroma.social/backend/configuration/howto_search_cjk/>How to enable text search for Chinese, Japanese and Korean</a> 中对过程进行了简要说明，并提供了多个拓展可供选择，这里以 <a href=https://github.com/huangjimmy/pg_cjk_parser>pg_cjk_parse</a>为例，因为我个人曾在安装这个拓展的实例尝试搜索，感觉效果不错（但它不支持单字符搜索），除支持简体中文外，该拓展还支持繁体中文、日文和韩文。</p>
