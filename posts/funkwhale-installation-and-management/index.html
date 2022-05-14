@@ -1,0 +1,328 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"手动安装 Funkwhale 与管理笔记","image":"//","datePublished":"2022-05-14T18:22:58+08:00","dateModified":"2022-05-14T18:22:58+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/funkwhale-installation-and-management\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"","keywords":[]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="suica">
+<meta name=keywords content>
+<meta name=description content>
+<meta property="og:description" content>
+<meta property="og:type" content="article">
+<meta property="og:title" content="手动安装 Funkwhale 与管理笔记">
+<meta name=twitter:title content="手动安装 Funkwhale 与管理笔记">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content>
+<meta name=twitter:description content>
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2022-05-14T18:22:58">
+<meta property="article:modified_time" content="2022-05-14T18:22:58">
+<meta property="article:section" content="菜鸟的瞎折腾笔记">
+<meta property="article:tag" content="Funkwhale">
+<meta property="article:tag" content="Fediverse">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="twitter:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1652534669/blog-thumbnail-images/suica_91_s0yw9y.jpg">
+<meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1652534669/blog-thumbnail-images/suica_91_s0yw9y.jpg">
+<title>手动安装 Funkwhale 与管理笔记</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/mystyle.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=90" alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>suica</h4>
+<h5 class=sidebar-profile-bio>博客装修中</h5>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
+<i class="sidebar-button-icon fas fa-suitcase"></i>
+<span class=sidebar-button-desc>Portfolio</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/posts/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+手动安装 Funkwhale 与管理笔记
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2022-05-14T18:22:58+08:00>
+May 14, 2022
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e8%8f%9c%e9%b8%9f%e7%9a%84%e7%9e%8e%e6%8a%98%e8%85%be%e7%ac%94%e8%ae%b0>菜鸟的瞎折腾笔记</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<p>碎碎念部分：</p>
+<p>其实去年就已经成功安装过 Funkwhale 了，当时我觉得官方 Docker 的教程写的很详细易懂根本没必要再写篇笔记，直到官方更新了版本并通知 <a href=https://blog.funkwhale.audio/deprecation-all-in-one-container.html>删除 all-in-one-container 安装方法 </a>，我因不熟悉 Docker 操作，在未备份情况下把数据全都整没了，之后就一直摆烂，没再学习用其他方法安装。</p>
+<p>最近想要自己的音乐服务器的心情又在蠢蠢欲动，于是跟着 <a href=https://docs.funkwhale.audio/installation/debian.html>Debian 上手动安装 Funkwhale 的教程</a>重装 Funkwhale（其实最初是跟着官方现在推荐的 <a href=https://docs.funkwhale.audio/installation/index.html>Quick install</a> 方法尝试安装，但是脚本跑到最后总会出错，版本似乎也停留在了 1.2.3 ，而且我觉得这个方法更适合什么都没安装的新机子），期间我还尝试用 S3 作为外部储存来存放音频文件并更改 Funkwhale 的 embled 样式，但是似乎每次更改都会让 Funkwhale 处在一个非常不稳定的状态，频繁爆出 Server Error (500) 的问题，之后即便试图还原也无法根除错误。另外 Funkwhale 在操作上也有我始终无法适应的地方，结果一番折腾后最终还是再次把它闲置了。 OTZ</p>
+<p>不过我也认识使用 Funkwhale 蛮久了但根本没像我一样出各种问题的友邻，另外 Funkwhale 目前也有团队在积极维护……总之心想着还是把安装过程记录下，以便未来还有使用 Funkwhale 所提供服务的需求，如果您对 Funkwhale 感兴趣，不妨将本文当作一个参考。</p>
+<h2 id=安装过程注意事项>安装过程注意事项</h2>
+<p><em>整个过程基本就是按照<a href=https://docs.funkwhale.audio/installation/debian.html>官方教程</a>来安装，我只把里面几点可能需要注意的地方记录下。</em></p>
+<ol>
+<li>
+<p>在创建用户 funkwhale 后与 xxx 前所有操作都用 funkwhale 用户进行，进入这个用户的指令为 <code>sudo -u funkwhale -H bash</code> 。</p>
+</li>
+<li>
+<p>在 <a href=https://docs.funkwhale.audio/installation/debian.html#download-the-latest-funkwhale-release>Download the latest Funkwhale release</a> 这部分，您需要将所有 <code>|version|</code> 替换为您想要安装的版本号，比如 <code>1.2.5</code> 。</p>
+</li>
+<li>
+<p>创建虚拟环境 virtualenv 后，<strong>所有涉及到 python 的指令进行前都要先激活 virtualenv</strong> ，激活指令为 <code>source /srv/funkwhale/virtualenv/bin/activate</code> 。</p>
+</li>
+<li>
+<p>安装 python dependencies 前，可能需要先升级 pip 版本，否则部分依赖可能安装失败，升级指令 <code>pip install --upgrade pip</code> 。</p>
+</li>
+<li>
+<p>在 <a href=https://docs.funkwhale.audio/installation/debian.html#environment-file>Environment File</a> 这部分，您需要编辑 <code>/srv/funkwhale/config/.env</code> 这个重要文件，根据文件中最上方注释，里面有几个使用手动安装必须进行更改的地方： <code>DJANGO_SECRET_KEY</code>、<code>FUNKWHALE_HOSTNAME</code>、<code>DATABASE_URL</code>、<code>CACHE_URL</code> 。其中，<code>DJANGO_SECRET_KEY</code> 在前面步骤生成，复制下来粘贴到这里就可以了，<code>FUNKWHALE_HOSTNAME</code> 是您想要使用的域名，记得设置 DNS 的 A 记录，后面两个 URL 可以在文件中找到两处 <code>Use the next one if you followed Debian installation guide</code> 提示，全部将下一行的注释符号删除即可。</p>
+</li>
+<li>
+<p>安装后如果需要重新编辑 <code>.env</code> ，编辑后需要重启全部 Funkwhale 进程： <code>sudo systemctl restart funkwhale.target</code> 。</p>
+</li>
+<li>
+<p>进行到 <a href=https://docs.funkwhale.audio/installation/debian.html#systemd-unit-file>Systemd unit file</a> 这部分时，切换到超级用户进行后续操作。</p>
+</li>
+</ol>
+<h2 id=s3-配置困惑>S3 配置困惑</h2>
+<p>详细教程请参考这里： <a href=https://docs.funkwhale.audio/admin/external-storages.html>https://docs.funkwhale.audio/admin/external-storages.html</a></p>
+<blockquote>
+<p>This feature was released in Funkwhale 0.19 and is still considered experimental.</p>
+</blockquote>
+<p>注意，这个 feature 到目前为止依旧不稳定。</p>
+<p>我配置后的确可以收听远程 S3 中存放的音频，但是也是在这期间开始频繁出现 Server Error (500) 错误，并且 Content-Security-Policy 这部分似乎一直有问题。我主要有两个不确定的地方：</p>
+<ol>
+<li>
+<p>我感觉这个教程应在安装 Funkwhale 期间阅读，但是教程没有说清楚。像是 <code>.env</code> 和 <code>funkwhale.template</code> 的编辑分别应插入到 <a href=https://docs.funkwhale.audio/installation/debian.html#environment-file>Environment file</a> 的 <code>nano /srv/funkwhale/config/.env</code> 这步和 <a href=https://docs.funkwhale.audio/installation/index.html#nginx>Nginx 配置</a>的 <code>curl -L -o /etc/nginx/sites-available/funkwhale.template "https://dev.funkwhale.audio/funkwhale/funkwhale/raw/1.2.5/deploy/nginx.template"</code> 之后。</p>
+</li>
+<li>
+<p>Content-Security-Policy 要更改几处？config 文件中有这么几行：</p>
+<pre tabindex=0><code># If you are using S3 to host your files, remember to add your S3 URL to the
+# media-src and img-src headers (e.g. img-src 'self' https://&lt;your-S3-URL&gt; data:)
+
+add_header Content-Security-Policy &quot;default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; media-src 'self' data:; worker-src 'self'&quot;;
+add_header Referrer-Policy &quot;strict-origin-when-cross-origin&quot;;
+add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+</code></pre><p>``</p>
+<p>显然，这部分中的 <code>img-src 'self' data:;</code> 与 <code>media-src 'self' data:;</code> 都应按照教程进行修改，但我修改后发现浏览器依旧出现 Content Security Policy 相关报错。再看 config 文件，<code>location /front/</code> 与 <code>location /front/embed.html</code> 中也有 <code>img-src 'self' data:;</code> 与 <code>media-src 'self' data:;</code> ，是否需要一并更改？</p>
+</li>
+</ol>
+<p>之后我试图把 S3 配置换回到本地，但是更换并未成功，结果还是删掉 Funkwhale 重新安装了。（所幸<a href=https://docs.funkwhale.audio/admin/uninstall.html>卸载 Funkwhale</a> 过程也并不复杂）</p>
+<h2 id=embed-配置>Embed 配置</h2>
+<p>Funkwhale 支持 embed 网页播放器，有两个前置条件：</p>
+<ol>
+<li>Manage - Settings - Security 处 API Requires authentication 开关关闭</li>
+<li>Playlist（或 Artist）以及其包括的曲目所在 library 是可见性均为 Everyone, across all instances</li>
+</ol>
+<p>设置好后，Playlists 中就会出现 <code>&lt;/> Embed</code> 选项，点击后没有跳出不可使用的提示的话，将 Embed code 复制到想要安置 Funkwhale 播放器的页面即可使用。</p>
+<h2 id=实例管理界面>实例管理界面</h2>
+<p>Funkwhale 使用 Django 界面进行实例管理，管理地址为 <code>https://yourdomain/api/admin</code> 。</p>
+<p>当您向某个 library 上传音频后，若想彻底删除，仅从 Content - Libraries - Tracks 中执行删除指令是不够的，还需要在 Django 界面分别从 Track、Album、Artist 中删除对应属性。</p>
+<p>参考文档： <a href="https://docs.funkwhale.audio/admin/django.html?highlight=django">https://docs.funkwhale.audio/admin/django.html?highlight=django</a></p>
+<h2 id=上传音频>上传音频</h2>
+<p>创建 Library 后就可以直接通过网页前端上传计算机上的音频了，上传前要注意保证音频拥有至少三个属性值： Title（标题）、Artist（艺术家）、Album（唱片集），一般最好还要加上专辑封面，否则 Funkwhale 显示的曲目会缺少图像（封面属于音频的一个属性，不是单独的图像文件）。</p>
+<p>官方推荐的辅助程序为 <a href=https://picard.musicbrainz.org/>MusicBrainz Picard</a>，下载安装后将缺少属性值或属性值需要更新的音频文件拖入程序中扫描并保存即可完成属性值更新，但是有些曲库中未包含的曲目可能需要手动更改属性值，这里再推荐另一个 Windows 系统可用的程序 <a href=https://www.mp3tag.de/>mp3tag</a> ，安装后拖入音频文件修改想要更换的属性值即可。</p>
+<ol>
+<li><a href=https://docs.funkwhale.audio/users/upload.html>Uploading Content To Funkwhale</a></li>
+<li><a href=https://docs.funkwhale.audio/users/tagging.html>Tagging Music With MusicBrainz Picard</a></li>
+</ol>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/funkwhale/>Funkwhale</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/fediverse/>Fediverse</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/13-eentinels/ data-tooltip=《十三機兵防衛圏》游玩体验 aria-label="PREVIOUS: 《十三機兵防衛圏》游玩体验">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'5524b43a972f7142e1da8f31eec52069',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2022 suica <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/13-eentinels/ data-tooltip=《十三機兵防衛圏》游玩体验 aria-label="PREVIOUS: 《十三機兵防衛圏》游玩体验">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+<h4 id=about-card-name>suica</h4>
+<div id=about-card-bio>博客装修中</div>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
