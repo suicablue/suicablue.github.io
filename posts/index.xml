@@ -167,6 +167,7 @@ add_header X-Frame-Options &amp;quot;SAMEORIGIN&amp;quot; always;
 &lt;p>之前在 debula 指导下也曾试着安装 pg_jieba 拓展包，从结果上看搜索的确支持了中文，但不知是 jieba 本身的原因，还是我在安装期间不自觉操作出现了失误，搜索结果并不理想，数量少且结果都是很久之前的，且分词不支持繁中。拖了很久后，终于这次又在 debula 指导下重新尝试启用 pg_cjk_parser 拓展。&lt;/p>
 &lt;p>Pleroma 可以搜索到 public 与 unlisted 两种状态的 status，无法搜索到 followers-only 状态的 status（不像 Mastodon 能够搜索到互动过的 followers-only 嘟文），不过用于快速查找一些之前时间线上偶然看到的、现在却找不到的 status，以及自己过去的某些 status，我觉得已经足够了。&lt;/p>
 &lt;h2 id="安装">安装&lt;/h2>
+&lt;p>本文指令未特别提示的情况下全部使用 sudo 用户进行。&lt;/p>
 &lt;ol>
 &lt;li>安装依赖&lt;/li>
 &lt;/ol>
@@ -1455,6 +1456,7 @@ url: https://custom.url
 &lt;pre tabindex="0">&lt;code>passwd &amp;lt;您要修改的密码&amp;gt;
 &lt;/code>&lt;/pre>&lt;p>密码是不显示的，输入密码后直接按回车，再次输入确认即可。&lt;/p>
 &lt;h2 id="正式安装">正式安装&lt;/h2>
+&lt;p>本文指令未特别提示的情况下全部使用 root 用户进行。&lt;/p>
 &lt;h3 id="一前置安装">一、前置安装&lt;/h3>
 &lt;p>1、安装依赖&lt;/p>
 &lt;pre tabindex="0">&lt;code>apt install curl unzip libncurses5 postgresql postgresql-contrib nginx certbot libmagic-dev
@@ -1462,10 +1464,12 @@ url: https://custom.url
 &lt;pre tabindex="0">&lt;code>apt-get update
 &lt;/code>&lt;/pre>&lt;p>2、安装可选安装包（建议全部安装）&lt;/p>
 &lt;pre tabindex="0">&lt;code>apt install imagemagick ffmpeg libimage-exiftool-perl
-&lt;/code>&lt;/pre>&lt;p>3、Postgresql 性能调优（可选）
-为了优化性能，您可以使用 &lt;a href="https://pgtune.leopard.in.ua/#/">pgTune&lt;/a> 生成一个合适的配置文件。编辑 /etc/postgresql/11.9/main/postgresql.conf 中的相应数值并使用以下命令重启 PostgreSQL 。&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>3、Postgresql 性能调优（可选）&lt;/p>
+&lt;p>为了优化性能，您可以使用 &lt;a href="https://pgtune.leopard.in.ua/#/">pgTune&lt;/a> (pgTune 中 Number of Connections 处根据官方文档建议填写 20 ，但您并不需要更改 conf 文件上这一处的默认配置) 生成推荐配置，并根据推荐配置调整 /etc/postgresql/11/main/postgresql.conf 中的相应数值:&lt;/p>
+&lt;pre tabindex="0">&lt;code>nano /etc/postgresql/11/main/postgresql.conf
+&lt;/code>&lt;/pre>&lt;p>使用以下命令重启 PostgreSQL:&lt;/p>
 &lt;pre tabindex="0">&lt;code>systemctl restart postgresql
-&lt;/code>&lt;/pre>&lt;p>（11.9 为我系统 Postgresql 的版本，您的版本不同的话会显示为其他序号）&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>（11 为我系统 Postgresql 的版本，您的版本不同的话会显示为其他序号）&lt;/p>
 &lt;h3 id="二安装-pleroma">二、安装 Pleroma&lt;/h3>
 &lt;p>1、创建一个 Pleroma 用户&lt;/p>
 &lt;pre tabindex="0">&lt;code>adduser --system --shell /bin/false --home /opt/pleroma pleroma
