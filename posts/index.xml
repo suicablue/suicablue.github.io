@@ -10,7 +10,8 @@ unsafe = true
 &lt;/code>&lt;/pre>&lt;p>Markup 详细配置可以参考官方文档: &lt;a href="https://gohugo.io/getting-started/configuration-markup">https://gohugo.io/getting-started/configuration-markup&lt;/a>&lt;/p>
 &lt;p>想要和我一样放在置顶文章的效果也很简单，在 Front Matter 中加入 &lt;code>weight: 1&lt;/code> 即可。想要放在其他位置，比如侧边栏，可能要在 layouts 对应位置找地方嵌入。&lt;/p>
 &lt;p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。&lt;/p>
-&lt;div style="left: 0; width: 100%; height: 300px; position: relative;">&lt;iframe src="https://bandcamp.23video.com/9891472.ihtml/player.html?token=a18cd8b6e69c44f705d2829684a70e07&amp;source=embed&amp;photo_id=18789603" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="encrypted-media;">&lt;/iframe>&lt;/div></description></item><item><title>Funkwhale 手动安装与管理笔记</title><link>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</link><pubDate>Sat, 14 May 2022 22:16:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</guid><description>&lt;p>碎碎念部分：&lt;/p>
+&lt;div style="left: 0; width: 100%; height: 300px; position: relative;">&lt;iframe src="https://bandcamp.23video.com/9891472.ihtml/player.html?token=a18cd8b6e69c44f705d2829684a70e07&amp;source=embed&amp;photo_id=18789603" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="encrypted-media;">&lt;/iframe>&lt;/div></description></item><item><title>Funkwhale 手动安装与管理笔记</title><link>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</link><pubDate>Sat, 14 May 2022 22:16:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</guid><description>&lt;span class="highlight-text purple">2022.05.19 更新: 应该是找到 Server Error (500) 报错原因了。&lt;/span>
+&lt;p>（之前的）碎碎念部分：&lt;/p>
 &lt;p>其实去年就已经成功安装过 Funkwhale 了，当时我觉得官方 Docker 的教程写的很详细易懂根本没必要再写篇笔记，直到官方更新了版本并通知 &lt;a href="https://blog.funkwhale.audio/deprecation-all-in-one-container.html">删除 all-in-one-container 安装方法 &lt;/a>，我因不熟悉 Docker 操作，在未备份情况下把数据全都整没了，之后就一直摆烂，没再学习用其他方法安装。&lt;/p>
 &lt;p>最近想要自己的音乐服务器的心情又在蠢蠢欲动，于是跟着 &lt;a href="https://docs.funkwhale.audio/installation/debian.html">Debian 上手动安装 Funkwhale 的教程&lt;/a>重装 Funkwhale（其实最初是跟着官方现在推荐的 &lt;a href="https://docs.funkwhale.audio/installation/index.html">Quick install&lt;/a> 方法尝试安装，但是脚本跑到最后总会出错，版本似乎也停留在了 1.2.3 ，而且我觉得这个方法更适合什么都没安装的新机子），期间我还尝试用 S3 作为外部储存来存放音频文件并更改 Funkwhale 的 embled 样式，但是似乎每次更改都会让 Funkwhale 处在一个非常不稳定的状态，频繁爆出 Server Error (500) 的问题，之后即便试图还原也无法根除错误。另外 Funkwhale 在操作上也有我始终无法适应的地方，结果一番折腾后最终还是再次把它闲置了。 OTZ&lt;/p>
 &lt;p>不过我也认识使用 Funkwhale 蛮久了但根本没像我一样出各种问题的友邻，另外 Funkwhale 目前也有团队在积极维护……总之心想着还是把安装过程记录下，以便未来还有使用 Funkwhale 所提供服务的需求，如果您对 Funkwhale 感兴趣，不妨将本文当作一个参考。&lt;/p>
@@ -947,6 +948,14 @@ sudo certbot renew --dry-run
 &lt;p>Large size images are included. Recommend browsing under WIFI.&lt;/p>
 &lt;p>ORIGINAL PICTURES AS BACKGROUND FOR THE PREVIEW THEME IMAGES IN THIS COLLECTION WILL NOT BE USED FOR COMMERCIAL PURPOSE. IF YOU ARE THE AUTHOR AND YOU DON&amp;rsquo;T WANT YOUR ARTWORK TO BE USED HERE, OR YOU FIND WRONG AUTHOR IS ATTACHED TO AN IMAGE, PLEASE CONTACT ME.&lt;/p>
 &lt;p>…&lt;/p>
+&lt;div class="figure center" >
+&lt;a class="fancybox" href="https://res.cloudinary.com/suicablue/image/upload/v1652971257/Themes%20Display/Outer_Chill_dns9ka.gif" title="Outer Chill" data-fancybox="themes">
+&lt;img class="fig-img" src="https://res.cloudinary.com/suicablue/image/upload/v1652971257/Themes%20Display/Outer_Chill_dns9ka.gif" alt="Outer Chill">
+&lt;/a>
+&lt;span class="caption">Outer Chill&lt;/span>
+&lt;/div>
+&lt;p>&lt;a href="https://cobaltkiss.blue/static/themes/outer-chill.json">Right click to download outer-chill.json&lt;/a>&lt;/p>
+&lt;p>&lt;span class="highlight-text primary">Author:&lt;/span> &lt;a href="https://www.deviantart.com/kirokaze">kirokaze&lt;/a>&lt;/p>
 &lt;div class="figure center" >
 &lt;a class="fancybox" href="https://res.cloudinary.com/suicablue/image/upload/v1652193787/Themes%20Display/television_d88kk3.png" title="television" data-fancybox="themes">
 &lt;img class="fig-img" src="https://res.cloudinary.com/suicablue/image/upload/v1652193787/Themes%20Display/television_d88kk3.png" alt="television">
