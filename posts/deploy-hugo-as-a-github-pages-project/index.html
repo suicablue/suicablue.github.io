@@ -175,7 +175,7 @@ hasCoverMetaIn">
 <li>创建两个 repository，一个存放 hugo 博客源文件，一个存放个人博客 public 中的文件</li>
 <li>创建一个 repository 和两个分支，分支分别存放源文件与 public 目录下的文件（也可创建一个分支，将 public 目录下文件存放进/doc）</li>
 </ul>
-<p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个 gh-pages 的 repository（即<user>.github.io，<user>替换为 github 账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支 master 与一个 repository 的情况下建立起来的，并没有上传源文件，这样大概是没办法使用 github actions（自动部署工具）的，不过目前并不影响我正常使用。</p>
+<p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个 gh-pages 的 repository（即.github.io，替换为 github 账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支 master 与一个 repository 的情况下建立起来的，并没有上传源文件，这样大概是没办法使用 github actions（自动部署工具）的，不过目前并不影响我正常使用。</p>
 <p>特别提醒两点：</p>
 <p>第一，创建 repository 完毕后，请在您的 repository 页面上方找到 Settings，点击进入，在下方找到添加主题按钮为你的 github 页面添加一个主题，添加主题后，这个 repository 下会生成两个新文件：README.md 和_config.yml。</p>
 <pre tabindex=0><code>hugo
@@ -210,7 +210,7 @@ git config --global user.email &lt;useremail&quot;&gt;
 <pre tabindex=0><code>ssh -T git@github.com
 </code></pre><p>输出了你的 github 用户名即代表 SSH 添加成功。
 第一次在本地使用这个 github 账户可能跳出新窗口，按照指示输入 github 用户名、邮箱、密钥等信息即可，之后不会再出现这个窗口。</p>
-<p>到现在您可以刷新您的 github 页面，里面的内容应该已经更新为和本地的 public 目录下同样的状态，在 url 栏输入 <user>.github.io 应就该会跳出您的博客页面啦~</p>
+<p>到现在您可以刷新您的 github 页面，里面的内容应该已经更新为和本地的 public 目录下同样的状态，在 url 栏输入 .github.io 应就该会跳出您的博客页面啦~</p>
 <h2 id=四发布修改删除博文>四、发布、修改、删除博文</h2>
 <p>添加新博文，在根目录执行命令：</p>
 <pre tabindex=0><code>hugo new post/标题.md

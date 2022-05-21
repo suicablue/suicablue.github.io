@@ -1,22 +1,42 @@
 <!doctype html><html lang=zh-cn>
 <head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"最近在听什么","datePublished":"2022-05-12T22:09:51+08:00","dateModified":"2022-05-12T22:09:51+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/what-am-i-listening-to-recently\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"最近在听什么","datePublished":"2022-05-12T22:09:51+08:00","dateModified":"2022-05-12T22:09:51+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/what-am-i-listening-to-recently\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"  ","keywords":[]}</script>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
 <meta name=author content="suica">
 <meta name=keywords content>
-<meta name=description content>
-<meta property="og:description" content>
+<meta name=description content="
+	
+	
+	
+	
+	">
+<meta property="og:description" content="
+	
+	
+	
+	
+	">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最近在听什么">
 <meta name=twitter:title content="最近在听什么">
 <meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/">
 <meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/">
 <meta property="og:site_name" content="Home Sweet Home ♡">
-<meta property="og:description" content>
-<meta name=twitter:description content>
+<meta property="og:description" content="
+	
+	
+	
+	
+	">
+<meta name=twitter:description content="
+	
+	
+	
+	
+	">
 <meta property="og:locale" content="en-us">
 <meta property="article:published_time" content="2022-05-12T22:09:51">
 <meta property="article:modified_time" content="2022-05-12T22:09:51">
@@ -116,9 +136,42 @@ May 12, 2022
 </div>
 <div class="post-content markdown">
 <div class=main-content-wrap>
-<div style=max-width:700px><div style=left:0;width:100%;height:140px;position:relative><iframe src="https://bandcamp.com/EmbeddedPlayer/album=1557113732/size=large/bgcol=ffffff/linkcol=333333/artwork=small/transparent=true/" style=top:0;left:0;width:100%;height:100%;position:absolute;border:0 allowfullscreen allow=encrypted-media;></iframe></div></div>
+<div style=max-width:700px>
+<div style=left:0;width:100%;height:150px;position:relative>
+<iframe src="https://bandcamp.com/EmbeddedPlayer/album=1424326905/size=large/bgcol=ffffff/linkcol=333333/tracklist=false/artwork=small/transparent=true/" style=top:0;left:0;width:100%;height:100%;position:absolute;border:0 allowfullscreen allow=encrypted-media;></iframe>
+</div>
+</div>
 <p>音源来自: <a href=https://bandcamp.com>https://bandcamp.com</a></p>
 <p>框架制作于: <a href=https://iframely.com/>https://iframely.com/</a></p>
+<hr>
+<p>2022.05.21 更新：</p>
+<p>前天模仿别人写的 <a href=https://gist.github.com/j-un/e7d0b3118556479392bd2269f7059242>spotify 在 hugo 上的 shortcode</a> 自己写了个 <a href=https://funkwhale.audio/>funkwhale</a> 的 shortcode ，funkwhale 因为属性较少很好做，于是放话说要做 bandcamp 的，结果实际做起来有点麻烦，暂时先弄了个样式固定只需要扔个链接上去的超简陋 shortcode，unsafe 改成 false，等啥时候我想要再弄再说……</p>
+<p>目前这个主题似乎不能在简述部分放歌曲列表，原因不明。</p>
+<p>funkwhale 的 shortcode 放这里，有需求的话请用：</p>
+<pre tabindex=0><code>&lt;!--
+Parameters:
+	0 - instance - (Required) yourinstance.tld
+    1 - type - (Required) playlist / artist / track
+    2 - id - (Required) Target ID
+    3 - width - (Optional) width (must be quoted using %)
+    4 - height - (Optional) height
+--&gt;
+
+{{ if .IsNamedParams }}
+	&lt;iframe 
+	src=&quot;https://{{ .Get &quot;instance&quot; }}/front/embed.html?&amp;amp;type={{ .Get &quot;type&quot; }}&amp;amp;id={{ .Get &quot;id&quot; }}&quot; 
+	width=&quot;{{ default &quot;100%&quot; (.Get &quot;width&quot;) }}&quot; 
+	height=&quot;{{ default &quot;330&quot; (.Get &quot;height&quot;) }}&quot; 
+	scrolling=&quot;no&quot; 
+	frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;
+{{ else }}
+	&lt;iframe src=&quot;https://{{ .Get 0 }}/front/embed.html?&amp;amp;type={{ .Get 1 }}&amp;amp;id={{ .Get 2 }}&quot; 
+	width=&quot;{{ default &quot;100%&quot; (.Get 3) }}&quot; 
+	height=&quot;{{ default &quot;330&quot; (.Get 4) }}&quot; 
+	scrolling=&quot;no&quot; 
+	frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;
+{{ end }}
+</code></pre><hr>
 <p>今天发现 <a href=https://iframely.com/>Iframely</a> 能轻松制作富媒体网页播放器所需的 code（当然，不限于 Bandcamp，更不仅限于音视频播放），一般来说无需注册直接把想要播放的音源 url 丢进去就会自动生成 html 格式的 code，并可以简单编辑一些样式，将生成的 code 嵌入自己网站中对应位置就可以了。注册后似乎可以自己进行一些制作，不过目前还没有尝试，之后研究下依旧发在这里。</p>
 <p>Hugo 博客需要修改下 markup 设置才可直接在 content 中的 markdown 文件里直接嵌入 html 的 code。简单来说，假设您的 config 文件为 toml 格式，那么在里面加入这么几行就可以了：</p>
 <pre tabindex=0><code>[markup]
@@ -128,7 +181,6 @@ May 12, 2022
 </code></pre><p>Markup 详细配置可以参考官方文档: <a href=https://gohugo.io/getting-started/configuration-markup>https://gohugo.io/getting-started/configuration-markup</a></p>
 <p>想要和我一样放在置顶文章的效果也很简单，在 Front Matter 中加入 <code>weight: 1</code> 即可。想要放在其他位置，比如侧边栏，可能要在 layouts 对应位置找地方嵌入。</p>
 <p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。</p>
-<div style=left:0;width:100%;height:300px;position:relative><iframe src="https://bandcamp.23video.com/9891472.ihtml/player.html?token=a18cd8b6e69c44f705d2829684a70e07&source=embed&photo_id=18789603" style=top:0;left:0;width:100%;height:100%;position:absolute;border:0 allowfullscreen allow=encrypted-media;></iframe></div>
 </div>
 </div>
 <div id=post-footer class="post-footer main-content-wrap">

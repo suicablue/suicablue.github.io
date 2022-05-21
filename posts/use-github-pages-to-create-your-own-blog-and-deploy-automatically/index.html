@@ -193,7 +193,7 @@ hasCoverMetaIn">
 </blockquote>
 <p><a href=https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version>Hugo Frequently Asked Questions</a></p>
 <p>使用 <code>hugo</code> 命令，需要将 hugo 添加到环境变量： <a href=https://ripple-zjw.github.io/2019/%E6%90%AD%E5%BB%BAhugo%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9D%91/>搭建 Hugo 时需要注意的坑</a></p>
-<p>进入 Site 文件夹，鼠标右键点击 Git Bash 或打开 Git Bash 后 cd 到这个目录，创建你的 hugo 博客所在目录(替换<example>为你的博客名称)：</p>
+<p>进入 Site 文件夹，鼠标右键点击 Git Bash 或打开 Git Bash 后 cd 到这个目录，创建你的 hugo 博客所在目录(替换为你的博客名称)：</p>
 <pre tabindex=0><code>hugo new site &lt;example&gt;
 </code></pre><pre tabindex=0><code>emample
 ├── archetypes
@@ -261,12 +261,12 @@ git push -u origin main # 将本地内容推送到远程
 <p>进入刚刚建好的 repository，点进它的 Settings 中，找到 Secrets，点击 New repository secret，名称为 PERSONAL_TOKEN，内容为之前备份下来的 Token。</p>
 <h3 id=建立存放-public-目录的仓库>建立存放 public 目录的仓库</h3>
 <h4 id=建立仓库>建立仓库</h4>
-<p>回到 github 再建一个 repository。注意这次 repository 的名称须为 <github-username>.github.io 这个格式。这个仓库要设置为公开状态。</p>
+<p>回到 github 再建一个 repository。注意这次 repository 的名称须为 .github.io 这个格式。这个仓库要设置为公开状态。</p>
 <h5 id=题外话repository-名称问题>题外话：repository 名称问题</h5>
 <p><a href=https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites>Github 关于 github pages 类型的说明</a></p>
-<p>个人建博客不考虑 organization 的情况。除去网络上大多数教程强调的使用 <github-username>.github.io 作为 repository 名称的方法，其实还可以建一个任意名称的仓库，在不使用自定义域名的前提下，这样建起来的 hugo 博客网址为 <github-username>.github.io/<repository-name> 。</p>
+<p>个人建博客不考虑 organization 的情况。除去网络上大多数教程强调的使用 .github.io 作为 repository 名称的方法，其实还可以建一个任意名称的仓库，在不使用自定义域名的前提下，这样建起来的 hugo 博客网址为 .github.io/ 。</p>
 <p>比方说你 github 的用户名为 suicablue，repo 名为 my-blog，那最后你的博客域名就是 suicablue.github.io/blog 。少数派的这篇教程就是这样建起来的： <a href=https://sspai.com/post/64639>使用 Hugo 从 0 到 1 搭建个人博客</a></p>
-<p>确定要使用自定义域名的话，就完全不需要管 repository 的名称问题了。但想要用 github 免费提供的 <github-username>.github.io 这个域名的话，就需要注意一下名称问题了。</p>
+<p>确定要使用自定义域名的话，就完全不需要管 repository 的名称问题了。但想要用 github 免费提供的 .github.io 这个域名的话，就需要注意一下名称问题了。</p>
 <hr>
 <h2 id=-自动部署>✦ 自动部署！</h2>
 <h3 id=确认以下步骤是否已经完成>确认以下步骤是否已经完成：</h3>
@@ -347,7 +347,7 @@ taskkill /f /PID xxxxx  杀死占用的进程
 <ol start=3>
 <li>我不在意博客根目录公开，我不想要建两个仓库</li>
 </ol>
-<p>这种情况大致的操作过程和上面是一样的，只是如果你需要使用<username>.github.io 这个免费域名时同样要注意仓库名称问题，并将 workflow 文件里的这行删掉：</p>
+<p>这种情况大致的操作过程和上面是一样的，只是如果你需要使用.github.io 这个免费域名时同样要注意仓库名称问题，并将 workflow 文件里的这行删掉：</p>
 <pre tabindex=0><code>external_repository: &lt;username&gt;/&lt;username&gt;.github.io
 </code></pre><p>之后你的仓库中会有 main 和 gh-pages 两个分支，main 分支存放博客根目录文件，gh-pages 存放页面文件。</p>
 <ol start=4>

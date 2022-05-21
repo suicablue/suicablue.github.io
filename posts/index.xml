@@ -1,6 +1,42 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Suica's Blog</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in posts</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 14 May 2022 22:16:12 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>最近在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 12 May 2022 22:09:51 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div style="max-width: 700px;">&lt;div style="left: 0; width: 100%; height: 140px; position: relative;">&lt;iframe src="https://bandcamp.com/EmbeddedPlayer/album=1557113732/size=large/bgcol=ffffff/linkcol=333333/artwork=small/transparent=true/" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="encrypted-media;">&lt;/iframe>&lt;/div>&lt;/div>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Suica's Blog</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in posts</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 14 May 2022 22:16:12 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>最近在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 12 May 2022 22:09:51 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div style="max-width: 700px;">
+&lt;div style="left: 0; width: 100%; height: 150px; position: relative;">
+&lt;iframe src="https://bandcamp.com/EmbeddedPlayer/album=1424326905/size=large/bgcol=ffffff/linkcol=333333/tracklist=false/artwork=small/transparent=true/"
+style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
+allowfullscreen
+allow="encrypted-media;">
+&lt;/iframe>
+&lt;/div>
+&lt;/div>
 &lt;p>音源来自: &lt;a href="https://bandcamp.com">https://bandcamp.com&lt;/a>&lt;/p>
 &lt;p>框架制作于: &lt;a href="https://iframely.com/">https://iframely.com/&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>2022.05.21 更新：&lt;/p>
+&lt;p>前天模仿别人写的 &lt;a href="https://gist.github.com/j-un/e7d0b3118556479392bd2269f7059242">spotify 在 hugo 上的 shortcode&lt;/a> 自己写了个 &lt;a href="https://funkwhale.audio/">funkwhale&lt;/a> 的 shortcode ，funkwhale 因为属性较少很好做，于是放话说要做 bandcamp 的，结果实际做起来有点麻烦，暂时先弄了个样式固定只需要扔个链接上去的超简陋 shortcode，unsafe 改成 false，等啥时候我想要再弄再说……&lt;/p>
+&lt;p>目前这个主题似乎不能在简述部分放歌曲列表，原因不明。&lt;/p>
+&lt;p>funkwhale 的 shortcode 放这里，有需求的话请用：&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;!--
+Parameters:
+0 - instance - (Required) yourinstance.tld
+1 - type - (Required) playlist / artist / track
+2 - id - (Required) Target ID
+3 - width - (Optional) width (must be quoted using %)
+4 - height - (Optional) height
+--&amp;gt;
+{{ if .IsNamedParams }}
+&amp;lt;iframe
+src=&amp;quot;https://{{ .Get &amp;quot;instance&amp;quot; }}/front/embed.html?&amp;amp;amp;type={{ .Get &amp;quot;type&amp;quot; }}&amp;amp;amp;id={{ .Get &amp;quot;id&amp;quot; }}&amp;quot;
+width=&amp;quot;{{ default &amp;quot;100%&amp;quot; (.Get &amp;quot;width&amp;quot;) }}&amp;quot;
+height=&amp;quot;{{ default &amp;quot;330&amp;quot; (.Get &amp;quot;height&amp;quot;) }}&amp;quot;
+scrolling=&amp;quot;no&amp;quot;
+frameborder=&amp;quot;no&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;
+{{ else }}
+&amp;lt;iframe src=&amp;quot;https://{{ .Get 0 }}/front/embed.html?&amp;amp;amp;type={{ .Get 1 }}&amp;amp;amp;id={{ .Get 2 }}&amp;quot;
+width=&amp;quot;{{ default &amp;quot;100%&amp;quot; (.Get 3) }}&amp;quot;
+height=&amp;quot;{{ default &amp;quot;330&amp;quot; (.Get 4) }}&amp;quot;
+scrolling=&amp;quot;no&amp;quot;
+frameborder=&amp;quot;no&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;
+{{ end }}
+&lt;/code>&lt;/pre>&lt;hr>
 &lt;p>今天发现 &lt;a href="https://iframely.com/">Iframely&lt;/a> 能轻松制作富媒体网页播放器所需的 code（当然，不限于 Bandcamp，更不仅限于音视频播放），一般来说无需注册直接把想要播放的音源 url 丢进去就会自动生成 html 格式的 code，并可以简单编辑一些样式，将生成的 code 嵌入自己网站中对应位置就可以了。注册后似乎可以自己进行一些制作，不过目前还没有尝试，之后研究下依旧发在这里。&lt;/p>
 &lt;p>Hugo 博客需要修改下 markup 设置才可直接在 content 中的 markdown 文件里直接嵌入 html 的 code。简单来说，假设您的 config 文件为 toml 格式，那么在里面加入这么几行就可以了：&lt;/p>
 &lt;pre tabindex="0">&lt;code>[markup]
@@ -9,8 +45,7 @@
 unsafe = true
 &lt;/code>&lt;/pre>&lt;p>Markup 详细配置可以参考官方文档: &lt;a href="https://gohugo.io/getting-started/configuration-markup">https://gohugo.io/getting-started/configuration-markup&lt;/a>&lt;/p>
 &lt;p>想要和我一样放在置顶文章的效果也很简单，在 Front Matter 中加入 &lt;code>weight: 1&lt;/code> 即可。想要放在其他位置，比如侧边栏，可能要在 layouts 对应位置找地方嵌入。&lt;/p>
-&lt;p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。&lt;/p>
-&lt;div style="left: 0; width: 100%; height: 300px; position: relative;">&lt;iframe src="https://bandcamp.23video.com/9891472.ihtml/player.html?token=a18cd8b6e69c44f705d2829684a70e07&amp;source=embed&amp;photo_id=18789603" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="encrypted-media;">&lt;/iframe>&lt;/div></description></item><item><title>Funkwhale 手动安装与管理笔记</title><link>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</link><pubDate>Sat, 14 May 2022 22:16:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</guid><description>&lt;h1 id="table-of-contents">Table of Contents&lt;/h1>
+&lt;p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。&lt;/p></description></item><item><title>Funkwhale 手动安装与管理笔记</title><link>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</link><pubDate>Sat, 14 May 2022 22:16:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/</guid><description>&lt;h1 id="table-of-contents">Table of Contents&lt;/h1>
 &lt;nav id="TableOfContents">
 &lt;ul>
 &lt;li>
@@ -41,8 +76,7 @@ unsafe = true
 &lt;span class="highlight-text purple">2022.05.19 更新: 应该是找到 Server Error (500) 报错原因了。&lt;/span>
 &lt;p>根据&lt;a href="https://docs.funkwhale.audio/admin/debugging.html?highlight=journal#debugging-funkwhale">官方文档 Debugging Funkwhale &lt;/a>使用查错指令 &lt;code>journalctl -xn -u funkwhale-server&lt;/code>，得到报错为 &lt;code>remaining connection slots are reserved for non-replication superuser connections&lt;/code> ，即现有的连接数为了保留给超级用户，不够 funkwhale 用了。这个连接数具体设置在 postgresql.conf 文件中，关键参数为 superuser_reserved_connections 和 max_connections。之前安装 pleroma 时因为对文档理解有偏差，把 max_connections 设为了最小值 20，实际上换回 postgresql.conf 默认的 100 就没问题了。（不过我不确定是否所有的系统上的默认值都是 100）更改后需要重启 postgresql。&lt;/p>
 &lt;p>不过之前发现的另一个问题依旧存在，用 embed 做 web 播放器时专辑封面无法加载。&lt;del>不过因为我主要在狭窄的实例 panel 用 embed，曲目名称稍微长点就会重叠到封面上，特别丑，干脆用某种方法直接把 embed 的封面丢掉了。&lt;/del>&lt;/p>
-&lt;br>
-&lt;span class="highlight-text yellow">（之前的）碎碎念部分：&lt;/span>
+&lt;!-- raw HTML omitted -->
 &lt;p>其实去年就已经成功安装过 Funkwhale 了，当时我觉得官方 Docker 的教程写的很详细易懂根本没必要再写篇笔记，直到官方更新了版本并通知 &lt;a href="https://blog.funkwhale.audio/deprecation-all-in-one-container.html">删除 all-in-one-container 安装方法 &lt;/a>，我因不熟悉 Docker 操作，在未备份情况下把数据全都整没了，之后就一直摆烂，没再学习用其他方法安装。&lt;/p>
 &lt;p>最近想要自己的音乐服务器的心情又在蠢蠢欲动，于是跟着 &lt;a href="https://docs.funkwhale.audio/installation/debian.html">Debian 上手动安装 Funkwhale 的教程&lt;/a>重装 Funkwhale（其实最初是跟着官方现在推荐的 &lt;a href="https://docs.funkwhale.audio/installation/index.html">Quick install&lt;/a> 方法尝试安装，但是脚本跑到最后总会出错，版本似乎也停留在了 1.2.3 ，而且我觉得这个方法更适合什么都没安装的新机子），期间我还尝试用 S3 作为外部储存来存放音频文件并更改 Funkwhale 的 embled 样式，但是似乎每次更改都会让 Funkwhale 处在一个非常不稳定的状态，频繁爆出 Server Error (500) 的问题，之后即便试图还原也无法根除错误。另外 Funkwhale 在操作上也有我始终无法适应的地方，结果一番折腾后最终还是再次把它闲置了。 OTZ&lt;/p>
 &lt;p>不过我也认识使用 Funkwhale 蛮久了但根本没像我一样出各种问题的友邻，另外 Funkwhale 目前也有团队在积极维护……总之心想着还是把安装过程记录下，以便未来还有使用 Funkwhale 所提供服务的需求，如果您对 Funkwhale 感兴趣，不妨将本文当作一个参考。&lt;/p>
@@ -685,7 +719,7 @@ UPDATE objects SET updated_at = NOW();
 &lt;/blockquote>
 &lt;p>&lt;a href="https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version">Hugo Frequently Asked Questions&lt;/a>&lt;/p>
 &lt;p>使用 &lt;code>hugo&lt;/code> 命令，需要将 hugo 添加到环境变量： &lt;a href="https://ripple-zjw.github.io/2019/%E6%90%AD%E5%BB%BAhugo%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9D%91/">搭建 Hugo 时需要注意的坑&lt;/a>&lt;/p>
-&lt;p>进入 Site 文件夹，鼠标右键点击 Git Bash 或打开 Git Bash 后 cd 到这个目录，创建你的 hugo 博客所在目录(替换&lt;example>为你的博客名称)：&lt;/p>
+&lt;p>进入 Site 文件夹，鼠标右键点击 Git Bash 或打开 Git Bash 后 cd 到这个目录，创建你的 hugo 博客所在目录(替换&lt;!-- raw HTML omitted -->为你的博客名称)：&lt;/p>
 &lt;pre tabindex="0">&lt;code>hugo new site &amp;lt;example&amp;gt;
 &lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>emample
 ├── archetypes
@@ -753,12 +787,12 @@ git push -u origin main # 将本地内容推送到远程
 &lt;p>进入刚刚建好的 repository，点进它的 Settings 中，找到 Secrets，点击 New repository secret，名称为 PERSONAL_TOKEN，内容为之前备份下来的 Token。&lt;/p>
 &lt;h3 id="建立存放-public-目录的仓库">建立存放 public 目录的仓库&lt;/h3>
 &lt;h4 id="建立仓库">建立仓库&lt;/h4>
-&lt;p>回到 github 再建一个 repository。注意这次 repository 的名称须为 &lt;github-username>.github.io 这个格式。这个仓库要设置为公开状态。&lt;/p>
+&lt;p>回到 github 再建一个 repository。注意这次 repository 的名称须为 &lt;!-- raw HTML omitted -->.github.io 这个格式。这个仓库要设置为公开状态。&lt;/p>
 &lt;h5 id="题外话repository-名称问题">题外话：repository 名称问题&lt;/h5>
 &lt;p>&lt;a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites">Github 关于 github pages 类型的说明&lt;/a>&lt;/p>
-&lt;p>个人建博客不考虑 organization 的情况。除去网络上大多数教程强调的使用 &lt;github-username>.github.io 作为 repository 名称的方法，其实还可以建一个任意名称的仓库，在不使用自定义域名的前提下，这样建起来的 hugo 博客网址为 &lt;github-username>.github.io/&lt;repository-name> 。&lt;/p>
+&lt;p>个人建博客不考虑 organization 的情况。除去网络上大多数教程强调的使用 &lt;!-- raw HTML omitted -->.github.io 作为 repository 名称的方法，其实还可以建一个任意名称的仓库，在不使用自定义域名的前提下，这样建起来的 hugo 博客网址为 &lt;!-- raw HTML omitted -->.github.io/&lt;!-- raw HTML omitted --> 。&lt;/p>
 &lt;p>比方说你 github 的用户名为 suicablue，repo 名为 my-blog，那最后你的博客域名就是 suicablue.github.io/blog 。少数派的这篇教程就是这样建起来的： &lt;a href="https://sspai.com/post/64639">使用 Hugo 从 0 到 1 搭建个人博客&lt;/a>&lt;/p>
-&lt;p>确定要使用自定义域名的话，就完全不需要管 repository 的名称问题了。但想要用 github 免费提供的 &lt;github-username>.github.io 这个域名的话，就需要注意一下名称问题了。&lt;/p>
+&lt;p>确定要使用自定义域名的话，就完全不需要管 repository 的名称问题了。但想要用 github 免费提供的 &lt;!-- raw HTML omitted -->.github.io 这个域名的话，就需要注意一下名称问题了。&lt;/p>
 &lt;hr>
 &lt;h2 id="-自动部署">✦ 自动部署！&lt;/h2>
 &lt;h3 id="确认以下步骤是否已经完成">确认以下步骤是否已经完成：&lt;/h3>
@@ -834,7 +868,7 @@ taskkill /f /PID xxxxx 杀死占用的进程
 &lt;ol start="3">
 &lt;li>我不在意博客根目录公开，我不想要建两个仓库&lt;/li>
 &lt;/ol>
-&lt;p>这种情况大致的操作过程和上面是一样的，只是如果你需要使用&lt;username>.github.io 这个免费域名时同样要注意仓库名称问题，并将 workflow 文件里的这行删掉：&lt;/p>
+&lt;p>这种情况大致的操作过程和上面是一样的，只是如果你需要使用&lt;!-- raw HTML omitted -->.github.io 这个免费域名时同样要注意仓库名称问题，并将 workflow 文件里的这行删掉：&lt;/p>
 &lt;pre tabindex="0">&lt;code>external_repository: &amp;lt;username&amp;gt;/&amp;lt;username&amp;gt;.github.io
 &lt;/code>&lt;/pre>&lt;p>之后你的仓库中会有 main 和 gh-pages 两个分支，main 分支存放博客根目录文件，gh-pages 存放页面文件。&lt;/p>
 &lt;ol start="4">
@@ -1366,7 +1400,7 @@ Till you find your dream&lt;/p>
 &lt;li>创建两个 repository，一个存放 hugo 博客源文件，一个存放个人博客 public 中的文件&lt;/li>
 &lt;li>创建一个 repository 和两个分支，分支分别存放源文件与 public 目录下的文件（也可创建一个分支，将 public 目录下文件存放进/doc）&lt;/li>
 &lt;/ul>
-&lt;p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个 gh-pages 的 repository（即&lt;user>.github.io，&lt;user>替换为 github 账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支 master 与一个 repository 的情况下建立起来的，并没有上传源文件，这样大概是没办法使用 github actions（自动部署工具）的，不过目前并不影响我正常使用。&lt;/p>
+&lt;p>但是大多数教程在这部分说得比较模糊，按照一般的教程，教程仅让你创建一个 gh-pages 的 repository（即&lt;!-- raw HTML omitted -->.github.io，&lt;!-- raw HTML omitted -->替换为 github 账户用户名）。这部分在网上也能找到很多教程，同样不过多阐释。目前我的博客也是在仅使用默认分支 master 与一个 repository 的情况下建立起来的，并没有上传源文件，这样大概是没办法使用 github actions（自动部署工具）的，不过目前并不影响我正常使用。&lt;/p>
 &lt;p>特别提醒两点：&lt;/p>
 &lt;p>第一，创建 repository 完毕后，请在您的 repository 页面上方找到 Settings，点击进入，在下方找到添加主题按钮为你的 github 页面添加一个主题，添加主题后，这个 repository 下会生成两个新文件：README.md 和_config.yml。&lt;/p>
 &lt;pre tabindex="0">&lt;code>hugo
@@ -1401,7 +1435,7 @@ git config --global user.email &amp;lt;useremail&amp;quot;&amp;gt;
 &lt;pre tabindex="0">&lt;code>ssh -T git@github.com
 &lt;/code>&lt;/pre>&lt;p>输出了你的 github 用户名即代表 SSH 添加成功。
 第一次在本地使用这个 github 账户可能跳出新窗口，按照指示输入 github 用户名、邮箱、密钥等信息即可，之后不会再出现这个窗口。&lt;/p>
-&lt;p>到现在您可以刷新您的 github 页面，里面的内容应该已经更新为和本地的 public 目录下同样的状态，在 url 栏输入 &lt;user>.github.io 应就该会跳出您的博客页面啦~&lt;/p>
+&lt;p>到现在您可以刷新您的 github 页面，里面的内容应该已经更新为和本地的 public 目录下同样的状态，在 url 栏输入 &lt;!-- raw HTML omitted -->.github.io 应就该会跳出您的博客页面啦~&lt;/p>
 &lt;h2 id="四发布修改删除博文">四、发布、修改、删除博文&lt;/h2>
 &lt;p>添加新博文，在根目录执行命令：&lt;/p>
 &lt;pre tabindex="0">&lt;code>hugo new post/标题.md
