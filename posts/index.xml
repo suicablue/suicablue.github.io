@@ -13,13 +13,13 @@ allow="encrypted-media;">
 &lt;p>2022.05.21 更新：&lt;/p>
 &lt;p>前天模仿别人写的 &lt;a href="https://gist.github.com/j-un/e7d0b3118556479392bd2269f7059242">spotify 在 hugo 上的 shortcode&lt;/a> 自己写了个 &lt;a href="https://funkwhale.audio/">funkwhale&lt;/a> 的 shortcode ，funkwhale 因为属性较少很好做，于是放话说要做 bandcamp 的，结果实际做起来有点麻烦，暂时先弄了个样式固定只需要扔个链接上去的超简陋 shortcode，unsafe 改成 false，等啥时候我想要再弄再说……&lt;/p>
 &lt;p>目前这个主题似乎不能在简述部分放歌曲列表，原因不明。&lt;/p>
-&lt;p>funkwhale 的 shortcode 放这里，有需求的话请用：&lt;/p>
+&lt;p>先把 funkwhale 的 shortcode 放这里：&lt;/p>
 &lt;pre tabindex="0">&lt;code>&amp;lt;!--
 Parameters:
 0 - instance - (Required) yourinstance.tld
 1 - type - (Required) playlist / artist / track
 2 - id - (Required) Target ID
-3 - width - (Optional) width (must be quoted using %)
+3 - width - (Optional) width (must be quoted if using %)
 4 - height - (Optional) height
 --&amp;gt;
 {{ if .IsNamedParams }}
@@ -36,7 +36,13 @@ height=&amp;quot;{{ default &amp;quot;330&amp;quot; (.Get 4) }}&amp;quot;
 scrolling=&amp;quot;no&amp;quot;
 frameborder=&amp;quot;no&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;
 {{ end }}
-&lt;/code>&lt;/pre>&lt;hr>
+&lt;/code>&lt;/pre>&lt;p>效果：&lt;/p>
+&lt;iframe src="https://funk.cobaltkiss.blue/front/embed.html?&amp;amp;type=playlist&amp;amp;id=3"
+width="100%"
+height="200px"
+scrolling="no"
+frameborder="no">&lt;/iframe>
+&lt;hr>
 &lt;p>今天发现 &lt;a href="https://iframely.com/">Iframely&lt;/a> 能轻松制作富媒体网页播放器所需的 code（当然，不限于 Bandcamp，更不仅限于音视频播放），一般来说无需注册直接把想要播放的音源 url 丢进去就会自动生成 html 格式的 code，并可以简单编辑一些样式，将生成的 code 嵌入自己网站中对应位置就可以了。注册后似乎可以自己进行一些制作，不过目前还没有尝试，之后研究下依旧发在这里。&lt;/p>
 &lt;p>Hugo 博客需要修改下 markup 设置才可直接在 content 中的 markdown 文件里直接嵌入 html 的 code。简单来说，假设您的 config 文件为 toml 格式，那么在里面加入这么几行就可以了：&lt;/p>
 &lt;pre tabindex="0">&lt;code>[markup]
