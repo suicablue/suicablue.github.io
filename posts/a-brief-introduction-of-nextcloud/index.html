@@ -1,0 +1,461 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Nextcloud (Hetzner Storge Share) 使用分享","image":"//","datePublished":"2022-05-25T21:04:12+08:00","dateModified":"2022-05-25T21:04:12+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/a-brief-introduction-of-nextcloud\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。\n","keywords":[]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="suica">
+<meta name=keywords content>
+<meta name=description content="某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。">
+<meta property="og:description" content="某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nextcloud (Hetzner Storge Share) 使用分享">
+<meta name=twitter:title content="Nextcloud (Hetzner Storge Share) 使用分享">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content="某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。">
+<meta name=twitter:description content="某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。">
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2022-05-25T21:04:12">
+<meta property="article:modified_time" content="2022-05-25T21:04:12">
+<meta property="article:section" content="云储存">
+<meta property="article:tag" content="Nextcloud">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="twitter:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1653508227/blog-thumbnail-images/vha_moonblast_bupfjw.png">
+<meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1653508227/blog-thumbnail-images/vha_moonblast_bupfjw.png">
+<title>Nextcloud (Hetzner Storge Share) 使用分享</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/mystyle.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=90" alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>suica</h4>
+<h5 class=sidebar-profile-bio>博客无限装修中</h5>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
+<i class="sidebar-button-icon fas fa-suitcase"></i>
+<span class=sidebar-button-desc>Portfolio</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/posts/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+Nextcloud (Hetzner Storge Share) 使用分享
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2022-05-25T21:04:12+08:00>
+May 25, 2022
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e4%ba%91%e5%82%a8%e5%ad%98>云储存</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<p>某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。</p>
+<h1 id=nextcloud-storage-share-功能与界面使用>Nextcloud (Storage Share) 功能与界面使用</h1>
+<h1 id=table-of-contents>Table of Contents</h1>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#nextcloud-storage-share-功能与界面使用>Nextcloud (Storage Share) 功能与界面使用</a>
+<ul>
+<li><a href=#初始-web-界面与操作>初始 web 界面与操作</a>
+<ul>
+<li><a href=#域名访问>域名访问</a></li>
+<li><a href=#基础界面与功能>基础界面与功能</a></li>
+<li><a href=#本地同步>本地同步</a></li>
+</ul>
+</li>
+<li><a href=#附加功能>附加功能</a>
+<ul>
+<li><a href=#外观更改>外观更改</a>
+<ul>
+<li><a href=#theming>Theming</a></li>
+<li><a href=#splash>Splash</a></li>
+<li><a href=#unrounded-corners>Unrounded Corners</a></li>
+</ul>
+</li>
+<li><a href=#计划管理>计划管理</a>
+<ul>
+<li><a href=#calendar含-dashboard-插件>Calendar（含 Dashboard 插件）</a></li>
+<li><a href=#deck含-dashboard-插件>Deck（含 Dashboard 插件）</a></li>
+</ul>
+</li>
+<li><a href=#编辑与查看文档>编辑与查看文档</a>
+<ul>
+<li><a href=#notes含-dashboard-插件>Notes（含 Dashboard 插件）</a></li>
+<li><a href=#markdown-editor>Markdown Editor</a></li>
+</ul>
+</li>
+<li><a href=#安全>安全</a>
+<ul>
+<li><a href=#file-access-control>File access control</a></li>
+<li><a href=#antivirus-for-files>Antivirus for files</a></li>
+</ul>
+</li>
+<li><a href=#music>Music</a></li>
+<li><a href=#news>News</a></li>
+<li><a href=#之后可能安装的应用>之后可能安装的应用</a></li>
+</ul>
+</li>
+<li><a href=#加密>加密</a>
+<ul>
+<li><a href=#服务器端加密>服务器端加密</a></li>
+<li><a href=#duplicati-加密并上传>Duplicati 加密并上传</a></li>
+</ul>
+</li>
+<li><a href=#可持续使用性>可持续使用性</a>
+<ul>
+<li><a href=#已知问题>已知问题</a></li>
+<li><a href=#其他自建方案>其他自建方案</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<h2 id=初始-web-界面与操作>初始 web 界面与操作</h2>
+<h3 id=域名访问>域名访问</h3>
+<p>注册 konsoleh 账号、完成购买并等待服务开启后，就可以直接用 konsoleh 提供的域名从网页访问 Nextcloud 了（可能因各地区及不同通讯服务网络缘故，访问速度有所差异，建议从 konsoleh 购买 Nextcloud 的话使用期间全程代理以提高访问流畅性），手头上有域名的话也可以快速设置一个 CNAME DNS 记录并从 konsoleh 操作界面进行对应设置，等待一小会儿就可以直接通过自己的域名访问 Nextcloud 啦（注意用 cloudflare 的话要把橙云关掉）。</p>
+<h3 id=基础界面与功能>基础界面与功能</h3>
+<p>用管理员账号登入，默认这个账号无总上传大小限制，单击右上角头像下拉菜单中的 Settings 可以对账号与实例进行各种设置，单击 Users 管理现有用户且可以新建用户并设置上传限制，单击 Apps 添加更多应用。<a href=https://docs.hetzner.com/konsoleh/storage-share/faq/faq/#what-changes-are-done-to-the-nextcloud-software-from-hetzners-side>个人档案 Hetzner 处于对用户隐私安全的考虑并未开放</a>，但可以发送 ticket 申请开放。</p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653488279/post/Nextcloud-web-application_uq47s8.png alt></p>
+<p>界面最上方一开始只有四个板块，Dashboard（登录后第一个界面）、Files（目录文件管理）、Photos（照片与视频管理）、Activity（用户活动记录），如果之后添加了更多应用，这里有更多板块。平时用的最多的不出意料都是 Files，可以直接从 web 界面上传文件、创建目录、创建文档，每一层目录下创建名为 Readme.md 的文档可在 web 端与<a href=https://f-droid.org/packages/com.nextcloud.client/>手机官方 app</a> 每个目录上方看到关于这层目录的说明，图像、音视频都可直接在 Files 中查看或播放，txt 或 markdown 格式文件可直接查看并编辑，且支持版本回退与自动保存更改，pdf 查看支持默认开启。</p>
+<p>文件和目录默认都不开启分享，需要手动点击每个文件旁边的分享按钮，点击加号创建分享链接并设置有效时间、密码与其他访问限制，也可为其它用户设置对该目录或文档的操作权限并通过内部链接让其他用户查看或操作这个目录或文件。点击三个点的按钮选择 Details，在右边弹出详情栏再次单击右上方三个点的按钮为目录或文件添加 Tags。</p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653490901/post/share_pozng9.png alt></p>
+<h3 id=本地同步>本地同步</h3>
+<p>在<a href=https://nextcloud.com/install/>官网下载</a>对应系统版本的 Download for desktop 与 Download for MOBILE 来在多设备与本地远程之间同步网盘，添加本地同步目录后，即可将本地目录上的更改同步到远程，反之亦然。</p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653488250/post/Nextcloud-desktop_d5mwyo.png alt></p>
+<p>手机上的同步 App 我还没有尝试用过，之后如使用会在这里更新。</p>
+<p>上面就是 Nextcloud 作为一个网盘最基本的功能和用法的介绍。</p>
+<h2 id=附加功能>附加功能</h2>
+<p>如果 Nextcloud 就是个纯粹的网盘，运行所需配置实在过重，挂载其他网盘也运行不稳，之前宣传的加密功能现在也已很久没有维护了，有很多更轻量的开源网盘可以取代它。之前 Nextcloud 作为 Fediverse 中的一员曾宣称可以和 Mastodon 用户互动，现在这个功能似乎也处在不可用状态。但 Nextcloud 有着大多网盘没有的多平台支持、由众多 App 提供的多样功能与强大的团队协作~~（我觉得就挺适合各类爱好者用来代替 QQ 群存放共享资源的）~~，下面简单介绍下最近安装并使用较多的一些附加功能，因为目前还在自用，这些功能均符合个人使用场景（当然管理员安装 App 后所有成员都可以享受到它们带来的附加服务）。</p>
+<h3 id=外观更改>外观更改</h3>
+<h4 id=theming>Theming</h4>
+<p>管理文档： <a href=https://docs.nextcloud.com/server/23/admin_manual/configuration_server/theming.html>https://docs.nextcloud.com/server/23/admin_manual/configuration_server/theming.html</a></p>
+<p>安装后 Settings - Administration 中出现 Theming 选项，可更改 Web 界面主题色、logo、标语等。</p>
+<h4 id=splash>Splash</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/unsplash>https://apps.nextcloud.com/apps/unsplash</a></p>
+<p>依赖： Theming</p>
+<p>安装后可在 Theming 选项中选择在登陆界面、Dashboard 界面与顶栏设置随机 <a href=https://unsplash.com/>Unsplash</a> 图片，Personal 的 Splash 选项中设置区别于实例默认的个人设置。</p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653493723/post/Dashboard_xwcjry.png alt></p>
+<h4 id=unrounded-corners>Unrounded Corners</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/unroundedcorners>https://apps.nextcloud.com/apps/unroundedcorners</a></p>
+<p>安装后所有选项按钮均从圆角变为方角。</p>
+<h3 id=计划管理>计划管理</h3>
+<h4 id=calendar含-dashboard-插件>Calendar（含 Dashboard 插件）</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/calendar>https://apps.nextcloud.com/apps/calendar</a></p>
+<p>用户文档： <a href=https://docs.nextcloud.com/server/latest/user_manual/en/groupware/calendar.html>https://docs.nextcloud.com/server/latest/user_manual/en/groupware/calendar.html</a></p>
+<p>能够导入导出日历且以天、周、月为为单位查看日历、记录事件并设置为全天事件或限时事件，可设置 Nextcloud 提醒和邮件提醒。可与 Contacts 以及 Deck 同步生日与限时任务（但 Storage Share 的 Contacts 似乎有点 buggy 于是我没有用）。可以在 Dashboard 设置插件，登陆后就可立刻看到近期任务与事件。</p>
+<h4 id=deck含-dashboard-插件>Deck（含 Dashboard 插件）</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/deck>https://apps.nextcloud.com/apps/deck</a></p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653493269/post/deck_rvzmmj.png alt></p>
+<p>安装后，可逐级添加 boards、list 与 card，每张卡片可设置完成期限，如同时安装了 Calendar，任务会自动同步到 Calendar。可自定义标签并添加、附加网盘内其他文件并按照时间顺序查看编辑记录 Timeline。</p>
+<p>手机有 <a href=https://f-droid.org/en/packages/it.niedermann.nextcloud.deck>Deck App 下载</a>，功能似乎除了附加文件外都可流畅使用。</p>
+<h3 id=编辑与查看文档>编辑与查看文档</h3>
+<h4 id=notes含-dashboard-插件>Notes（含 Dashboard 插件）</h4>
+<p>商店页面: <a href=https://apps.nextcloud.com/apps/notes>https://apps.nextcloud.com/apps/notes</a></p>
+<p>Github: <a href=https://github.com/nextcloud/notes/wiki>https://github.com/nextcloud/notes/wiki</a></p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653494326/post/notes_yxeajq.png alt></p>
+<p>Notes 是个简易的笔记编辑查看工具，支持 markdown 和 txt，可设置新建文档时默认新建哪个后缀的文档。在这个 App 中添加新笔记会同步在之前设置的储存目录中新建笔记，反之亦然。可以收藏笔记，收藏的笔记会在笔记界面和 Dashboard 插件中置顶显示，可以将笔记添加到文件夹中管理，可设置多层目录，但不能直接在 Notes 中像新建笔记一样新建文件夹，只能新建笔记后点击 Details，将笔记纳入已有的目录或输入目前没有的目录从而新建这个目录。</p>
+<p>手机上有 <a href=https://f-droid.org/en/packages/it.niedermann.owncloud.notes>Notes App 下载</a>，功能与网页版一致。</p>
+<p>它 web 端的外观我觉得和 <a href=https://simplenote.com/>Simplenote</a>有些相似，但 Simplenote 只可用 tags 整理分类，而 Notes 可用目录，Simplenotes 的发布功能、版本回退功能、导出导入功能 Notes 并没有，但是可在 Nextcloud 的 Files 中实现，唯一不支持的应该只有添加待做这一选项，但可用 Nextcloud 其他应用实现。自建 Nexcloud 的 Notes 安全性高于存放全部用户数据、上层拥有绝对数据管理权的 Simplenotes。</p>
+<h4 id=markdown-editor>Markdown Editor</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/files_markdown>https://apps.nextcloud.com/apps/files_markdown</a></p>
+<p>依赖： <a href=https://apps.nextcloud.com/apps/files_texteditor>plain text editor</a></p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653496132/post/markdowneditor_nkbrv2.png alt></p>
+<p>安装 plain text editor 和 Markdown Editor 后，Files 界面下可点击文档旁边三个点点选择 Edit in plain editor，txt 文档将打开纯文本编辑器，markdown 文件则会默认打开上图所示的编辑器。在这样的编辑器中编辑文档后，再使用 Nextcloud 默认的编辑器可能会提示保存冲突，选择在其他编辑器中得到的版本保存即可。</p>
+<p>其他的文档类应用请在商店中查看： <a href=https://apps.nextcloud.com/categories/office>https://apps.nextcloud.com/categories/office</a></p>
+<h3 id=安全>安全</h3>
+<h4 id=file-access-control>File access control</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/files_accesscontrol>https://apps.nextcloud.com/apps/files_accesscontrol</a></p>
+<p>管理文档： <a href=https://docs.nextcloud.com/server/stable/admin_manual/file_workflows/access_control.html>https://docs.nextcloud.com/server/stable/admin_manual/file_workflows/access_control.html</a></p>
+<p>通过在 Settings - Administration 的 Flow 选项中设置前置条件与适用范围，可以让特定文件或目录不得被访问编辑。限制的权限有：创建/上传文件、变动文件、删除文件、下载文件、同步文件。比方说，可以设置有某个组别用户凡是带有某标签的所有文件均被撤销访问权限，生效后除非变动规则或让那些文件变得不适用规则（但因为无论在远程 Files 中还是其他关联应用还是本地同步文件夹中，生效后的文件都无法查看编辑，似乎只能撤掉标签来撤销规则），否则将一直无法访问这些文件。</p>
+<h4 id=antivirus-for-files>Antivirus for files</h4>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/files_antivirus>https://apps.nextcloud.com/apps/files_antivirus</a></p>
+<p>上传文件时自动检查文件是否含有病毒，并后台扫描所有文件。</p>
+<h3 id=music>Music</h3>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/music>https://apps.nextcloud.com/apps/music</a></p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653497262/post/music_k1yj4b.png alt></p>
+<p>我之前用 onedrive 最大的不满其实是没有很好的途径利用云盘内存贮的音乐实现 streaming……而 Nextcloud 的 Music App 很完美地实现了我的愿望。除了可以在网页端愉快地听音乐外，还可安装支持 <a href=http://www.subsonic.org/pages/index.jsp>Subsonic</a> 或 <a href=https://ampache.org/>Ampache</a> 服务器的应用（在商店搜这两个词就会冒出一堆，大多为开源软件，选择页面用着舒服的就可以，基本上都可以用来播放 Music 上的音乐），随时随地按照喜欢的方式听歌。</p>
+<h3 id=news>News</h3>
+<p>商店页面： <a href=https://apps.nextcloud.com/apps/news>https://apps.nextcloud.com/apps/news</a></p>
+<p>用户文档： <a href=https://nextcloud.github.io/news/>https://nextcloud.github.io/news/</a></p>
+<p>这是一款 RSS 阅读器，可以像 Feed、the old reader 一样订阅 rss 链接并在 web 界面与<a href=https://f-droid.org/en/packages/de.luhmer.owncloudnewsreader>手机 app</a> 上阅读。我将之前的订阅转移到这边时有一个博客的 rss 订阅无论如何都会报错，原因不明，其他的没问题，无论网页版还是手机版看着都比较舒适。</p>
+<p><img src=https://res.cloudinary.com/suicablue/image/upload/v1653499066/post/news_owl5st.png alt></p>
+<h3 id=之后可能安装的应用>之后可能安装的应用</h3>
+<ol>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/welcome>Welcome</a> A Markdown rendering Dashboard widget to welcome all users</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/twofactor_totp>Two-Factor TOTP Provider</a></p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/camerarawpreviews>Camera RAW Previews</a></p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/metadata>Metadata</a> - A plugin which displays file metadata in the file details sidebar</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/passwords>Passwords</a> - Allows you to manage and store your passwords safely in your own cloud</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/bookmarks>Bookmarks</a> - Full-text search bookmarks synchronize with all your browsers and devices</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/quicknotes>Quick notes</a> - 类谷歌 Keep 的笔记应用，因为笔记存储在 database 而非 Files 中暂时不启用</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/cookbook>Cookbook</a> - A library for all your recipes</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/files_reader>Reader (ebook reader)</a></p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/fulltextsearch>Full text search</a></p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/mail>Mail</a> - 管理多邮箱账号</p>
+</li>
+<li>
+<p><a href=https://apps.nextcloud.com/apps/oidc_login>OpenID Connect Login</a></p>
+</li>
+</ol>
+<h2 id=加密>加密</h2>
+<h3 id=服务器端加密>服务器端加密</h3>
+<p><a href=https://docs.hetzner.com/konsoleh/storage-share/faq/upload-edit-share-files#can-i-use-server-side-encryption-with-storage-share>Hetzner 关于服务器端加密的说明</a></p>
+<blockquote>
+<p>We recommend that you not use server-side encryption. Storage Share stores the the keys and the corresponding encrypted files right next to each other on the same device. So it doesn&rsquo;t make your system that much safer. Plus, using server-side encryption takes up more storage and can cause errors.
+But, yes, Storage Share already has this as a standard option. Before you enable server-side encryption, you need to first activate the <em>Default encryption module</em> in the app&rsquo;s menu. After you activate this module, you can tick the checkbox <em>Enable server-side encryption</em> under <em>Settings; Administration; Security; Server-side encryption</em>. Please note that encrypting data requires more storage space and may result in slower speeds. In addition, only our support team can de-activate this feature.</p>
+</blockquote>
+<p>根据上述说明、我并未连接其他云盘到 Nextcloud 以及长久没有维护的加密应用这些情况，我并未在服务器端选择加密。但如果觉得上面的 <a href=https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/#file-access-control>File access control</a> 治标不治本的话，推荐手动加密方法。</p>
+<h3 id=duplicati-加密并上传>Duplicati 加密并上传</h3>
+<p>今天发现了 <a href=https://www.duplicati.com>Dulicati</a> 这个工具，它原生支持直接将源文件加密后直接上传至 onedrive、google drive 等多种常用网盘，Nextcloud 其实也可以拐个弯上传加密后的文件，需要在本地电脑（无手机应用）上同时安装 Duplicati 与 Nextcloud 客户端，将加密后的文件存储位置设定在 Nextcloud 同步文件夹中。可以设置密码、用户与不同加密方式，之后直接提取加密后的文件或 config 配置即可将文件还原到原位置或新位置。Duplicati 支持自动备份，可设置按照版本命名并保留之前的备份或用新的备份替代久备份、设定仅保留若干份备份等。</p>
+<p>因为今天刚开始用，还处在探索阶段，之后可能会单独就 Duplicati 或其他更好的加密工具写篇笔记。</p>
+<p><a href=https://duplicati.readthedocs.io>Duplicati User&rsquo;s Manual</a></p>
+<h2 id=可持续使用性>可持续使用性</h2>
+<p>云盘相关产品很多，开源项目也数量相当，单单想要各纯粹的个人用云盘或认为它附加的其他的功能有更好的工具、没必要都绑在一个 Nextcloud 中的话，Nextcloud 或 Owncloud 并不是唯二选择。</p>
+<p>一年前我就有建个自己的云盘的想法，虽说手动去安装 Nextcloud 并不困难，很多 VPS 服务商还提供一键安装服务（比如 Vultr），但是想要储存空间足够大且访问流畅，每个月的开销恐怕要远高于购买现成的云储存服务，便逐渐打消了这个念头。这次刚好在 Netzner 看到价格相对划算的 Storage Share 才终于有了自己的 Nextcloud 实例，但是一方面虽然客服处可以及时帮忙处理很多问题，但我是没有 root 权限无法进行终端操作的，另一方面直连访问速度受限，暂时缺少其他地点的机房，不敢装太多 App 担心出现卡顿（已知有部分应用用 Storage Share 访问会出现问题），记得之前也在逛其他 VPS 商页面时看到过类似的服务，猜测可能有类似的问题。</p>
+<h3 id=已知问题>已知问题</h3>
+<ol>
+<li>
+<p>手机 web 版本体验糟糕，Nextcloud 自带功能有限，Apps 需要额外安装应用（有的可能根本不提供手机应用下载）</p>
+</li>
+<li>
+<p>上传一定数量图片后略缩图严重影响图片浏览体验（详见: <a href=https://ownyourbits.com/2019/06/29/understanding-and-improving-nextcloud-previews/>Understanding and improving Nextcloud Previews</a> ），目前不清楚 Hetzner 默认有没有更改压缩策略，是否可以调整</p>
+</li>
+<li>
+<p>臃肿，性能一般，上传速度一般</p>
+</li>
+<li>
+<p>自带加密形同虚设且影响性能</p>
+</li>
+</ol>
+<p>注重功能多样性、团队合作、分享且可以提供配置较好的服务器的朋友可以选择 Nextcloud，而注重加密、稳定性、速度、同步的话或许需要了解下其他自建网盘方案。</p>
+<h3 id=其他自建方案>其他自建方案</h3>
+<p>目前国内还能访问且价格实惠的 Onedrive 网盘直接使用体验很糟糕，但可以把它当作后端用且及其轻量又能实现离线下载的 <a href=https://cloudreve.org/>Cloudreve</a> （<a href=https://blog.debula.ml/index.php/archives/5/#2.%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%EF%BC%9AFileBrowser>黛布拉推荐</a>）感觉很有吸引力。当然轻量也就意味着不会有 Nextcloud 这样多样的功能。</p>
+<p><a href=https://filebrowser.org/>File Browser</a> 我曾短暂用过，安装迅速但需要花点时间配置，感觉不适合分享但蛮适合作为一个直观的前端管理服务器文件的，有 demo 但需要注册才能试用。</p>
+<p><a href=https://www.seafile.com>Seafile</a> 似乎经常在各论坛看到有人推荐，Built-in File Encryption 感觉在多用户场景下非常有安全感（坏处是网盘服务下线的话加密文件也无法使用）且也是全平台支持，但好像和 Nextcloud 都有上传超大文件容易崩的问题，可以在 demo 中试用。</p>
+<p><a href=https://www.filerun.com/>Filerun</a> 并不开源，但听说相较 Nextcloud 没有缓存策略且并不臃肿，但是没有独立开发的 App，可以使用 Nextcloud 的电脑与手机 App，可以在 demo 中试用。</p>
+<p><a href=https://syncthing.net/>Syncthing</a> 我曾用于 Obsidian 电脑客户端与手机 app 之间同步笔记，使用全球发现服务器情况下同步连接到设备时速度尚可且有较好的过滤规则设置、多版本备份功能，大文件同步效果不好，仅适合做同步用途。</p>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/nextcloud/>Nextcloud</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/ data-tooltip="Funkwhale 手动安装与管理笔记" aria-label="PREVIOUS: Funkwhale 手动安装与管理笔记">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'6009012cb5ec42a4746a91bc18556b16',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2022 <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/funkwhale-installation-and-management/ data-tooltip="Funkwhale 手动安装与管理笔记" aria-label="PREVIOUS: Funkwhale 手动安装与管理笔记">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+<h4 id=about-card-name>suica</h4>
+<div id=about-card-bio>博客无限装修中</div>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
