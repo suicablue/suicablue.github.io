@@ -1,6 +1,6 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Suica's Blog</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in posts</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 25 May 2022 21:04:12 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>最近在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 12 May 2022 22:09:51 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div style="max-width: 700px;">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Suica's Blog</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in posts</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 07 Jun 2022 00:05:00 +0800</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>最近在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 12 May 2022 22:09:51 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div style="max-width: 700px;">
 &lt;div style="left: 0; width: 100%; height: 150px; position: relative;">
-&lt;iframe src="https://bandcamp.com/EmbeddedPlayer/album=3170350416/size=large/bgcol=ffffff/linkcol=333333/tracklist=false/artwork=small/transparent=true/"
+&lt;iframe src="https://bandcamp.com/EmbeddedPlayer/album=3522651491/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/"
 style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
 allowfullscreen
 allow="encrypted-media;">
@@ -51,7 +51,133 @@ frameborder="no">&lt;/iframe>
 unsafe = true
 &lt;/code>&lt;/pre>&lt;p>Markup 详细配置可以参考官方文档: &lt;a href="https://gohugo.io/getting-started/configuration-markup">https://gohugo.io/getting-started/configuration-markup&lt;/a>&lt;/p>
 &lt;p>想要和我一样放在置顶文章的效果也很简单，在 Front Matter 中加入 &lt;code>weight: 1&lt;/code> 即可。想要放在其他位置，比如侧边栏，可能要在 layouts 对应位置找地方嵌入。&lt;/p>
-&lt;p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。&lt;/p></description></item><item><title>Nextcloud (Hetzner Storge Share) 使用分享</title><link>https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/</link><pubDate>Wed, 25 May 2022 21:04:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/</guid><description>&lt;p>某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。&lt;/p>
+&lt;p>我很喜欢 Bandcamp 这个音乐平台，用户可以以最直接的方式支持创作者（购买单曲或专辑），并直接在里面购买并下载音乐源文件（一般是 mp3 和 flac 格式），购买前有几次试听全曲的机会（部分专辑可能只能试听一部分）。购买即拥有这点太多音乐流媒体如今做不到，不必为了自己喜欢的音乐一直购买会员，避免音乐因为各种原因下架而无法继续听的风险。缺点的话，收录的音乐大多由独立音乐人创作，像那些热门流行乐这边几乎没有，音源有限，另外就是近年被墙了 OTZ（所以说，为什么）。&lt;/p></description></item><item><title>Postgresql 大版本升级 11 - 14</title><link>https://suicablog.cobaltkiss.blue/posts/upgrade-postgresql-from-11-to-14/</link><pubDate>Tue, 07 Jun 2022 00:05:00 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/upgrade-postgresql-from-11-to-14/</guid><description>&lt;p>Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。&lt;/p>
+&lt;p>♥ 感谢升级前与升级过程中 dudu 与 黛黛的帮助！ ♥&lt;/p>
+&lt;h2 id="升级前准备">升级前准备&lt;/h2>
+&lt;p>建议在进行下面的步骤前先对数据库进行备份。&lt;/p>
+&lt;h3 id="检查当前系统中-postgresql-版本与程序">检查当前系统中 postgresql 版本与程序&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo su - postgres &lt;span style="color:#75715e"># 切换到 postgres 用户&lt;/span>
+psql -V &lt;span style="color:#75715e"># 会显示 psql 版本和 server 版本&lt;/span>
+dpkg -l | grep postgres &lt;span style="color:#75715e"># 查看系统上有哪些 Postgresql 程序&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>重点看后面带数字的有哪些，比方说有 &lt;code>postgresql-11&lt;/code>、&lt;code>postgresql-client-11&lt;/code>、&lt;code>postgresql-server-dev-11&lt;/code>、&lt;code>postgresql-11-rum&lt;/code> 这些，需要下载安装您要升级到的版本的 Postgresql。&lt;/p>
+&lt;h3 id="安装-postgresql-14">安装 Postgresql 14&lt;/h3>
+&lt;p>从 postgres 切换回 sudo 用户。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>从 &lt;a href="https://www.postgresql.org/media/keys/ACCC4CF8.asc">https://www.postgresql.org/media/keys/ACCC4CF8.asc&lt;/a> 导入数据库密钥&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo apt install curl ca-certificates gnupg
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg &amp;gt;/dev/null
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>``&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建 /etc/apt/sources.list.d/pgdg.list ，将 &lt;em>buster&lt;/em> 替换为实际使用的发行版。Debian 9 - stretch, 10 - buster, 11 - bullseye, 12 - bookworm, unstable - sid，仍不确定的话用 &lt;code>lsb_release -c&lt;/code> 查询。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main
+sudo sh -c &lt;span style="color:#e6db74">&amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&amp;#34; &amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>``&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>更新并下载指定版本 Postgresql&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo apt update
+sudo apt install postgresql-14
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>``&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="再次检查如果有额外安装拓展的话并重新编译">再次检查（如果有额外安装拓展的话）并重新编译&lt;/h3>
+&lt;p>确保系统中有 &lt;code>postgresql-14&lt;/code>、&lt;code>postgresql-client-14&lt;/code>、&lt;code>postgresql-server-dev-14&lt;/code>，因为我之前还使用 rum，所以还需要额外安装 &lt;code>postgresql-14-rum&lt;/code>。&lt;/p>
+&lt;p>我之前为了让 Pleroma 支持中文搜索，安装过 &lt;a href="https://github.com/jaiminpan/pg_jieba">pg_jieba&lt;/a> 和 &lt;a href="https://github.com/huangjimmy/pg_cjk_parser">pg_cjk_parser&lt;/a>，因为主要用后者所以最后是把 jieba 删掉了（似乎得在安装新版本 Postgresql 前删除），如果需要保留某些拓展，需要进入编译文件所在目录进行重新编译。&lt;/p>
+&lt;p>pg_jieba：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">cmake -DCMAKE_PREFIX_PATH&lt;span style="color:#f92672">=&lt;/span>/PATH/TO/PGSQL_INSTALL_DIR ..
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>pg_cjk_parser：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">make clean &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> make install
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="关闭正在使用-postgresql-的服务并关闭-postgresql-进行测试">关闭正在使用 Postgresql 的服务并关闭 Postgresql 进行测试&lt;/h3>
+&lt;p>比方说我这边运行的服务有 Pleroma 和 Funkwhale，先把这两个关掉。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># sudo systemcyl stop pleroma&lt;/span>
+&lt;span style="color:#75715e"># sudo systemctl stop funkwhale.target&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后关掉 Postgresql。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo systemctl stop postgresql
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>切换到 postgres 用户。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo su - postgres
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查 pg_upgrade 是否可以正常运行。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">/usr/lib/postgresql/14/bin/pg_upgrade --check &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-b /usr/lib/postgresql/11/bin &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-B /usr/lib/postgresql/14/bin &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-d /var/lib/postgresql/11/main &lt;span style="color:#ae81ff">\ &lt;/span>
+-D /var/lib/postgresql/14/main &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-o &lt;span style="color:#e6db74">&amp;#39;-c config_file=/etc/postgresql/11/main/postgresql.conf&amp;#39;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-O &lt;span style="color:#e6db74">&amp;#39;-c config_file=/etc/postgresql/14/main/postgresql.conf&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果没有报错、所有的 checking 都过了，就可以正式进行升级了。如果出现报错，终端会给出提示，根据提示一个个纠错。可能有 postgresql 没有关闭、没有重新编译、缺少某些 package 等原因。&lt;/p>
+&lt;h2 id="升级-postgresql">升级 Postgresql&lt;/h2>
+&lt;ol>
+&lt;li>移动到 tmp 目录&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">cd /tmp
+&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>升级（确保先前的 check 成功了再正式升级）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">/usr/lib/postgresql/14/bin/pg_upgrade &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-b /usr/lib/postgresql/11/bin &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-B /usr/lib/postgresql/14/bin &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-d /var/lib/postgresql/11/main &lt;span style="color:#ae81ff">\ &lt;/span>
+-D /var/lib/postgresql/14/main &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-o &lt;span style="color:#e6db74">&amp;#39;-c config_file=/etc/postgresql/11/main/postgresql.conf&amp;#39;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>-O &lt;span style="color:#e6db74">&amp;#39;-c config_file=/etc/postgresql/14/main/postgresql.conf&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>成功的话应该会出现以下提示：&lt;/p>
+&lt;pre tabindex="0">&lt;code>ptimizer statistics are not transferred by pg_upgrade. Once you start the new server, consider running: /usr/lib/postgresql/14/bin/vacuumdb --all --analyze-in-stages Running this script will delete the old cluster's data files: ./delete_old_cluster.sh
+&lt;/code>&lt;/pre>&lt;ol start="3">
+&lt;li>修改端口&lt;/li>
+&lt;/ol>
+&lt;p>新安装的 Postgresql 默认端口会变成 5433，我们把它的端口改回 5432，并把旧 Postgresql 端口改为 5433&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo su - &amp;lt;user&amp;gt;
+&lt;span style="color:#75715e"># 切换回之前的用户&lt;/span>
+sudo nano /etc/postgresql/14/main/postgresql.conf
+&lt;span style="color:#75715e"># Ctrl + W 输入 &amp;#34;port = 5433&amp;#34; 跳转到端口位置，修改为 5422&lt;/span>
+&lt;span style="color:#75715e"># 如果有需要可以一并修改其他配置对 postgresql 进行优化&lt;/span>
+sudo nano /etc/postgresql/11/main/postgresql.conf
+&lt;span style="color:#75715e"># Ctrl + W 输入 &amp;#34;port = 5432&amp;#34; 跳转到端口位置，修改为 5423&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>重新开启 Postgresql 和其他服务&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo systemctl start postgresql
+&lt;span style="color:#75715e"># sudo systemctl start pleroma&lt;/span>
+&lt;span style="color:#75715e"># sudo systemctl start funkwhale.target &lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>快速生成统计信息以便 postgresql 可以正确计划查询&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo su - postgres
+/usr/lib/postgresql/14/bin/vacuumdb --all --analyze-in-stages
+&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>检查最新版本 Postgresql&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">psql -c &lt;span style="color:#e6db74">&amp;#34;SELECT version();&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>跟我一样服务器上有 Pleroma 的话此时可能发现实例打不开，检查 /var/log/postgresql 下的日志，发现如下报错：&lt;/p>
+&lt;p>password authentication failed for user &amp;ldquo;pleroma&amp;rdquo;
+User &amp;ldquo;pleroma&amp;rdquo; does not have a valid SCRAM secret.&lt;/p>
+&lt;p>将 /etc/pleroma 下的 config 文件中的密码复制下来，进入 pleroma 数据库，手动改回密码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span style="color:#66d9ef">Alter&lt;/span> &lt;span style="color:#66d9ef">USER&lt;/span> pleroma &lt;span style="color:#66d9ef">WITH&lt;/span> &lt;span style="color:#66d9ef">PASSWORD&lt;/span> &lt;span style="color:#e6db74">&amp;#39;&amp;lt;password&amp;gt;&amp;#39;&lt;/span>;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>实例就可以正常启动了~&lt;/p>
+&lt;ol start="7">
+&lt;li>确定服务都可正常运行后，彻底删除旧版本的 Postgresql&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">apt list --installed | grep postgresql
+&lt;span style="color:#75715e"># sudo apt remove postgresql-11 postgresql-client-11 &lt;/span>
+&lt;span style="color:#75715e"># sudo rm -rf /etc/postgresql/11&lt;/span>
+&lt;span style="color:#75715e"># sudo rm -rf /var/lib/postgresql/11&lt;/span>
+cd /tmp
+./delete_old_cluster.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="可定期执行的数据库维护指令">可定期执行的数据库维护指令&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span style="color:#66d9ef">VACUUM&lt;/span> &lt;span style="color:#66d9ef">ANALYSE&lt;/span> &lt;span style="color:#66d9ef">VERBOSE&lt;/span>;
+&lt;span style="color:#f92672">#&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">同時執行&lt;/span> &lt;span style="color:#66d9ef">VACUUM&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">和&lt;/span> &lt;span style="color:#66d9ef">ANALYZE&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">，&lt;/span> &lt;span style="color:#66d9ef">VERBOSE&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">显示处理信息&lt;/span>
+&lt;span style="color:#66d9ef">REINDEX&lt;/span> &lt;span style="color:#66d9ef">DATABASE&lt;/span> &lt;span style="color:#66d9ef">CONCURRENTLY&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span>DATABASE_NAME&lt;span style="color:#f92672">&amp;gt;&lt;/span>;
+&lt;span style="color:#f92672">#&lt;/span> &lt;span style="color:#66d9ef">DATABASE&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">可替換爲表格、索引等&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考链接">参考链接&lt;/h2>
+&lt;ol>
+&lt;li>&lt;a href="https://www.chrlogs.com/2020/05/how-to-upgrade-postgresql-10-cluster-to.html">How to Upgrade PostgreSQL 10 Cluster to 12 in Ubuntu 20.04&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.postgresql.org/download/linux/debian/">Linux downloads (Debian)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kb.objectrocket.com/postgresql/how-to-completely-uninstall-postgresql-757">How To Completely Uninstall PostgreSQL&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.postgresql.tw/server-administration/routine-database-maintenance-tasks/routine-reindexing">25.2. 定期重建索引&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/supermancoke/article/details/104612822">PostgreSQL10基础（6）Analyze和Vacuum&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.2ndquadrant.com/en/blog/postgresql-vacuum-and-analyze-best-practice-tips/" title="Permanent Link: PostgreSQL VACUUM and ANALYZE Best Practice Tips">PostgreSQL VACUUM and ANALYZE Best Practice Tips&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Nextcloud (Hetzner Storge Share) 使用分享</title><link>https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/</link><pubDate>Wed, 25 May 2022 21:04:12 +0800</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/</guid><description>&lt;p>某天看 Hetzner 的 VPS 时注意到其提供的 1 TB storage 的 Storage Share 服务，无限流量加三个自定义域名，购买相当于免安装拥有一个上述配置的 Nextcloud 云盘，价格每月 3.9 欧，比较划算，唯一的缺点大概就是地点只能选德国，质量访问速度不佳且不能用 cloudflare 加速。另外，这个 Storage Share 的操作界面在 konsoleh.your-server.de ，即便之前已有 Hetzner 账号，依旧还要重新注册一个 konsoleh 的账号（客服依旧是 Hetzner 的，一般一天之内都会回复），审核感觉相对 Hetzner 会宽松些。&lt;/p>
 &lt;h1 id="nextcloud-storage-share-功能与界面使用">Nextcloud (Storage Share) 功能与界面使用&lt;/h1>
 &lt;h1 id="table-of-contents">Table of Contents&lt;/h1>
 &lt;nav id="TableOfContents">

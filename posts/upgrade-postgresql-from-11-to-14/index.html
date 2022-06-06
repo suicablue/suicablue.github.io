@@ -1,0 +1,385 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Postgresql 大版本升级 11 - 14","image":"//","datePublished":"2022-06-07T00:05:00+08:00","dateModified":"2022-06-07T00:05:00+08:00","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/upgrade-postgresql-from-11-to-14\/"},"publisher":{"@type":"Organization","name":"Home Sweet Home ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。\n","keywords":[]}</script>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
+<meta name=author content="suica">
+<meta name=keywords content>
+<meta name=description content="Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。">
+<meta property="og:description" content="Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Postgresql 大版本升级 11 - 14">
+<meta name=twitter:title content="Postgresql 大版本升级 11 - 14">
+<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/upgrade-postgresql-from-11-to-14/">
+<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/upgrade-postgresql-from-11-to-14/">
+<meta property="og:site_name" content="Home Sweet Home ♡">
+<meta property="og:description" content="Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。">
+<meta name=twitter:description content="Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。">
+<meta property="og:locale" content="en-us">
+<meta property="article:published_time" content="2022-06-07T00:05:00">
+<meta property="article:modified_time" content="2022-06-07T00:05:00">
+<meta property="article:section" content="postgresql">
+<meta property="article:tag" content="postgresql">
+<meta property="article:tag" content="pleroma">
+<meta name=twitter:card content="summary">
+<meta property="og:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="twitter:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
+<meta property="og:image" content="//">
+<meta property="twitter:image" content="//">
+<meta property="og:image" content="//res.cloudinary.com/suicablue/image/upload/v1654525972/blog-thumbnail-images/suica_47_x6gzwb.jpg">
+<meta property="twitter:image" content="//res.cloudinary.com/suicablue/image/upload/v1654525972/blog-thumbnail-images/suica_47_x6gzwb.jpg">
+<title>Postgresql 大版本升级 11 - 14</title>
+<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
+<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/upgrade-postgresql-from-11-to-14/>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
+<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/mystyle.css>
+</head>
+<body>
+<div id=blog>
+<header id=header data-behavior=5>
+<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
+<div class=header-title>
+<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Home Sweet Home ♡</a>
+</div>
+<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
+<img class=header-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=90" alt="Author's picture">
+</a>
+</header>
+<nav id=sidebar data-behavior=5>
+<div class=sidebar-container>
+<div class=sidebar-profile>
+<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
+<img class=sidebar-profile-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+</a>
+<h4 class=sidebar-profile-name>suica</h4>
+<h5 class=sidebar-profile-bio>博客无限装修中</h5>
+</div>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
+<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
+<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
+<span class=sidebar-button-desc>Archives</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
+<i class="sidebar-button-icon fas fa-suitcase"></i>
+<span class=sidebar-button-desc>Portfolio</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/friends title=Friends>
+<i class="sidebar-button-icon fa fa-lg fa-users"></i>
+<span class=sidebar-button-desc>Friends</span>
+</a>
+</li>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
+<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
+<span class=sidebar-button-desc>About</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
+<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span>
+</a>
+</li>
+</ul>
+<ul class=sidebar-buttons>
+<li class=sidebar-button>
+<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/posts/index.xml title=RSS>
+<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="post-header-cover
+text-left
+post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
+<div class="post-header main-content-wrap text-left">
+<h1 class=post-title>
+Postgresql 大版本升级 11 - 14
+</h1>
+<div class="postShorten-meta post-meta">
+<time datetime=2022-06-07T00:05:00+08:00>
+June 7, 2022
+</time>
+<span>in</span>
+<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/postgresql>postgresql</a>
+</div>
+</div>
+</div>
+<div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn">
+<article class=post id=top>
+<div class="post-content markdown">
+<div class=main-content-wrap>
+<p>Debian 10 使用 pg_upgrade 跨大版本从 Postgresql 11 升级到了 Postgresql 14，一周过去并未发现有任何使用异常。</p>
+<p>♥ 感谢升级前与升级过程中 dudu 与 黛黛的帮助！ ♥</p>
+<h2 id=升级前准备>升级前准备</h2>
+<p>建议在进行下面的步骤前先对数据库进行备份。</p>
+<h3 id=检查当前系统中-postgresql-版本与程序>检查当前系统中 postgresql 版本与程序</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo su - postgres       <span style=color:#75715e># 切换到 postgres 用户</span>
+psql -V                  <span style=color:#75715e># 会显示 psql 版本和 server 版本</span>
+dpkg -l | grep postgres  <span style=color:#75715e># 查看系统上有哪些 Postgresql 程序</span>
+</code></pre></div><p>重点看后面带数字的有哪些，比方说有 <code>postgresql-11</code>、<code>postgresql-client-11</code>、<code>postgresql-server-dev-11</code>、<code>postgresql-11-rum</code> 这些，需要下载安装您要升级到的版本的 Postgresql。</p>
+<h3 id=安装-postgresql-14>安装 Postgresql 14</h3>
+<p>从 postgres 切换回 sudo 用户。</p>
+<ol>
+<li>
+<p>从 <a href=https://www.postgresql.org/media/keys/ACCC4CF8.asc>https://www.postgresql.org/media/keys/ACCC4CF8.asc</a> 导入数据库密钥</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt install curl ca-certificates gnupg
+
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg &gt;/dev/null
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>创建 /etc/apt/sources.list.d/pgdg.list ，将 <em>buster</em> 替换为实际使用的发行版。Debian 9 - stretch, 10 - buster, 11 - bullseye, 12 - bookworm, unstable - sid，仍不确定的话用 <code>lsb_release -c</code> 查询。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main
+
+sudo sh -c <span style=color:#e6db74>&#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&#34; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>更新并下载指定版本 Postgresql</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt update
+sudo apt install postgresql-14
+</code></pre></div><p>``</p>
+</li>
+</ol>
+<h3 id=再次检查如果有额外安装拓展的话并重新编译>再次检查（如果有额外安装拓展的话）并重新编译</h3>
+<p>确保系统中有 <code>postgresql-14</code>、<code>postgresql-client-14</code>、<code>postgresql-server-dev-14</code>，因为我之前还使用 rum，所以还需要额外安装 <code>postgresql-14-rum</code>。</p>
+<p>我之前为了让 Pleroma 支持中文搜索，安装过 <a href=https://github.com/jaiminpan/pg_jieba>pg_jieba</a> 和 <a href=https://github.com/huangjimmy/pg_cjk_parser>pg_cjk_parser</a>，因为主要用后者所以最后是把 jieba 删掉了（似乎得在安装新版本 Postgresql 前删除），如果需要保留某些拓展，需要进入编译文件所在目录进行重新编译。</p>
+<p>pg_jieba：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cmake -DCMAKE_PREFIX_PATH<span style=color:#f92672>=</span>/PATH/TO/PGSQL_INSTALL_DIR ..
+</code></pre></div><p>pg_cjk_parser：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>make clean <span style=color:#f92672>&amp;&amp;</span> make install
+</code></pre></div><h3 id=关闭正在使用-postgresql-的服务并关闭-postgresql-进行测试>关闭正在使用 Postgresql 的服务并关闭 Postgresql 进行测试</h3>
+<p>比方说我这边运行的服务有 Pleroma 和 Funkwhale，先把这两个关掉。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># sudo systemcyl stop pleroma</span>
+<span style=color:#75715e># sudo systemctl stop funkwhale.target</span>
+</code></pre></div><p>之后关掉 Postgresql。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo systemctl stop postgresql
+</code></pre></div><p>切换到 postgres 用户。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo su - postgres
+</code></pre></div><p>检查 pg_upgrade 是否可以正常运行。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/usr/lib/postgresql/14/bin/pg_upgrade --check <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-b /usr/lib/postgresql/11/bin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-B /usr/lib/postgresql/14/bin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-d /var/lib/postgresql/11/main <span style=color:#ae81ff>\ </span>
+-D /var/lib/postgresql/14/main <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-o <span style=color:#e6db74>&#39;-c config_file=/etc/postgresql/11/main/postgresql.conf&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-O <span style=color:#e6db74>&#39;-c config_file=/etc/postgresql/14/main/postgresql.conf&#39;</span>
+</code></pre></div><p>如果没有报错、所有的 checking 都过了，就可以正式进行升级了。如果出现报错，终端会给出提示，根据提示一个个纠错。可能有 postgresql 没有关闭、没有重新编译、缺少某些 package 等原因。</p>
+<h2 id=升级-postgresql>升级 Postgresql</h2>
+<ol>
+<li>移动到 tmp 目录</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd /tmp
+</code></pre></div><ol start=2>
+<li>升级（确保先前的 check 成功了再正式升级）</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/usr/lib/postgresql/14/bin/pg_upgrade <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-b /usr/lib/postgresql/11/bin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-B /usr/lib/postgresql/14/bin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-d /var/lib/postgresql/11/main <span style=color:#ae81ff>\ </span>
+-D /var/lib/postgresql/14/main <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-o <span style=color:#e6db74>&#39;-c config_file=/etc/postgresql/11/main/postgresql.conf&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>-O <span style=color:#e6db74>&#39;-c config_file=/etc/postgresql/14/main/postgresql.conf&#39;</span>
+</code></pre></div><p>成功的话应该会出现以下提示：</p>
+<pre tabindex=0><code>ptimizer statistics are not transferred by pg_upgrade. Once you start the new server, consider running: /usr/lib/postgresql/14/bin/vacuumdb --all --analyze-in-stages Running this script will delete the old cluster's data files: ./delete_old_cluster.sh
+</code></pre><ol start=3>
+<li>修改端口</li>
+</ol>
+<p>新安装的 Postgresql 默认端口会变成 5433，我们把它的端口改回 5432，并把旧 Postgresql 端口改为 5433</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo su - &lt;user&gt;
+<span style=color:#75715e># 切换回之前的用户</span>
+sudo nano /etc/postgresql/14/main/postgresql.conf
+<span style=color:#75715e># Ctrl + W 输入 &#34;port = 5433&#34; 跳转到端口位置，修改为 5422</span>
+<span style=color:#75715e># 如果有需要可以一并修改其他配置对 postgresql 进行优化</span>
+sudo nano /etc/postgresql/11/main/postgresql.conf
+<span style=color:#75715e># Ctrl + W 输入 &#34;port = 5432&#34; 跳转到端口位置，修改为 5423</span>
+</code></pre></div><ol start=4>
+<li>重新开启 Postgresql 和其他服务</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo systemctl start postgresql
+<span style=color:#75715e># sudo systemctl start pleroma</span>
+<span style=color:#75715e># sudo systemctl start funkwhale.target   </span>
+</code></pre></div><ol start=5>
+<li>快速生成统计信息以便 postgresql 可以正确计划查询</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo su - postgres
+/usr/lib/postgresql/14/bin/vacuumdb --all --analyze-in-stages
+</code></pre></div><ol start=6>
+<li>检查最新版本 Postgresql</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>psql -c <span style=color:#e6db74>&#34;SELECT version();&#34;</span>
+</code></pre></div><p>跟我一样服务器上有 Pleroma 的话此时可能发现实例打不开，检查 /var/log/postgresql 下的日志，发现如下报错：</p>
+<p>password authentication failed for user &ldquo;pleroma&rdquo;
+User &ldquo;pleroma&rdquo; does not have a valid SCRAM secret.</p>
+<p>将 /etc/pleroma 下的 config 文件中的密码复制下来，进入 pleroma 数据库，手动改回密码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-postgresql data-lang=postgresql><span style=color:#66d9ef>Alter</span> <span style=color:#66d9ef>USER</span> pleroma <span style=color:#66d9ef>WITH</span> <span style=color:#66d9ef>PASSWORD</span> <span style=color:#e6db74>&#39;&lt;password&gt;&#39;</span>;
+</code></pre></div><p>实例就可以正常启动了~</p>
+<ol start=7>
+<li>确定服务都可正常运行后，彻底删除旧版本的 Postgresql</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt list --installed | grep postgresql
+<span style=color:#75715e># sudo apt remove postgresql-11 postgresql-client-11 </span>
+<span style=color:#75715e># sudo rm -rf /etc/postgresql/11</span>
+<span style=color:#75715e># sudo rm -rf /var/lib/postgresql/11</span>
+cd /tmp
+./delete_old_cluster.sh
+</code></pre></div><h2 id=可定期执行的数据库维护指令>可定期执行的数据库维护指令</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-postgresql data-lang=postgresql><span style=color:#66d9ef>VACUUM</span> <span style=color:#66d9ef>ANALYSE</span> <span style=color:#66d9ef>VERBOSE</span>; 
+<span style=color:#f92672>#</span> <span style=color:#960050;background-color:#1e0010>同時執行</span> <span style=color:#66d9ef>VACUUM</span> <span style=color:#960050;background-color:#1e0010>和</span> <span style=color:#66d9ef>ANALYZE</span><span style=color:#960050;background-color:#1e0010>，</span> <span style=color:#66d9ef>VERBOSE</span> <span style=color:#960050;background-color:#1e0010>显示处理信息</span>
+<span style=color:#66d9ef>REINDEX</span> <span style=color:#66d9ef>DATABASE</span> <span style=color:#66d9ef>CONCURRENTLY</span> <span style=color:#f92672>&lt;</span>DATABASE_NAME<span style=color:#f92672>&gt;</span>;
+<span style=color:#f92672>#</span> <span style=color:#66d9ef>DATABASE</span> <span style=color:#960050;background-color:#1e0010>可替換爲表格、索引等</span>
+</code></pre></div><h2 id=参考链接>参考链接</h2>
+<ol>
+<li><a href=https://www.chrlogs.com/2020/05/how-to-upgrade-postgresql-10-cluster-to.html>How to Upgrade PostgreSQL 10 Cluster to 12 in Ubuntu 20.04</a></li>
+<li><a href=https://www.postgresql.org/download/linux/debian/>Linux downloads (Debian)</a></li>
+<li><a href=https://kb.objectrocket.com/postgresql/how-to-completely-uninstall-postgresql-757>How To Completely Uninstall PostgreSQL</a></li>
+<li><a href=https://docs.postgresql.tw/server-administration/routine-database-maintenance-tasks/routine-reindexing>25.2. 定期重建索引</a></li>
+<li><a href=https://blog.csdn.net/supermancoke/article/details/104612822>PostgreSQL10基础（6）Analyze和Vacuum</a></li>
+<li><a href=https://www.2ndquadrant.com/en/blog/postgresql-vacuum-and-analyze-best-practice-tips/ title="Permanent Link: PostgreSQL VACUUM and ANALYZE Best Practice Tips">PostgreSQL VACUUM and ANALYZE Best Practice Tips</a></li>
+</ol>
+</div>
+</div>
+<div id=post-footer class="post-footer main-content-wrap">
+<div class=post-footer-tags>
+<span class="text-color-light text-small">TAGGED IN</span><br>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/postgresql/>postgresql</a>
+<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/pleroma/>pleroma</a>
+</div>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/ data-tooltip="Nextcloud (Hetzner Storge Share) 使用分享" aria-label="PREVIOUS: Nextcloud (Hetzner Storge Share) 使用分享">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=gitalk>
+<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
+</div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'e784e96782cb0fa09815a0e8f3701d30',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
+</div>
+</article>
+<footer id=footer class=main-content-wrap>
+<span class=copyrights>
+&copy; 2022 <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
+</span>
+</footer>
+</div>
+<div id=bottom-bar class=post-bottom-bar data-behavior=5>
+<div class=post-actions-wrap>
+<nav>
+<ul class="post-actions post-action-nav">
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/ data-tooltip=最近在听什么 aria-label="NEXT: 最近在听什么">
+<i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/a-brief-introduction-of-nextcloud/ data-tooltip="Nextcloud (Hetzner Storge Share) 使用分享" aria-label="PREVIOUS: Nextcloud (Hetzner Storge Share) 使用分享">
+<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i>
+</a>
+</li>
+</ul>
+</nav>
+<ul class="post-actions post-action-share">
+<li class="post-action hide-lg hide-md hide-sm">
+<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
+<i class="fa fa-share-alt" aria-hidden=true></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
+<i class="fa fa-comment"></i>
+</a>
+</li>
+<li class=post-action>
+<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
+<i class="fa fa-arrow-up" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id=about>
+<div id=about-card>
+<div id=about-btn-close>
+<i class="fa fa-times"></i>
+</div>
+<img id=about-card-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
+<h4 id=about-card-name>suica</h4>
+<div id=about-card-bio>博客无限装修中</div>
+</div>
+</div>
+<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
+<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
+<a rel=me href=https://hyan.ink/@alterego></a>
+</body>
+</html>
