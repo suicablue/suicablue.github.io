@@ -1,383 +1,60 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"通配符域名证书申请与自动续费（Nginx，Debian 10）","image":"//","datePublished":"2021-08-28T00:00:00Z","dateModified":"2021-08-28T00:00:00Z","author":{"@type":"Person","name":"suica","image":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/wildcard-with-cloudflare-using-certbot\/"},"publisher":{"@type":"Organization","name":"Welcome to my little blue world ♡","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830"}},"description":"仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。\n","keywords":[]}</script>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=generator content="Hugo 0.91.2 with theme Tranquilpeak 0.5.2-BETA">
-<meta name=author content="suica">
-<meta name=keywords content>
-<meta name=description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
-<meta property="og:description" content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="通配符域名证书申请与自动续费（Nginx，Debian 10）">
-<meta name=twitter:title content="通配符域名证书申请与自动续费（Nginx，Debian 10）">
-<meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/">
-<meta property="twitter:url" content="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/">
-<meta property="og:site_name" content="Welcome to my little blue world ♡">
-<meta property="og:description" content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
-<meta name=twitter:description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。">
-<meta property="og:locale" content="en-us">
-<meta property="article:published_time" content="2021-08-28T00:00:00">
-<meta property="article:modified_time" content="2021-08-28T00:00:00">
-<meta property="article:section" content="实例管理">
-<meta property="article:tag" content="let'sencrypt">
-<meta property="article:tag" content="certbot">
-<meta property="article:tag" content="cloudflare">
-<meta name=twitter:card content="summary">
-<meta property="og:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
-<meta property="twitter:image" content="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=640">
-<meta property="og:image" content="//">
-<meta property="twitter:image" content="//">
-<meta property="og:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica_stare1.png">
-<meta property="twitter:image" content="https://suicablog.cobaltkiss.blue/thumbnailimages/suica_stare1.png">
-<title>通配符域名证书申请与自动续费（Nginx，Debian 10）</title>
-<link rel=icon href=https://suicablog.cobaltkiss.blue/favicon.ico>
-<link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css integrity="sha512-MLcK/YRapzET1qTBXrOiZE6bGBgtATMo2bIyalVJ8EKDEGNoeA3SPQkvWAR0zNS650YG13ocXBMeioDuZcSRuQ==" crossorigin=anonymous referrerpolicy=no-referrer>
-<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/style-wwwlacoz5u1hrs3mrhrwzxeuhdjvwyah9bg5a8jh81vvtjpgf1o8vy3.min.css>
-<link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/mystyle.css>
-</head>
-<body>
-<div id=blog>
-<header id=header data-behavior=5>
-<i id=btn-open-sidebar class="fa fa-lg fa-bars"></i>
-<div class=header-title>
-<a class=header-title-link href=https://suicablog.cobaltkiss.blue/ aria-label="Go to homepage">Welcome to my little blue world ♡</a>
-</div>
-<a class=header-right-picture href=https://suicablog.cobaltkiss.blue/#about aria-label="Open the link: /#about">
-<img class=header-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=90" alt="Author's picture">
-</a>
-</header>
-<nav id=sidebar data-behavior=5>
-<div class=sidebar-container>
-<div class=sidebar-profile>
-<a href=https://suicablog.cobaltkiss.blue/#about aria-label="Read more about the author">
-<img class=sidebar-profile-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
-</a>
-<h4 class=sidebar-profile-name>suica</h4>
-<h5 class=sidebar-profile-bio>挣脱惯性，我想紧紧抓住生命中每一份顿悟</h5>
-</div>
-<ul class=sidebar-buttons>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/ title=Home>
-<i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
-<span class=sidebar-button-desc>Home</span>
-</a>
-</li>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/archives title=Archives>
-<i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden=true></i>
-<span class=sidebar-button-desc>Archives</span>
-</a>
-</li>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/portfolio title=Portfolio>
-<i class="sidebar-button-icon fas fa-suitcase"></i>
-<span class=sidebar-button-desc>Portfolio</span>
-</a>
-</li>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/friends title=Friends>
-<i class="sidebar-button-icon fa fa-lg fa-users"></i>
-<span class=sidebar-button-desc>Friends</span>
-</a>
-</li>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/#about title=About>
-<i class="sidebar-button-icon fas fa-lg fa-heart" aria-hidden=true></i>
-<span class=sidebar-button-desc>About</span>
-</a>
-</li>
-</ul>
-<ul class=sidebar-buttons>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/notes title=Notes>
-<i class="sidebar-button-icon fa fa-solid fa-pen"></i>
-<span class=sidebar-button-desc>Notes</span>
-</a>
-</li>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://github.com/suicablue target=_blank rel=noopener title=GitHub>
-<i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
-<span class=sidebar-button-desc>GitHub</span>
-</a>
-</li>
-</ul>
-<ul class=sidebar-buttons>
-<li class=sidebar-button>
-<a class=sidebar-button-link href=https://suicablog.cobaltkiss.blue/posts/index.xml title=RSS>
-<i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
-<span class=sidebar-button-desc>RSS</span>
-</a>
-</li>
-</ul>
-</div>
-</nav>
-<div class="post-header-cover
-text-left
-post-header-cover--partial" style="background-image:url('//')" data-behavior=5>
-<div class="post-header main-content-wrap text-left">
-<h1 class=post-title>
-通配符域名证书申请与自动续费（Nginx，Debian 10）
-</h1>
-<div class="postShorten-meta post-meta">
-<time datetime=2021-08-28T00:00:00Z>
-August 28, 2021
-</time>
-<span>in</span>
-<a class=category-link href=https://suicablog.cobaltkiss.blue/categories/%e5%ae%9e%e4%be%8b%e7%ae%a1%e7%90%86>实例管理</a>
-</div>
-</div>
-</div>
-<div id=main data-behavior=5 class="hasCover
-hasCoverMetaIn">
-<article class=post id=top>
-<div class="post-content markdown">
-<div class=main-content-wrap>
-<p>仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
-使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 <a href=https://certbot.eff.org/docs/using.html#dns-plugins>确认</a> Certbot是否提供你需要的插件。</p>
-<h1 id=通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</h1>
-<p>之前曾经申请过主域名的证书，现在想要再添加通配符域名证书（*.yourinstance.com 格式的所有域名），或者第一次通过 Let&rsquo;sEncrypt 与 Certbot 申请 SSL 证书，都可以参考这篇记录；系统配置与我不同的话，在 <a href=https://certbot.eff.org/instructions>Certbot 页面</a> 上输入您的配置，注意不同系统的命令差异。</p>
-<p>欢迎提出用语或逻辑错误。</p>
-<h1 id=table-of-contents>Table of Contents</h1>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</a>
-<ul>
-<li><a href=#一-安装-snap>一. 安装 snap</a></li>
-<li><a href=#二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</a></li>
-<li><a href=#三-放置凭据>三. 放置凭据</a></li>
-<li><a href=#四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-<h2 id=一-安装-snap>一. 安装 snap</h2>
-<ol>
-<li>
-<p>debian 可以直接用 <code>apt install</code> 下载软件包。非 root 用户要加上 <code>sudo</code>；如果您正在使用 root 用户，则不需要添加 <code>sudo</code></p>
-<pre tabindex=0><code>sudo apt update
-sudo apt install snapd
-</code></pre></li>
-<li>
-<p>关闭 SSH 或退出登录，并再次登录，确保 snap 路径正常更新，之后安装 <code>core</code> 来得到最新版本的 snapd</p>
-<pre tabindex=0><code>sudo snap install core
-sudo snap refresh core
-</code></pre><p>测试看看：</p>
-<pre tabindex=0><code>sudo snap install hello-world
-# 是否输出：hello-world 6.3 from Canonical✓ installed
-hello-world
-# 是否输出：Hello World!
-</code></pre><p>Debian 10 可能遇到的问题：</p>
-<p>There is a known issue affecting some Debian 10 users with snaps that depend on browser-sandbox, such as Microsoft Teams. The issues can be bypassed with the following command:</p>
-<p><code>sudo sysctl kernel unprivileged_userns_clone=1</code></p>
-</li>
-</ol>
-<h2 id=二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</h2>
-<ol>
-<li>
-<p>根据你的系统任选其一将 certbot 删除：</p>
-<pre tabindex=0><code># 1
-sudo apt-get remove certbot
-# 2
-sudo dnf remove certbot
-# 3
-sudo yum remove certbot
-</code></pre></li>
-<li>
-<p>通过 snap 安装 certbot</p>
-</li>
-</ol>
-<pre tabindex=0><code> sudo snap install --classic certbot
-</code></pre><ol start=3>
-<li>确保 certbot 命令可执行
-<pre tabindex=0><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot
-</code></pre></li>
-<li>确保已安装的插件与 Certbot snap 具有相同容器
-<pre tabindex=0><code>sudo snap set certbot trust-plugin-with-root=ok
-</code></pre></li>
-<li>安装 DNS 插件，<code>sudo snap install certbot-dns-&lt;PLUGIN></code>，如果你使用 CloudFlare，直接执行：
-<pre tabindex=0><code>sudo snap install certbot-dns-cloudflare
-</code></pre>如果这里报错，再执行一遍步骤 4</li>
-</ol>
-<h2 id=三-放置凭据>三. 放置凭据</h2>
-<ol>
-<li>
-<p>登录 CloudFlare，在主页面上找到 API keys；如果你的 cloudflare python module 版本大于等于 2.3.1，建议复制 restricted API Token，否则复制 Global API Key</p>
-</li>
-<li>
-<p>设置 DNS 凭据</p>
-<pre tabindex=0><code>sudo mkdir -p /root/.secrets/
-sudo touch /root/.secrets/cloudflare.ini
-# 添加/.secrets目录与cloudflare.ini文件
+<!doctype html><html dir=ltr lang=zh-cn data-theme class="html theme--light"><head><meta charset=utf-8><title>suica
+|
+通配符域名证书申请与自动续费（Nginx，Debian 10）</title><meta name=generator content="Hugo 0.167.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=author content="suica"><meta name=description content="挣脱惯性，我想紧紧抓住生命中每一份顿悟"><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/anatole.min.d1a2db4db62630dc690a91ef034ed2fbecab93af4a610b9b8966d9f96705289c.css integrity="sha256-0aLbTbYmMNxpCpHvA07S++yrk69KYQubiWbZ+WcFKJw=" crossorigin=anonymous><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/markupHighlight.min.f8ba48d3fd92c731701d9634494275b2f2bc2ad0bea19b438feb41b25052f83b.css integrity="sha256-+LpI0/2SxzFwHZY0SUJ1svK8KtC+oZtDj+tBslBS+Ds=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/thumbnails.min.3a8c68bc0d91f443c647be6e14d1ca7d2b6f198f1244239da13b3c8e78d3006d.css integrity="sha256-OoxovA2R9EPGR75uFNHKfStvGY8SRCOdoTs8jnjTAG0=" crossorigin=anonymous media=screen><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/colors.min.c66a9d453bffa4049835ce0573508725028d4e54810dd92f86cd5783dd4fef24.css integrity="sha256-xmqdRTv/pASYNc4Fc1CHJQKNTlSBDdkvhs1Xg91P7yQ=" crossorigin=anonymous media=screen><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/code-themes.min.78bf1c7bd6dfbe6ab337d07dc769a94a9f1601a5ed3f273fc785afb8c99d0d16.css integrity="sha256-eL8ce9bfvmqzN9B9x2mpSp8WAaXtPyc/x4WvuMmdDRY=" crossorigin=anonymous media=screen><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/css/layout.min.a075e453f791dcf5f8679afb0f71efdf0c8071ea98acc012290e968b2b480307.css integrity="sha256-oHXkU/eR3PX4Z5r7D3Hv3wyAceqYrMASKQ6WiytIAwc=" crossorigin=anonymous media=screen><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/fontawesome/css/fontawesome.min.eabaad75d2a3bbe73cc241b49d1bb0a81c619a0095fdf7b562a68113351d6d10.css integrity="sha256-6rqtddKju+c8wkG0nRuwqBxhmgCV/fe1YqaBEzUdbRA=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/fontawesome/css/solid.min.8e12a5201429cf3456cf7cec43fcc253a1223599fbd1a079587adb995a4c023c.css integrity="sha256-jhKlIBQpzzRWz3zsQ/zCU6EiNZn70aB5WHrbmVpMAjw=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/fontawesome/css/regular.min.81539f32e0d482c0ac985e83d400c5b77aee57f779c00080431b7da424ee7419.css integrity="sha256-gVOfMuDUgsCsmF6D1ADFt3ruV/d5wACAQxt9pCTudBk=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://suicablog.cobaltkiss.blue/fontawesome/css/brands.min.83d56d716557b07e7c50ea76c0a6806208ce9e51bc0e3d54508c356260211f22.css integrity="sha256-g9VtcWVXsH58UOp2wKaAYgjOnlG8Dj1UUIw1YmAhHyI=" crossorigin=anonymous type=text/css><link rel="shortcut icon" href=https://suicablog.cobaltkiss.blue/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=https://suicablog.cobaltkiss.blue/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://suicablog.cobaltkiss.blue/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://suicablog.cobaltkiss.blue/favicon-16x16.png><link rel=canonical href=https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/><script type=text/javascript src=https://suicablog.cobaltkiss.blue/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js integrity="sha256-+RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI=" crossorigin=anonymous></script><script type=text/javascript src=https://suicablog.cobaltkiss.blue/js/anatole-theme-switcher.min.254e94e155412aaa9b328a7e9087cfcef8098ca92a499ce54a38e5f9514d5ca5.js integrity="sha256-JU6U4VVBKqqbMop+kIfPzvgJjKkqSZzlSjjl+VFNXKU=" crossorigin=anonymous></script><script type=text/javascript src=https://suicablog.cobaltkiss.blue/js/custom.min.6b94a526cbcdacb565632ad1cbe626251a5c4d69001f19996bea0d7bbf71de02.js integrity="sha256-a5SlJsvNrLVlYyrRy+YmJRpcTWkAHxmZa+oNe79x3gI=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="通配符域名证书申请与自动续费（Nginx，Debian 10）"><meta name=twitter:description content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。"><meta property="og:url" content="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/"><meta property="og:site_name" content="Welcome to my little blue world ♡"><meta property="og:title" content="通配符域名证书申请与自动续费（Nginx，Debian 10）"><meta property="og:description" content="仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。 使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 确认 Certbot是否提供你需要的插件。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-08-28T00:00:00+00:00"><meta property="article:modified_time" content="2021-08-28T00:00:00+00:00"><meta property="article:tag" content="Let'sencrypt"><meta property="article:tag" content="Certbot"><meta property="article:tag" content="Cloudflare"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"通配符域名证书申请与自动续费（Nginx，Debian 10）","headline":"通配符域名证书申请与自动续费（Nginx，Debian 10）","alternativeHeadline":"","description":"
+      
+        \u003cp\u003e仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。\n使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 \u003ca href=\u0022https:\/\/certbot.eff.org\/docs\/using.html#dns-plugins\u0022\u003e确认\u003c\/a\u003e Certbot是否提供你需要的插件。\u003c\/p\u003e
 
-sudo chmod 0700 /root/.secrets/
-sudo chmod 0400 /root/.secrets/cloudflare.ini
-# 指定权限
 
-nano /root/.secrets/cloudflare.ini
-# 编辑cloudflare.ini文件
-</code></pre><p>如果您使用 restricted API Token，按照下方格式编辑并变更 token 数值：</p>
-<pre tabindex=0><code># Cloudflare API token used by Certbot
-dns_cloudflare_api_token = 0123456789abcdef0123456789abcdef01234567
-</code></pre><p>如果您使用 Global API Key，按照下方格式编辑并变更 key 数值与 cloudflare 邮箱：</p>
-<pre tabindex=0><code># Cloudflare API credentials used by Certbot
-dns_cloudflare_email = cloudflare@example.com
-dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
-</code></pre></li>
-<li>
-<p>申请证书</p>
-<pre tabindex=0><code>certbot certonly \
-  --dns-cloudflare \
-  --dns-cloudflare-credentials ~/.secrets/cloudflare.ini \
-  -d example.com
-  -d *.example.com
-</code></pre><p>记得将 example.com 替换为您的域名，之后若您第一次申请，可能会要求您进行 TXT 验证，按照指示在 cloudflare 上操作即可；除此之外，您还应完成主域名的 A 记录验证</p>
-<p>如果系统提示 Another instance of Certbot is already running，使用 <code>ps -ef | grep certb</code> 指令查看 ID，并杀死进程 <code>kill ID_number</code></p>
-</li>
-</ol>
-<h2 id=四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</h2>
-<pre><code>```
+      
+
+
+    ","license":"","copyrightYear":"","inLanguage":"\"zh-cn\"","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/suicablog.cobaltkiss.blue\/posts\/wildcard-with-cloudflare-using-certbot\/"},"author":{"@type":"Person","name":"suica"},"creator":{"@type":"Person","name":"suica"},"accountablePerson":{"@type":"Person","name":"suica"},"copyrightHolder":{"@type":"Person","name":"suica"},"dateCreated":"2021-08-28T00:00:00.00Z","datePublished":"2021-08-28T00:00:00.00Z","dateModified":"2021-08-28T00:00:00.00Z","publisher":{"@type":"Organization","name":"suica","url":"https://suicablog.cobaltkiss.blue/","logo":{"@type":"ImageObject","url":"https:\/\/suicablog.cobaltkiss.blue\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/suicablog.cobaltkiss.blue\/posts\/wildcard-with-cloudflare-using-certbot\/","wordCount":"346","genre":["实例管理"],"keywords":["let\u0027sencrypt","certbot","cloudflare"]}</script></head><body class=body><div class=wrapper><aside id=about-panel class="wrapper__sidebar wrapper__sidebar--hidden"><div class=sidebar><style>:root{--site-cover:url(/images/cover.gif)}</style><div class="sidebar__content
+."><div class=sidebar__introduction><img class=sidebar__introduction-profileimage src=https://suicablog.cobaltkiss.blue/images/profile%20picture.png alt="profile picture"><div class=sidebar__introduction-title><a href=https://suicablog.cobaltkiss.blue/>suica</a></div><div class=sidebar__introduction-description><p>挣脱惯性，我想紧紧抓住生命中每一份顿悟</p></div></div><ul class=sidebar__list><li class=sidebar__list-item><a href=https://github.com/suicablue target=_blank rel="noopener me" aria-label=GitHub title=GitHub><i class="fa-brands fa-github fa-2x" aria-hidden=true></i></a></li><li class=sidebar__list-item><a href=https://cobaltkiss.blue/users/CorpseReviverNo2 target=_blank rel="noopener me" aria-label="Fediverse account" title="Fediverse account"><i class=fa-2x style="display:inline-block;width:1.25em;height:1.25em;vertical-align:-.3em;background-color:currentColor;-webkit-mask:url(/images/icons/pleroma.svg)center/contain no-repeat;mask:url(/images/icons/pleroma.svg)center/contain no-repeat" aria-hidden=true></i></a></li><li class=sidebar__list-item><a href=https://suicablog.cobaltkiss.blue/notes target=_blank rel="noopener me" aria-label=Notes title=Notes><i class="fa-solid fa-pen fa-2x" aria-hidden=true></i></a></li><li class=sidebar__list-item><a href=https://suicablog.cobaltkiss.blue/posts/index.xml target=_blank rel="noopener me" aria-label=RSS title=RSS><i class="fa-solid fa-rss fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer__sidebar"><ul class="footer__list
+."><li class=footer__item>&copy;
+<a href=https://waifubartending.com>COVER 来源</a><br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a> All Rights Reserved</li></ul></footer></div></aside><main class="wrapper__main wrapper__main--fullscreen"><header class=header><a class="floating-button floating-button--home" href=https://suicablog.cobaltkiss.blue/ title=Home aria-label=Home><img src=https://suicablog.cobaltkiss.blue/images/profile%20picture.png alt></a><div class="themeswitch floating-button floating-button--theme"><a title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></header><div class="post
+."><div class=post__content><h1>通配符域名证书申请与自动续费（Nginx，Debian 10）</h1><p>仅需申请一张多域名通配符证书，便可保护主域名以及下面的多个子域名。
+使用 CloudFlare 作为 DNS provider，而提供 CloudFlare 的插件安装，开始阅读请先 <a href=https://certbot.eff.org/docs/using.html#dns-plugins>确认</a> Certbot是否提供你需要的插件。</p><h1 id=通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</h1><p>之前曾经申请过主域名的证书，现在想要再添加通配符域名证书（*.yourinstance.com 格式的所有域名），或者第一次通过 Let&rsquo;sEncrypt 与 Certbot 申请 SSL 证书，都可以参考这篇记录；系统配置与我不同的话，在 <a href=https://certbot.eff.org/instructions>Certbot 页面</a> 上输入您的配置，注意不同系统的命令差异。</p><p>欢迎提出用语或逻辑错误。</p><h3>目录</h3><nav id=TableOfContents><ul><li><a href=#通配符域名证书申请与自动续费nginxdebian-10>通配符域名证书申请与自动续费（Nginx，Debian 10）</a><ul><li><a href=#一-安装-snap>一. 安装 snap</a></li><li><a href=#二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</a></li><li><a href=#三-放置凭据>三. 放置凭据</a></li><li><a href=#四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</a></li></ul></li></ul></nav><h2 id=一-安装-snap>一. 安装 snap</h2><ol><li><p>debian 可以直接用 <code>apt install</code> 下载软件包。非 root 用户要加上 <code>sudo</code>；如果您正在使用 root 用户，则不需要添加 <code>sudo</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt update
+</span></span><span class=line><span class=cl>sudo apt install snapd
+</span></span></code></pre></div></li><li><p>关闭 SSH 或退出登录，并再次登录，确保 snap 路径正常更新，之后安装 <code>core</code> 来得到最新版本的 snapd</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo snap install core
+</span></span><span class=line><span class=cl>sudo snap refresh core
+</span></span></code></pre></div><p>测试看看：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo snap install hello-world
+</span></span><span class=line><span class=cl># 是否输出：hello-world 6.3 from Canonical✓ installed
+</span></span><span class=line><span class=cl>hello-world
+</span></span><span class=line><span class=cl># 是否输出：Hello World!
+</span></span></code></pre></div><p>Debian 10 可能遇到的问题：</p><p>There is a known issue affecting some Debian 10 users with snaps that depend on browser-sandbox, such as Microsoft Teams. The issues can be bypassed with the following command:</p><p><code>sudo sysctl kernel unprivileged_userns_clone=1</code></p></li></ol><h2 id=二-移除一切-certbot-相关旧软件并安装新软件>二. 移除一切 Certbot 相关旧软件并安装新软件</h2><ol><li><p>根据你的系统任选其一将 certbot 删除：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 1
+</span></span><span class=line><span class=cl>sudo apt-get remove certbot
+</span></span><span class=line><span class=cl># 2
+</span></span><span class=line><span class=cl>sudo dnf remove certbot
+</span></span><span class=line><span class=cl># 3
+</span></span><span class=line><span class=cl>sudo yum remove certbot
+</span></span></code></pre></div></li><li><p>通过 snap 安装 certbot</p></li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> sudo snap install --classic certbot
+</span></span></code></pre></div><ol start=3><li>确保 certbot 命令可执行<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</span></span></code></pre></div></li><li>确保已安装的插件与 Certbot snap 具有相同容器<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo snap set certbot trust-plugin-with-root=ok
+</span></span></code></pre></div></li><li>安装 DNS 插件，<code>sudo snap install certbot-dns-&lt;PLUGIN></code>，如果你使用 CloudFlare，直接执行：<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo snap install certbot-dns-cloudflare
+</span></span></code></pre></div>如果这里报错，再执行一遍步骤 4</li></ol><h2 id=三-放置凭据>三. 放置凭据</h2><ol><li><p>登录 CloudFlare，在主页面上找到 API keys；如果你的 cloudflare python module 版本大于等于 2.3.1，建议复制 restricted API Token，否则复制 Global API Key</p></li><li><p>设置 DNS 凭据</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo mkdir -p /root/.secrets/
+</span></span><span class=line><span class=cl>sudo touch /root/.secrets/cloudflare.ini
+</span></span><span class=line><span class=cl># 添加/.secrets目录与cloudflare.ini文件
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo chmod 0700 /root/.secrets/
+</span></span><span class=line><span class=cl>sudo chmod 0400 /root/.secrets/cloudflare.ini
+</span></span><span class=line><span class=cl># 指定权限
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>nano /root/.secrets/cloudflare.ini
+</span></span><span class=line><span class=cl># 编辑cloudflare.ini文件
+</span></span></code></pre></div><p>如果您使用 restricted API Token，按照下方格式编辑并变更 token 数值：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># Cloudflare API token used by Certbot
+</span></span><span class=line><span class=cl>dns_cloudflare_api_token = 0123456789abcdef0123456789abcdef01234567
+</span></span></code></pre></div><p>如果您使用 Global API Key，按照下方格式编辑并变更 key 数值与 cloudflare 邮箱：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># Cloudflare API credentials used by Certbot
+</span></span><span class=line><span class=cl>dns_cloudflare_email = cloudflare@example.com
+</span></span><span class=line><span class=cl>dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
+</span></span></code></pre></div></li><li><p>申请证书</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>certbot certonly \
+</span></span><span class=line><span class=cl>  --dns-cloudflare \
+</span></span><span class=line><span class=cl>  --dns-cloudflare-credentials ~/.secrets/cloudflare.ini \
+</span></span><span class=line><span class=cl>  -d example.com
+</span></span><span class=line><span class=cl>  -d *.example.com
+</span></span></code></pre></div><p>记得将 example.com 替换为您的域名，之后若您第一次申请，可能会要求您进行 TXT 验证，按照指示在 cloudflare 上操作即可；除此之外，您还应完成主域名的 A 记录验证</p><p>如果系统提示 Another instance of Certbot is already running，使用 <code>ps -ef | grep certb</code> 指令查看 ID，并杀死进程 <code>kill ID_number</code></p></li></ol><h2 id=四-测试自动延期是否设置成功>四. 测试自动延期是否设置成功</h2><pre><code>```
 sudo certbot renew --dry-run
 ```
-</code></pre>
-<p>没有报错的话证书申请与自动续期就配置完成啦，之后如果需要用主域名或者任一子域名配置代理（比如 nginx），将配置文件里需要证书 pem 路径的地方替换为生成的证书配置文件对应的路径就好了。</p>
-<p>参考链接：</p>
-<ol>
-<li><a href="https://certbot.eff.org/instructions?ws=nginx&os=debianbuster">certbot wildcard certificates</a> （该地址已更新）</li>
-<li><a href=https://certbot-dns-cloudflare.readthedocs.io/en/stable/>Welcome to certbot-dns-cloudflare’s documentation!</a></li>
-<li><a href=https://community.letsencrypt.org/t/solved-another-instance-of-certbot-is-already-running/44690/2>Another instance of Certbot is already running</a></li>
-<li><a href=https://hijackson.com/how-to-generate-lets-encrypt-ssl-wildcard-with-cloudflare-using-certbot/>How to Generate Let’s Encrypt SSL Wildcard using Certbot? </a></li>
-</ol>
-</div>
-</div>
-<div id=post-footer class="post-footer main-content-wrap">
-<div class=post-footer-tags>
-<span class="text-color-light text-small">TAGGED IN</span><br>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/letsencrypt/>let'sencrypt</a>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/certbot/>certbot</a>
-<a class="tag tag--primary tag--small" href=https://suicablog.cobaltkiss.blue/tags/cloudflare/>cloudflare</a>
-</div>
-<div class=post-actions-wrap>
-<nav>
-<ul class="post-actions post-action-nav">
-<li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客" aria-label="NEXT: 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客">
-<i class="fa fa-angle-left"></i>
-<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/fight-club-after-reading/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="PREVIOUS: 搏击俱乐部 - 读书笔记">
-<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-<i class="fa fa-angle-right"></i>
-</a>
-</li>
-</ul>
-</nav>
-<ul class="post-actions post-action-share">
-<li class="post-action hide-lg hide-md hide-sm">
-<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
-<i class="fa fa-share-alt" aria-hidden=true></i>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
-<i class="fa fa-comment"></i>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
-<i class="fa fa-arrow-up" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=gitalk>
-<noscript>Please enable JavaScript to view the comments powered by Gitalk.</noscript>
-</div>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js integrity="sha512-EcTCcXV46teiNwe0VcnM5A038tcY+BaQYO4nW6Gh2i7v4/HjBVg7xx3+JBLl9WofDds//INJAiEGAtdgr8PWyA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
-<script type=text/javascript>(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('gitalk').innerHTML='Gitalk comments not available by default when the website is previewed locally.';return}new Gitalk({clientID:'2cc400ec1660bbd5291c',clientSecret:'56ed849e9a957fe475eae361e7bc0bda805a7a62',repo:'gitalk-comments',owner:'suicablue',admin:['suicablue'],id:'980f4aefa0ffc8720f9512c99aaa3b1c',...{distractionfreemode:!1,enablehotkey:!0,language:"en",pagerdirection:"first",perpage:10}}).render('gitalk')})()</script>
-</div>
-</article>
-<footer id=footer class=main-content-wrap>
-<span class=copyrights>
-&copy; 2024 <a href=https://waifubartending.com>Cover来源</a></br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a>. All Rights Reserved
-</span>
-</footer>
-</div>
-<div id=bottom-bar class=post-bottom-bar data-behavior=5>
-<div class=post-actions-wrap>
-<nav>
-<ul class="post-actions post-action-nav">
-<li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/use-github-pages-to-create-your-own-blog-and-deploy-automatically/ data-tooltip="利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客" aria-label="NEXT: 利用 Github Pages 与 Github Action 搭建并部署 Hugo 博客">
-<i class="fa fa-angle-left"></i>
-<span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default tooltip--top" href=https://suicablog.cobaltkiss.blue/posts/fight-club-after-reading/ data-tooltip="搏击俱乐部 - 读书笔记" aria-label="PREVIOUS: 搏击俱乐部 - 读书笔记">
-<span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-<i class="fa fa-angle-right"></i>
-</a>
-</li>
-</ul>
-</nav>
-<ul class="post-actions post-action-share">
-<li class="post-action hide-lg hide-md hide-sm">
-<a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post">
-<i class="fa fa-share-alt" aria-hidden=true></i>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default" href=#gitalk aria-label="Leave a comment">
-<i class="fa fa-comment"></i>
-</a>
-</li>
-<li class=post-action>
-<a class="post-action-btn btn btn--default" href=#top aria-label="Back to top">
-<i class="fa fa-arrow-up" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div id=about>
-<div id=about-card>
-<div id=about-btn-close>
-<i class="fa fa-times"></i>
-</div>
-<img id=about-card-picture src="https://www.gravatar.com/avatar/99c916aabc6a4437de95ea2baeff0830?s=110" alt="Author's picture">
-<h4 id=about-card-name>suica</h4>
-<div id=about-card-bio>挣脱惯性，我想紧紧抓住生命中每一份顿悟</div>
-</div>
-</div>
-<div id=cover style=background-image:url(https://suicablog.cobaltkiss.blue/images/cover.gif)></div>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
-<script src=https://suicablog.cobaltkiss.blue/js/script-o5v2oagxsgbtcbdhjvwyv3feck3c9pfon1gew6amqko8xum4ikc9jfa9oggn.min.js></script>
-<script src=https://suicablog.cobaltkiss.blue/js/clicklove.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
-<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
-<script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:!1}),$('pre.code-highlight > code, pre > code').each(function(b,a){$(this).hasClass('codeblock')||$(this).addClass('codeblock'),hljs.highlightBlock(a)})})</script>
-<a rel=me href=https://hyan.ink/@alterego></a>
-</body>
-</html>
+</code></pre><p>没有报错的话证书申请与自动续期就配置完成啦，之后如果需要用主域名或者任一子域名配置代理（比如 nginx），将配置文件里需要证书 pem 路径的地方替换为生成的证书配置文件对应的路径就好了。</p><p>参考链接：</p><ol><li><a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=debianbuster">certbot wildcard certificates</a> （该地址已更新）</li><li><a href=https://certbot-dns-cloudflare.readthedocs.io/en/stable/>Welcome to certbot-dns-cloudflare’s documentation!</a></li><li><a href=https://community.letsencrypt.org/t/solved-another-instance-of-certbot-is-already-running/44690/2>Another instance of Certbot is already running</a></li><li><a href=https://hijackson.com/how-to-generate-lets-encrypt-ssl-wildcard-with-cloudflare-using-certbot/>How to Generate Let’s Encrypt SSL Wildcard using Certbot?</a></li></ol></div><div class=post__footer><span><a class=category href=https://suicablog.cobaltkiss.blue/categories/%E5%AE%9E%E4%BE%8B%E7%AE%A1%E7%90%86/>实例管理</a></span>
+<span><a class=tag href=https://suicablog.cobaltkiss.blue/tags/letsencrypt/>let'sencrypt</a><a class=tag href=https://suicablog.cobaltkiss.blue/tags/certbot/>certbot</a><a class=tag href=https://suicablog.cobaltkiss.blue/tags/cloudflare/>cloudflare</a></span></div></div></main></div><footer class="footer footer__base"><ul class="footer__list
+."><li class=footer__item>&copy;
+<a href=https://waifubartending.com>COVER 来源</a><br><a href=https://suicablog.cobaltkiss.blue>Suica ♡</a> All Rights Reserved</li></ul></footer><script type=text/javascript src=https://suicablog.cobaltkiss.blue/js/medium-zoom.min.9531b4a2217a70c5a1fce89c1f81c9ebbdd586708fcd4130b417320c7230c8d6.js integrity="sha256-lTG0oiF6cMWh/OicH4HJ673VhnCPzUEwtBcyDHIwyNY=" crossorigin=anonymous></script></body></html>
