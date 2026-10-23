@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Welcome to my little blue world ♡</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in Posts on Welcome to my little blue world ♡</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 12 Oct 2026 12:38:15 +0900</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 22 Feb 2024 21:02:00 +0900</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div class="listenbrainz-embed" style="display:flex; flex-direction:column; gap:12px; max-width:650px;"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Welcome to my little blue world ♡</title><link>https://suicablog.cobaltkiss.blue/posts/</link><description>Recent content in Posts on Welcome to my little blue world ♡</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 12 Oct 2026 12:38:15 +0900</lastBuildDate><atom:link href="https://suicablog.cobaltkiss.blue/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>在听什么</title><link>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</link><pubDate>Thu, 22 Feb 2024 21:02:00 +0900</pubDate><guid>https://suicablog.cobaltkiss.blue/posts/what-am-i-listening-to-recently/</guid><description>&lt;div class="listenbrainz-embed" style="display:flex; flex-direction:column; align-items:flex-start; gap:12px; max-width:650px;"&gt;
 &lt;iframe src="https://listenbrainz.org/user/charmingblue/embed/playing-now" title="ListenBrainz: playing now"
-width="100%" height="80" loading="lazy" frameborder="0"&gt;&lt;/iframe&gt;
+width="650" height="80" loading="lazy" frameborder="0"&gt;&lt;/iframe&gt;
 &lt;iframe src="https://listenbrainz.org/user/charmingblue/embed/pin" title="ListenBrainz: pinned recording"
-width="100%" height="155" loading="lazy" frameborder="0"&gt;&lt;/iframe&gt;
+width="650" height="155" loading="lazy" frameborder="0"&gt;&lt;/iframe&gt;
 &lt;/div&gt;
+&lt;script&gt;
+(function () {
+function fit() {
+document.querySelectorAll('.listenbrainz-embed').forEach(function (box) {
+var s = Math.min(1, box.clientWidth / 650);
+box.querySelectorAll('iframe').forEach(function (f) { f.style.zoom = s; });
+});
+}
+fit();
+window.addEventListener('resize', fit);
+})();
+&lt;/script&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;2026.10.24 更新：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;今天发现 &lt;a href="https://listenbrainz.org/"&gt;Listenbrainz&lt;/a&gt; 也提供 &lt;a href="https://listenbrainz.readthedocs.io/en/latest/users/widgets.html"&gt;embed 样式&lt;/a&gt;，在与 Navidrome 关联的前提下，Navidrome 播放中的音乐会自动显示在 embed 中——也就是说，您现在如果能看到上面显示着音乐，大概我此刻正在听这首喔~&lt;/p&gt;
